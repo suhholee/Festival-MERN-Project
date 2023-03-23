@@ -11,7 +11,7 @@ export const registerUser = async (req,res) => {
     const newUser = await User.create(req.body)
     console.log(newUser)
     return res.status(201).json(`welcome ${newUser.username} :) `)
-  } catch (error) {
+  } catch (err) {
     sendError()
   }
 }
@@ -29,7 +29,7 @@ export const loginUser = async (req,res) => {
     }
     const token = jwt.sign( { sub: userToLogin._id }, process.env.SECRET , { expiresIn: '7d' })
     return res.json({ message: `welcome back, ${userToLogin.username}, token: ${token}` })
-  } catch (error) {
+  } catch (err) {
     sendError()
   }
 }

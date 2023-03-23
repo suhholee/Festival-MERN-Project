@@ -1,5 +1,6 @@
 import express from 'express'
 import { loginUser, registerUser } from '../controllers/auth.js'
+import { secureRoute } from './secureRoute.js'
 
 const router = express.Router()
 
@@ -8,4 +9,6 @@ router.route('/register')
 
 router.route('/login')
   .post(loginUser)
+
+
 export default router
