@@ -23,6 +23,8 @@ userSchema
 
 //  Virtual for comments
 
+
+
 // Check password and password confirmation matches
 userSchema
   .pre('validate', function(next){
@@ -38,8 +40,8 @@ userSchema
 
 userSchema.pre('save', function(next){
   if (this.isModified('password')) {
-    const salt = bcrypt.genSalt(12)
-    this.password - bcrypt.hashSync(this.password, salt)
+    const salt = bcrypt.genSaltSync(12)
+    this.password = bcrypt.hashSync(this.password, salt)
   }
   next()
 })
