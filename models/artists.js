@@ -3,9 +3,8 @@ import mongoose from 'mongoose'
 // ! Schema
 const artistSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
-  stageName: { type: mongoose.Schema.ObjectId, ref: 'Stage', required: true },
-  genre: { type: String, required: true },
-  url: { type: String },
+  stage: { type: String, required: true, unique: true },
+  url: { type: String, required: true },
 })
 
 // ! Model
