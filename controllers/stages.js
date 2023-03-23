@@ -5,7 +5,9 @@ import { Unauthorized, NotFound, sendError } from '../config/errors.js'
 // Endpoints: /stages
 export const getStages = async (req, res) => {
   try {
-    console.log('GET STAGES')
+    const stages = await Stage.find()
+    console.log(stages)
+    return res.json(stages)
   } catch (err) {
     return sendError(err, res)
   }

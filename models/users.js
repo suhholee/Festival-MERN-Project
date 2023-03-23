@@ -35,7 +35,7 @@ userSchema
 // * Hash Password
 userSchema.pre('save', function(next){
   if (this.isModified('password')) {
-    const salt = bcrypt.genSalt(12)
+    const salt = bcrypt.genSaltSync(12)
     this.password = bcrypt.hashSync(this.password, salt)
   }
   next()

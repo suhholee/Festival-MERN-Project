@@ -1,10 +1,9 @@
 import mongoose from 'mongoose'
 
-// ! Schema
-const stageSchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true },
-  text: { type: String, required: true },
-  comments: [commentSchema],
+// ! Likes Schema (Embedded)
+// The likes schema is consisted of the users' information as it is added when clicked
+const likesSchema = new mongoose.Schema({
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
 })
 
 // ! Comment Schema (Embedded)
@@ -16,10 +15,11 @@ const commentSchema = new mongoose.Schema({
   timestamps: true,
 })
 
-// ! Likes Schema (Embedded)
-// The likes schema is consisted of the users' information as it is added when clicked
-const likesSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+// ! Schema
+const stageSchema = new mongoose.Schema({
+  name: { type: String, required: true, unique: true },
+  text: { type: String, required: true },
+  comments: [commentSchema],
 })
 
 // ! Model
