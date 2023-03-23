@@ -20,6 +20,10 @@ userSchema
     this._passwordConfirmation = userPasswordConfirmation
   })
 
+//  Virtual for comments
+
+
+
 // * Virtual for comments
 // Check password and password confirmation matches
 userSchema
@@ -35,12 +39,13 @@ userSchema
 // * Hash Password
 userSchema.pre('save', function(next){
   if (this.isModified('password')) {
-    const salt = bcrypt.genSalt(12)
+    const salt = bcrypt.genSaltSync(12)
     this.password = bcrypt.hashSync(this.password, salt)
   }
   next()
 })
 
+// Validate Password
 // * Validate password method
 userSchema.methods.validatePassword = function(plainTextPassword){
   return bcrypt.compare(plainTextPassword, this.password)
