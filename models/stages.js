@@ -11,6 +11,7 @@ const stageSchema = new mongoose.Schema({
 const commentSchema = new mongoose.Schema({
   text: { type: String, required: true, maxlength: 300 },
   likes: [likesSchema],
+  owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
 }, {
   timestamps: true,
 })
@@ -18,7 +19,7 @@ const commentSchema = new mongoose.Schema({
 // ! Likes Schema (Embedded)
 // The likes schema is consisted of the users' information as it is added when clicked
 const likesSchema = new mongoose.Schema({
-  // Likes User ID
+  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
 })
 
 // ! Model

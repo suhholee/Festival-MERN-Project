@@ -1,12 +1,11 @@
 import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 
-// Fields
+// * Fields
 // Username
 // Email
 // Password
 // passwordConfirmation
-
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
@@ -14,15 +13,14 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
 })
 
-// Virtual schema for password confirmation
+// * Virtual schema for password confirmation
 userSchema
   .virtual('passwordConfirmation')
   .set(function(userPasswordConfirmation){
     this._passwordConfirmation = userPasswordConfirmation
   })
 
-//  Virtual for comments
-
+// * Virtual for comments
 // Check password and password confirmation matches
 userSchema
   .pre('validate', function(next){
@@ -34,14 +32,18 @@ userSchema
     next()
   })
 
-// Hash Password
-
+// * Hash Password
 userSchema.pre('save', function(next){
   if (this.isModified('password')) {
     const salt = bcrypt.genSalt(12)
-    this.password - bcrypt.hashSync(this.password, salt)
+    this.password = bcrypt.hashSync(this.password, salt)
   }
   next()
 })
+
+// * Validate password method
+userSchema.methods.validatePassword = function(plainTextPassword){
+  return bcrypt.compare(plainTextPassword, this.password)
+}
 
 export default mongoose.model('User', userSchema)
