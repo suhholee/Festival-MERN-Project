@@ -23,7 +23,7 @@ export const addComment = async (req, res) => {
     const { id } = req.params
     const stage = await Stage.findById(id)
     if (!stage) throw new NotFound('Stage Not Found')
-    const commentToAdd = { ...req.body }
+    const commentToAdd = { ...req.body, owner: req.loggedInUser._id }
     stage.comments.push(commentToAdd)
     await stage.save()
     return res.status(201).json(stage)
@@ -63,6 +63,29 @@ export const updateComment = async (req, res) => {
     if (!commentToUpdate) throw new NotFound('Comment not found')
     if (!commentToUpdate.owner.equals(loggedInUserId)) throw new Unauthorized('Unauthorized')
     Object.assign(commentToUpdate, req.body)
+    await stage.save()
+    return res.json(commentToUpdate)
+  } catch (err) {
+    return sendError(err, res)
+  }
+}
+
+// * Update ID to likes key
+// Endpoint: /stages/:stageId/comments/:commentId/likes
+export const updateLikes = async (req, res) => {
+  try {
+    const { stageId, commentId } = req.params
+    const loggedInUserId = req.loggedInUser._id
+    const stage = await Stage.findById(stageId)
+    if (!stage) throw new NotFound('Stage not found')
+    const commentToUpdate = stage.comments.id(commentId)
+    if (!commentToUpdate) throw new NotFound('Comment not found')
+    const likesToUpdate = commentToUpdate.likes
+    if (!likesToUpdate.includes(loggedInUserId)) {
+      likesToUpdate.push(loggedInUserId)
+    } else {
+      likesToUpdate.splice(likesToUpdate.indexOf(loggedInUserId), 1)
+    }
     await stage.save()
     return res.json(commentToUpdate)
   } catch (err) {
