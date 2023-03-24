@@ -20,10 +20,6 @@ userSchema
     this._passwordConfirmation = userPasswordConfirmation
   })
 
-//  Virtual for comments
-
-
-
 // * Virtual for comments
 // Check password and password confirmation matches
 userSchema
@@ -45,7 +41,6 @@ userSchema.pre('save', function(next){
   next()
 })
 
-// Validate Password
 // * Validate password method
 userSchema.methods.validatePassword = function(plainTextPassword){
   return bcrypt.compare(plainTextPassword, this.password)

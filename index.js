@@ -1,7 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
-import 'dotenv/config'
 import router from './config/router.js'
+import 'dotenv/config'
 
 // ! Variables
 const app = express()
@@ -23,8 +23,7 @@ const startServer = async () => {
     })
 
     // ! Routes
-    // app.use('/api', router)
-    app.use(router)
+    app.use('/api', router)
 
     // ! 404 catch all middleware
     app.use((req, res) => {
