@@ -1,0 +1,71 @@
+import { NotFound, sendError, Unauthorized } from '../config/errors.js'
+import Stage from '../models/stages.js'
+
+// * Get All Comments
+// Endpoint: /stages/:stageId/comments
+export const getComments = async (req, res) => {
+  try {
+    const { id } = req.params
+    const stage = await Stage.findById(id)
+    if (!stage) throw new NotFound('Stage Not Found')
+    const comments = stage.comments
+    if (!comments) throw new NotFound('Comment Not Found')
+    return res.json(comments)
+  } catch (err) {
+    return sendError(err, res)
+  }
+}
+
+// * Add Comment
+// Endpoint: /stages/:stageId/comments
+export const addComment = async (req, res) => {
+  try {
+    const { id } = req.params
+    const stage = await Stage.findById(id)
+    if (!stage) throw new NotFound('Stage Not Found')
+    const commentToAdd = { ...req.body }
+    stage.comments.push(commentToAdd)
+    await stage.save()
+    return res.status(201).json(stage)
+  } catch (err) {
+    return sendError(err, res)
+  }
+}
+
+// * Delete Comment
+// Endpoint: /stages/:stageId/comments/:commentId
+export const deleteComment = async (req, res) => {
+  try {
+    const { stageId, commentId } = req.params
+    const loggedInUserId = req.loggedInUser._id
+    const stage = await Stage.findById(stageId)
+    if (!stage) throw new NotFound('Stage not found')
+    const commentToDelete = stage.comments.id(commentId)
+    if (!commentToDelete) throw new NotFound('Comment not found')
+    if (!commentToDelete.owner.equals(loggedInUserId)) throw new Unauthorized('Unauthorized')
+    await commentToDelete.deleteOne()
+    await stage.save()
+    return res.sendStatus(204)
+  } catch (err) {
+    return sendError(err, res)
+  }
+}
+
+// * Update Comment
+// Endpoint: /stages/:stageId/comments/:commentId
+export const updateComment = async (req, res) => {
+  try {
+    const { stageId, commentId } = req.params
+    const loggedInUserId = req.loggedInUser._id
+    const stage = await Stage.findById(stageId)
+    if (!stage) throw new NotFound('Stage not found')
+    const commentToUpdate = stage.comments.id(commentId)
+    if (!commentToUpdate) throw new NotFound('Comment not found')
+    if (!commentToUpdate.owner.equals(loggedInUserId)) throw new Unauthorized('Unauthorized')
+    Object.assign(commentToUpdate, req.body)
+    await stage.save()
+    return res.json(commentToUpdate)
+  } catch (err) {
+    return sendError(err, res)
+  }
+}

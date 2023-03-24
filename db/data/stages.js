@@ -2,15 +2,15 @@
 
 export default [
   {
-    name: 'Jungle Constellation',
+    name: 'Nebula-808',
     text: 'test',
-  }, 
+  },
   {
     name: 'Chaos Cosmos',
     text: 'test',
   },
   {
-    name: 'Nebula-808',
+    name: 'Jungle Constellation',
     text: 'test',
   }
 ]

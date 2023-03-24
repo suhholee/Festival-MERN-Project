@@ -2,8 +2,8 @@
 
 export default [
   {
-    username: 'wooju',
-    email: 'wooju@email.com',
+    username: 'woozu',
+    email: 'woozu@email.com',
     password: 'pass',
     passwordConfirmation: 'pass',
   }
