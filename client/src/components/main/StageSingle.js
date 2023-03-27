@@ -48,9 +48,7 @@ const StageSingle = () => {
     }
     getStage()
     getArtists()
-  }, [])
-
-  console.log(stage)
+  }, [stageId])
 
   return (
     <>
@@ -62,34 +60,35 @@ const StageSingle = () => {
             {stageError ?
               <Error error={stageError} />
               :
-              <Spinner />}
+              <h1>...</h1>}
           </>
         }
-        {artists.length > 0 ?
-          artists.map(artist => {
-            const { _id, name, url, stage, image } = artist
-            if (stageId === stage) {
-              return (
-                <Col key={_id} lg="4" md="6" sm="12">
-                  <Card>
-                    <div style={{ backgroundImage: `url('${image}')` }}></div>
-                    <Card.Body>
-                      <Card.Text>{name}</Card.Text>
-                      <Button key={_id} as={Link} to={`${url}`}>Link to YouTube</Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              )
-            }
-          })
-          :
-          <>
-            {artistsError ?
-              <Error error={artistsError} />
-              :
-              <Spinner />}
-          </>
-        }
+        <div className='artists-container'>
+          {artists.length > 0 ?
+            artists.map(artist => {
+              const { _id, name, url, stage, image } = artist
+              if (stageId === stage) {
+                return (
+                  <Col key={_id} lg="4" md="6" sm="12" className='artists'>
+                    <Card style={{ backgroundImage: `url('${image}')` }}>
+                      <Card.Body>
+                        <Card.Text>{name}</Card.Text>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/btocybienAY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                )
+              }
+            })
+            :
+            <>
+              {artistsError ?
+                <Error error={artistsError} />
+                :
+                <Spinner />}
+            </>
+          }
+        </div>
         {/* Add comments section here */}
       </main>
 

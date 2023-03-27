@@ -1,0 +1,19 @@
+.artists-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 20px;
+  .artists {
+    height: 500px;
+    .card {
+      background-blend-mode: multiply;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: hsla(0, 0%, 100%, 1);
+      box-shadow: 8px 8px 8px rgb(0 0 0 / 60%);
+      color: white;
+    }
+  }
+}

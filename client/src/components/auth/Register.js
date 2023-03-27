@@ -14,13 +14,13 @@ const Register = () => {
   const navigate = useNavigate()
 
   // ! State
-  const [ formFields,setFormFields ] = useState({
+  const [ formFields, setFormFields ] = useState({
     username: '',
     email: '',
     password: '',
     passwordConfirmation: '',
   })
-  const [ error,setError ] = useState('')
+  const [ error, setError ] = useState('')
 
   // ! Executions
   const handleChange = (e) => {
@@ -49,10 +49,10 @@ const Register = () => {
           <h1>Register</h1>
           {/* Username */}
           <label htmlFor='username'>Username</label>
-          <input type='text' name='username' placeholder='Username' onChange={handleChange} value= {formFields.username}/>
+          <input type='text' name='username' placeholder='Username' onChange={handleChange} value={formFields.username}/>
           {/* Email */}
           <label htmlFor='email'>Email</label>
-          <input type='text' name='email' placeholder='Email' onChange={handleChange} value= {formFields.email}/>
+          <input type='text' name='email' placeholder='Email' onChange={handleChange} value={formFields.email}/>
           {/* Password */}
           <label htmlFor='password'>Password</label>
           <input type='password' name='password' placeholder='Password' onChange={handleChange} value={formFields.password}/>
