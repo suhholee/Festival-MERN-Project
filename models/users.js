@@ -21,6 +21,8 @@ userSchema
   })
 
 // * Virtual for comments
+
+
 // Check password and password confirmation matches
 userSchema
   .pre('validate', function(next){

@@ -18,6 +18,7 @@ export const registerUser = async (req,res) => {
 }
 
 
+
 // * LOGIN ROUTE
 // Endpoint: /login
 export const loginUser = async (req,res) => {
