@@ -16,37 +16,51 @@ import { isAuthenticated } from '../helpers/auth'
 const Map = () => {
 
   // ! State
-  const [ stage, setStage ] = useState([])
-  const [ error, setError ] = useState('')
+  const [stages, setStages] = useState([])
+  const [error, setError] = useState('')
   const navigate = useNavigate()
 
 
   // ! On Mount
   useEffect(() => {
 
-    (!isAuthenticated()) && navigate('/')
+    !isAuthenticated() && navigate('/')
 
-    const getStage = async () => {
+    const getStages = async () => {
       try {
         const { data } = await axios.get('/api/stages')
         console.log(data)
-        setStage(data)
+        setStages(data)
       } catch (err) {
         console.log(err)
         setError(err.message)
       }
     }
-    getStage()
+    getStages()
   }, [])
 
 
   return (
     <>
-      <PageNavbar />
+      {/* <PageNavbar /> */}
       <div className='mapButton'>
-        <Button to='/stages/641dd178631b9fd37d63b4e5' as={Link} className='btn-Nebula'> Nebula-808 </Button>
-        <Button to='/stages/641dd178631b9fd37d63b4e6' as={Link} className='btn-Chaos'> Chaos Cosmos </Button>
-        <Button to='/stages/641dd178631b9fd37d63b4e7' as={Link} className='btn-Jungle'> Jungle Constellation </Button>
+        {stages.length > 0 ?
+
+          stages.map(stage => {
+            const { _id, name } = stage
+            const buttonName = name.replace(' ', '-').toLowerCase()
+            return (
+              <Button key={_id} as={Link} to={`/stages/${_id}`} className={`btn-${buttonName}`}>{name}</Button>
+            )
+          })
+          :
+          <>
+            {error ?
+              <Error error={error} />
+              :
+              <Spinner />}
+          </>
+        }
       </div>
     </>
   )
