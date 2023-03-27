@@ -40,7 +40,7 @@ const Register = () => {
   }
 
   return (
-    <Container className='text-center , register'>
+    <Container className='text-center form-page'>
       <Row>
         <Col as='form' onSubmit={handleSubmit} xs={{ span: 10, offset: 1 }} md={{ span: 6, offset: 3 }} lg={{ span: 4, offset: 4 }}>
           <h1>Register</h1>
