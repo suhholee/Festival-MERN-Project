@@ -1,10 +1,10 @@
 // import { useEffect } from 'react'
 // import axios from 'axios'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 
 // Components
 import Home from './components/Home'
-import PageNavbar from './components/common/PageNavbar'
+// import PageNavbar from './components/common/PageNavbar'
 import PageNotFound from './components/common/PageNotFound'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
@@ -12,17 +12,13 @@ import Map from './components/map/Map'
 import StageSingle from './components/map/StageSingle'
 
 const App = () => {
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const { data } = await axios.get('/api/map/') // * <-- replace with your endpoint
-  //     console.log(data)
-  //   }
-  //   getData()
-  // })
+
+  // const location = useLocation()
 
   return (
     <div className='site-wrapper'>
       <BrowserRouter>
+        {/* {location.pathname !== '/' && <PageNavbar /> } */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
