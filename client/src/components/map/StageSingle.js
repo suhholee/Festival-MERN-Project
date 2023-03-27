@@ -5,7 +5,7 @@ import PageNavbar from '../common/PageNavbar'
 
 import Error from '../common/Error'
 import Spinner from '../common/Spinner'
-
+import Comments from './Comments'
 
 const StageSingle = () => {
   // ! State
@@ -48,7 +48,7 @@ const StageSingle = () => {
             <Spinner />}
         </>
       }
-
+      <Comments />
     </>
   )
 
