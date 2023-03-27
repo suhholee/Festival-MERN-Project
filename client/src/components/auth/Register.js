@@ -10,8 +10,10 @@ import Col from 'react-bootstrap/Col'
 
 const Register = () => {
 
+  // ! Location variables
   const navigate = useNavigate()
 
+  // ! State
   const [ formFields,setFormFields ] = useState({
     username: '',
     email: '',
@@ -20,6 +22,7 @@ const Register = () => {
   })
   const [ error,setError ] = useState('')
 
+  // ! Executions
   const handleChange = (e) => {
     // console.log(e.target.name, e.target.value)
     setFormFields({ ...formFields, [e.target.name]: e.target.value })

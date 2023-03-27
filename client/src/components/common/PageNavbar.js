@@ -7,22 +7,22 @@ import { removeToken } from '../helpers/auth'
 
 const PageNavbar = () => {
 
+  // ! Location variables
   const navigate = useNavigate()
   const location = useLocation()
+  const noNav = ['/', '/login', '/register']
 
+  // ! Executions
   const handleLogout = () => {
     removeToken()
     navigate('/')
   }
-
-  const noNav = ['/', '/login', '/register']
 
   return (
     <>
       {!noNav.includes(location.pathname) &&
         <Navbar expand="md">
           <Container>
-            {/* Brand logo */}
             <Navbar.Brand to="/" as={Link} className='logo'>WOOZU SOUNDS</Navbar.Brand>
             <Navbar.Toggle aria-controls="breadbored-nav" />
             <Navbar.Collapse id="breadbored-nav" className='justify-content-end'>
