@@ -7,3 +7,9 @@ $sub-font: 'Alumni Sans', sans-serif;
   justify-content: center;
   align-items: center;
 }
+
+%bgImg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

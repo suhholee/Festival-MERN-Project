@@ -11,5 +11,23 @@
 main {
   flex-grow: 1;
   padding: 2em 0;
-  // background-color: ;
 }
+
+.spinner {
+  padding: 100px;
+  img {
+    width: 150px;
+  }
+}
+
+
+h1, .logo {
+  font-family: $main-font;
+}
+
+p {
+  font-family: $sub-font;
+  font-size: 30px;
+}
+  // background-color: ;
+
