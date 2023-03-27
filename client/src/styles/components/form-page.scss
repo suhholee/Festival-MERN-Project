@@ -1,0 +1,16 @@
+.form-page {
+  form {
+    background-color: grey;
+    border-radius: 8px;
+    padding: 20px;
+    label{
+      display: block;
+    }
+    input, textarea {
+      width: 100%;
+      margin-bottom: 15px;
+      border: 1px solid rgba(0,0,0,0.2);
+      padding: 5px;
+    }
+  }
+}
