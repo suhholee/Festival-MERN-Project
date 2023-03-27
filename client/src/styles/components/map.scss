@@ -1,0 +1,35 @@
+.btn-Nebula, .btn-Chaos, .btn-Jungle {
+  @extend %bgImg;
+  width: 250px;
+  height: 250px;
+  font-family: $main-font;
+  font-style: normal;
+  font-size: 40px;
+  color: black;
+  border: none;
+  background-color: transparent;
+  &:hover, &:active {
+    background-color: transparent;
+    color: black;
+  }
+}
+.btn-Nebula{ background-image: url('../../components/images/test-1.png'); }
+.btn-Chaos{ background-image: url('../../components/images/test-5.png');}
+.btn-Jungle{ background-image: url('../../components/images/test-7.png'); }
+
+.stageIndex {
+  cursor: pointer;
+  font-family: $main-font;
+  font-size: 40px;
+  color: black;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.stageImage {
+  background-image: url('../../components/images/test-1.png');
+  @extend %bgImg;
+  width: 200px;
+  height: 200px;
+  position: relative;
+}

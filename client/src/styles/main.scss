@@ -1,3 +1,7 @@
-* {
-  box-sizing: border-box;
-}
+@import './global/variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100;0,300;0,400;0,500;0,600;1,400;1,500&family=Caesar+Dressing&display=swap');
+@import './global/base.scss';
+@import './components/navbar.scss';
+@import './components/map.scss';
+@import './components/artist-cards.scss';
+@import './components/home.scss';

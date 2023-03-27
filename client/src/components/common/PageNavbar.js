@@ -11,7 +11,7 @@ const PageNavbar = () => {
         {/* Navbar.Brand default element is an anchor tag which reloads the page as it follows the href */}
         {/* To render this as a Link component, import Link and pass it to the as prop */}
         {/* Finally, update the href to being a "to" prop */}
-        <Navbar.Brand to="/" as={Link}>WOOZU</Navbar.Brand>
+        <Navbar.Brand to="/" as={Link} className='LOGO'>WOOZU SOUNDS</Navbar.Brand>
         <Navbar.Toggle aria-controls="breadbored-nav" />
         <Navbar.Collapse id="breadbored-nav" className='justify-content-end'>
           <Nav>
