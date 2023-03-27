@@ -34,6 +34,7 @@ const Register = () => {
       navigate('/login')
     } catch (error) {
       console.log('console', error)
+      // if (error)
       setError(error.response.data.message)
     }
   }
