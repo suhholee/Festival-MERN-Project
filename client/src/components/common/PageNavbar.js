@@ -15,7 +15,6 @@ const PageNavbar = () => {
   // ! Executions
   const handleLogout = () => {
     removeToken()
-    navigate('/')
   }
 
   return (
@@ -23,13 +22,13 @@ const PageNavbar = () => {
       {!noNav.includes(location.pathname) &&
         <Navbar expand="md">
           <Container>
-            <Navbar.Brand to="/" as={Link} className='logo'>WOOZU SOUNDS</Navbar.Brand>
+            <Navbar.Brand to="/map" as={Link} className='logo'>WOOZU SOUNDS</Navbar.Brand>
             <Navbar.Toggle aria-controls="breadbored-nav" />
             <Navbar.Collapse id="breadbored-nav" className='justify-content-end'>
               <Nav>
-                <Nav.Link to="/" as={Link} className={location.pathname === '/' ? 'active' : ''}>Home</Nav.Link>
                 <Nav.Link to="/map" as={Link} className={location.pathname === '/map' ? 'active' : ''}>Map</Nav.Link>
-                <button onClick={handleLogout}>Logout</button>
+                <Nav.Link to="/about" as={Link} className={location.pathname === '/about' ? 'active' : ''}>About</Nav.Link>
+                <Nav.Link to="/" as={Link} className={location.pathname === '/' ? 'active' : ''} onClick={handleLogout}>Logout</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>

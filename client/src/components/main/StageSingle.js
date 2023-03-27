@@ -1,15 +1,19 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
+import { Col, Card, Button } from 'react-bootstrap'
 
+// Custom Components
 import Error from '../common/Error'
 import Spinner from '../common/Spinner'
+import { isAuthenticated } from '../helpers/auth'
 
 
 const StageSingle = () => {
   
-  // ! Location variables
+  // ! Variables
   const { stageId } = useParams()
+  const navigate = useNavigate()
   
   // ! State
   const [stage, setStage] = useState([])
@@ -19,6 +23,8 @@ const StageSingle = () => {
 
   // ! On Mount
   useEffect(() => {
+
+    !isAuthenticated() && navigate('/')
 
     const getStage = async () => {
       try {
@@ -60,7 +66,22 @@ const StageSingle = () => {
           </>
         }
         {artists.length > 0 ?
-          console.log('haloooo')
+          artists.map(artist => {
+            const { _id, name, url, stage, image } = artist
+            if (stageId === stage) {
+              return (
+                <Col key={_id} lg="4" md="6" sm="12">
+                  <Card>
+                    <div style={{ backgroundImage: `url('${image}')` }}></div>
+                    <Card.Body>
+                      <Card.Text>{name}</Card.Text>
+                      <Button key={_id} as={Link} to={`${url}`}>Link to YouTube</Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              )
+            }
+          })
           :
           <>
             {artistsError ?

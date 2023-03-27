@@ -7,7 +7,6 @@ import Button from 'react-bootstrap/Button'
 // Custom Components
 import Spinner from '../common/Spinner'
 import Error from '../common/Error'
-
 import { isAuthenticated } from '../helpers/auth'
 
 
