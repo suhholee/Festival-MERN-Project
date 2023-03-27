@@ -18,13 +18,13 @@ const Map = () => {
   // ! State
   const [ stage, setStage ] = useState([])
   const [ error, setError ] = useState('')
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
 
 
   // ! On Mount
   useEffect(() => {
 
-    // (!isAuthenticated()) && navigate('err')
+    (!isAuthenticated()) && navigate('/')
 
     const getStage = async () => {
       try {
