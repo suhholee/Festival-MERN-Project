@@ -1,4 +1,9 @@
+@import './global/base.scss';
 @import './global/variables.scss';
+@import './components/form-page.scss';
+@import './components/navbar.scss';
+@import './components/artist-cards.scss';
+
 
 * {
   box-sizing: border-box;
@@ -25,8 +30,3 @@
     margin-top: 25px;
   }
 }
-@import './global/base.scss';
-@import './global/variables.scss';
-@import './components/form-page.scss';
-@import './components/navbar.scss';
-@import './components/artist-cards.scss';
