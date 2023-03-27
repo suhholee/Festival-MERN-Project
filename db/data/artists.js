@@ -86,6 +86,12 @@ export default [
     image: 'https://res.cloudinary.com/dpulji3ct/image/upload/v1679666388/Artist/JeonQ_pdadih.png',
   },
   {
+    name: 'DANJY',
+    stage: 'Chaos Cosmos',
+    url: 'https://www.youtube.com/watch?v=ScopUs4dfNw',
+    image: 'https://res.cloudinary.com/dpulji3ct/image/upload/v1679951445/DANJY_osxezz.jpg',
+  },
+  {
     name: 'KI/KI',
     stage: 'Chaos Cosmos',
     url: 'https://www.youtube.com/watch?v=fR_5ivov33g',
@@ -108,12 +114,6 @@ export default [
     stage: 'Chaos Cosmos',
     url: 'https://www.youtube.com/watch?v=KlBYTu0v1B8',
     image: 'https://res.cloudinary.com/dpulji3ct/image/upload/v1679666389/Artist/djfartintheclub_npim2d.jpg',
-  },
-  {
-    name: 'R.I.M',
-    stage: 'Chaos Cosmos',
-    url: 'https://www.youtube.com/watch?v=nOVe85_RKVU',
-    image: 'https://res.cloudinary.com/dpulji3ct/image/upload/v1679666386/Artist/R.I.M_n3zppe.png',
   },
   {
     name: 'Hagop Tchaparian',

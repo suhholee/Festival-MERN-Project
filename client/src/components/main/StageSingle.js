@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { Col, Card, Button } from 'react-bootstrap'
+import ModalVideo from 'react-modal-video'
 
 // Custom Components
 import Error from '../common/Error'
@@ -20,6 +21,7 @@ const StageSingle = () => {
   const [artists, setArtists] = useState([])
   const [stageError, setStageError] = useState('')
   const [artistsError, setArtistsError] = useState('')
+  const [isOpen, setOpen] = useState(false)
 
   // ! On Mount
   useEffect(() => {
@@ -73,7 +75,11 @@ const StageSingle = () => {
                     <Card style={{ backgroundImage: `url('${image}')` }}>
                       <Card.Body>
                         <Card.Text>{name}</Card.Text>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/btocybienAY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId={url.split('=').splice(1)} onClose={() => setOpen(false)} />
+                        <button className="btn-primary" onClick={()=> setOpen(true)}>VIEW DEMO</button>
+
+                        {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/btocybienAY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */}
                       </Card.Body>
                     </Card>
                   </Col>
