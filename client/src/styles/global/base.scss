@@ -10,7 +10,10 @@
 
 main {
   flex-grow: 1;
-  padding: 2em 0;
+}
+
+img {
+  width: 100%;
 }
 
 .spinner {
@@ -23,6 +26,7 @@ main {
 
 h1, .logo {
   font-family: $main-font;
+  text-align: center;
 }
 
 p {

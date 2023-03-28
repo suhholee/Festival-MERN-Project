@@ -1,35 +1,87 @@
-import { Link, useNavigate, useLocation } from 'react-router-dom'
-import Navbar from 'react-bootstrap/Navbar'
+import axios from 'axios'
+import { Link, useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container'
-import Nav from 'react-bootstrap/Nav'
 
+// Custom Components
+import Spinner from '../common/Spinner'
+import Error from '../common/Error'
 import { removeToken } from '../helpers/auth'
 
 const PageNavbar = () => {
 
-  const navigate = useNavigate()
-  const location = useLocation()
+  // ! State
+  const [stages, setStages] = useState([])
+  const [error, setError] = useState('')
+  const [show, setShow] = useState(false)
 
+  // ! Location variables
+  const location = useLocation()
+  const noNav = ['/', '/login', '/register']
+
+  // ! On Mount
+  useEffect(() => {
+    const getStages = async () => {
+      try {
+        const { data } = await axios.get('/api/stages')
+        console.log(data)
+        setStages(data)
+      } catch (err) {
+        console.log(err)
+        setError(err.message)
+      }
+    }
+    getStages()
+  }, [])
+
+  // ! Executions
   const handleLogout = () => {
     removeToken()
-    navigate('/')
   }
 
-  const noNav = ['/', '/login', '/register']
+  const showDropdown = (e)=>{
+    setShow(!show)
+  }
+  
+  const hideDropdown = (e) => {
+    setShow(false)
+  }
 
   return (
     <>
       {!noNav.includes(location.pathname) &&
         <Navbar expand="md">
           <Container>
-            {/* Brand logo */}
-            <Navbar.Brand to="/" as={Link} className='logo'>WOOZU SOUNDS</Navbar.Brand>
-            <Navbar.Toggle aria-controls="breadbored-nav" />
-            <Navbar.Collapse id="breadbored-nav" className='justify-content-end'>
+            <Navbar.Brand to="/map" as={Link} className='logo'>WOOZU SOUNDS</Navbar.Brand>
+            <Navbar.Toggle aria-controls="woozu-nav" />
+            <Navbar.Collapse id="woozu-nav" className='justify-content-end'>
               <Nav>
-                <Nav.Link to="/" as={Link} className={location.pathname === '/' ? 'active' : ''}>Home</Nav.Link>
-                <Nav.Link to="/map" as={Link} className={location.pathname === '/map' ? 'active' : ''}>Map</Nav.Link>
-                <button onClick={handleLogout}>Logout</button>
+                <Nav.Link to="/about" as={Link} className={location.pathname === '/about' ? 'active' : ''}>About</Nav.Link>
+                <NavDropdown
+                  title="Stages" 
+                  id="basic-nav-dropdown" 
+                  show={show}
+                  onMouseEnter={showDropdown} 
+                  onMouseLeave={hideDropdown}
+                >
+                  {stages.length > 0 ?
+                    stages.map(stage => {
+                      const { _id, name } = stage
+                      return (
+                        <NavDropdown.Item key={_id} as={Link} to={`/stages/${_id}`}>{name}</NavDropdown.Item>
+                      )
+                    })
+                    :
+                    <>
+                      {error ?
+                        <Error error={error} />
+                        :
+                        <Spinner />}
+                    </>
+                  }
+                </NavDropdown>
+                <Nav.Link to="/" as={Link} className={location.pathname === '/' ? 'active' : ''} onClick={handleLogout}>Logout</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>

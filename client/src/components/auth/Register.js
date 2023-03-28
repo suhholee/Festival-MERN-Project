@@ -10,16 +10,19 @@ import Col from 'react-bootstrap/Col'
 
 const Register = () => {
 
+  // ! Location variables
   const navigate = useNavigate()
 
-  const [ formFields,setFormFields ] = useState({
+  // ! State
+  const [ formFields, setFormFields ] = useState({
     username: '',
     email: '',
     password: '',
     passwordConfirmation: '',
   })
-  const [ error,setError ] = useState('')
+  const [ error, setError ] = useState('')
 
+  // ! Executions
   const handleChange = (e) => {
     // console.log(e.target.name, e.target.value)
     setFormFields({ ...formFields, [e.target.name]: e.target.value })
@@ -46,10 +49,10 @@ const Register = () => {
           <h1>Register</h1>
           {/* Username */}
           <label htmlFor='username'>Username</label>
-          <input type='text' name='username' placeholder='Username' onChange={handleChange} value= {formFields.username}/>
+          <input type='text' name='username' placeholder='Username' onChange={handleChange} value={formFields.username}/>
           {/* Email */}
           <label htmlFor='email'>Email</label>
-          <input type='text' name='email' placeholder='Email' onChange={handleChange} value= {formFields.email}/>
+          <input type='text' name='email' placeholder='Email' onChange={handleChange} value={formFields.email}/>
           {/* Password */}
           <label htmlFor='password'>Password</label>
           <input type='password' name='password' placeholder='Password' onChange={handleChange} value={formFields.password}/>

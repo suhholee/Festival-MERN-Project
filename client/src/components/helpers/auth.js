@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const tokenName = 'Festival-MERN-Project'
 
-// ! get token
+// ! Get token
 export const getPayload = () => {
   const token = localStorage.getItem(tokenName)
   console.log('TOKEN->', token)
@@ -13,7 +13,7 @@ export const getPayload = () => {
   return JSON.parse(Buffer.from(payloadString, 'base64'))
 }
 
-// ! check the validity of the token
+// ! Check the validity of the token
 export const isAuthenticated = () => {
   const payload = getPayload()
   if (!payload) return false

@@ -5,11 +5,8 @@ import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 
 // Custom Components
-import PageNavbar from '../common/PageNavbar'
 import Spinner from '../common/Spinner'
 import Error from '../common/Error'
-
-import Col from 'react-bootstrap/Col'
 import { isAuthenticated } from '../helpers/auth'
 
 
@@ -42,7 +39,6 @@ const Map = () => {
 
   return (
     <>
-      {/* <PageNavbar /> */}
       <div className='mapButton'>
         {stages.length > 0 ?
 
