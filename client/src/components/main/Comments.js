@@ -11,11 +11,11 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 // Custom components
-import { authenticated } from '../helpers/auth'
+import { authenticated, userIsOwner } from '../helpers/auth'
 
 
 const Comments = () => {
-  
+
   // ! Variables
   const { stageId } = useParams()
 
@@ -44,7 +44,7 @@ const Comments = () => {
     }
     getComments()
   }, [submit])
-  
+
   // ! Executions
   const handleChange = (e) => {
     setNewComment({ ...newComment, text: e.target.value })
@@ -62,6 +62,30 @@ const Comments = () => {
     }
   }
 
+  const handleLike = async () => {
+    try {
+      console.log('like')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const handleEdit = async () => {
+    try {
+      console.log('edit')
+    } catch (error) {
+      console.log('error')
+    }
+  }
+
+  const handleDelete = async () => {
+    try {
+      console.log('delete')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <>
       <h1> Comments </h1>
@@ -69,7 +93,7 @@ const Comments = () => {
         <Col as='form' onSubmit={handleSubmit} >
           <Row>
             <label>Post A Comment</label>
-            <input type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text}/>
+            <input type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} />
             <button>Post</button>
             {postError && <Error error={postError} />}
           </Row>
@@ -78,6 +102,7 @@ const Comments = () => {
       {comments.length > 0 ?
         comments.map((comment, i) => {
           const { text, likes, owner: { username } } = comment
+          console.log(comment)
           return (
             <>
               <div key={i}>
@@ -85,9 +110,14 @@ const Comments = () => {
                 <p> {text} </p>
                 <p> {likes.length} </p>
               </div>
-              <button> Edit</button>
-              <button> Delete</button>
-              <button> Like</button>
+              <button onClick={handleLike}> Like</button>
+              {userIsOwner(comment) &&
+                <>
+                  <button onClick={handleEdit}> Edit</button>
+                  <button onClick={handleDelete}> Delete</button>
+                </>
+              }
+
             </>
           )
         })
