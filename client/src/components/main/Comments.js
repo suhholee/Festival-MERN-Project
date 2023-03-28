@@ -23,6 +23,7 @@ const Comments = ({ stage, getStage }) => {
   const [newComment, setNewComment] = useState({
     text: '',
   })
+  const [ liked, setLiked ] = useState()
 
   // ! Error State
   const [postError, setPostError] = useState('')
@@ -46,19 +47,25 @@ const Comments = ({ stage, getStage }) => {
     }
   }
 
-  const handleLike = async () => {
+
+  const handleLike = async (e, id) => {
     try {
-      console.log('like')
+      console.log(id)
+      await authenticated.put(`/api/stages/${stageId}/comments/${id}/likes`)
+      getStage()
+      setLiked(!liked)
     } catch (error) {
       console.log(error)
     }
   }
 
+
+
   const handleEdit = async () => {
     try {
       console.log('edit')
     } catch (error) {
-      console.log('error')
+      console.log(error)
     }
   }
 
@@ -89,11 +96,13 @@ const Comments = ({ stage, getStage }) => {
           return (
             <Fragment key={_id}>
               <div>
-                <h4>{username}</h4>
-                <p>{text}</p>
-                <p>{likes.length}</p>
+                <h4 className='cmtUserName'>{username}</h4>
+                <p className='cmtUserText'>{text}</p>
+                <p className='likeNum'>{likes.length}</p>
               </div>
-              <button onClick={handleLike}> Like</button>
+
+              <button className='likeBtn' onClick={(e) => handleLike(e, _id)}> {liked ? ' Like ' : 'ʚ♥ɞ' } </button>
+
               {userIsOwner(comment) &&
                 <>
                   <button onClick={handleEdit}>Edit</button>
