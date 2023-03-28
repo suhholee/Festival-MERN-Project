@@ -62,7 +62,7 @@ const Comments = () => {
 
   return (
     <>
-      <h1> Comments </h1>
+      <h1>Comments</h1>
       <Container>
         <Col as='form' onSubmit={handleSubmit} >
           <Row>
@@ -74,7 +74,7 @@ const Comments = () => {
         </Col>
       </Container>
       {comments.length > 0 ?
-        comments.map((comment,i) => {
+        comments.map((comment, i) => {
           const { text, likes, owner: { username } } = comment
           return (
             <div key={i}>
