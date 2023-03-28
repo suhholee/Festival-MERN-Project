@@ -6,7 +6,7 @@ import Stage from '../models/stages.js'
 export const getComments = async (req, res) => {
   try {
     const { id } = req.params
-    const stage = await Stage.findById(id)
+    const stage = await Stage.findById(id).populate('comments.owner')
     if (!stage) throw new NotFound('Stage Not Found')
     const comments = stage.comments
     if (!comments) throw new NotFound('Comment Not Found')

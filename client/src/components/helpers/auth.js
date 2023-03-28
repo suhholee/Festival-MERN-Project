@@ -30,8 +30,16 @@ export const getToken = () => {
 }
 
 export const authenticated = axios.create({
-  baseURL: 'http://localhost:4000',
+  // baseURL: 'http://localhost:4000',
   headers: {
     Authorization: `Bearer ${getToken()}`,
   },
 })
+
+export const userIsOwner = (comment) => {
+  const payload = getPayload()
+  if (!payload) return
+  if (comment){
+    return payload.sub === comment.owner._id
+  }
+}
