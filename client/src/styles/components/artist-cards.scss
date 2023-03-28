@@ -4,14 +4,20 @@
   margin: 0 20px;
   .artists {
     height: fit-content;
-    .card {
-      overflow: hidden;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      // background-color: hsla(0, 0%, 100%, 1);
-      box-shadow: 8px 8px 8px rgb(0 0 0 / 60%);
-      color: white;
-    }
+    display: flex;
+    flex-direction: column;
+      .card {
+        align-items: end;
+        margin: 20px;
+        height: 40vh;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        // background-color: hsla(0, 0%, 100%, 1);
+        box-shadow: 3px 3px 3px rgb(0 0 0 / 30%);
+        color: white;
+        
+      }
   }
 }
