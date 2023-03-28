@@ -11,8 +11,8 @@ const About = () => {
       <div className='about-hero'>
         
         <div className='wrap'>
-          <div className='header'>
-            <h1 className='title' >ABOUT</h1>
+          <div className='header-1'>
+            <h1 className='title-1' >ABOUT</h1>
             <img src={ MainImg } className='wrap-img' />
           </div>
         
@@ -28,10 +28,8 @@ const About = () => {
         <hr />
 
         <div className='wrap'>
-          <div className='header'>
-            <h1 className='title'>WELLNESS</h1>
-            <img src={ Wellness } className='wrap-img' />
-          </div>
+          <img src={ Wellness } className='wrap-img' />
+          <h1 className='title'>WELLNESS</h1>
           <p>Our passion is delivering life-changing musical experiences but we understand we have a 
             responsibility in minimising the festival’s impact on the environment. We are continuously 
             striving to explore and demonstrate new and innovative ways of living more sustainably.</p>
@@ -40,10 +38,8 @@ const About = () => {
 
 
         <div className='wrap'>
-          <div className='header'>
-            <h1 className='title'>RAVE SAFE</h1>
-            <img src={ RaveSafe } className='wrap-img' />
-          </div>
+          <img src={ RaveSafe } className='wrap-img' />
+          <h1 className='title'>RAVE SAFE</h1>
           <p>We understand that people like to get loose, but please look out for yourself, 
             your mates and those around you. Hydrate, eat, sleep. Let’s party responsibly.</p>
         </div>
@@ -51,16 +47,16 @@ const About = () => {
 
 
         <div className='wrap'>
-          <div className='header'>
-            <h1 className='title'>COMMUNITY</h1>
-            <img src={ Community } className='wrap-img' />
-          </div>
+          <img src={ Community } className='wrap-img' />
+          <h1 className='title'>COMMUNITY</h1>
           <p>In our house everyone is welcome. We embrace the eccentric, the curious and the expressive. 
             We have no time for judgmental behaviour, harassment or inequality. 
             We don’t believe in a VIP culture. We are one. </p>
         </div>
 
 
+        <hr />
+        
 
         <Button className='wrap-button' as={Link} to='/map'> CHECK THE LINE UP </Button>
       </div>
