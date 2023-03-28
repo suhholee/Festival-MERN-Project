@@ -4,7 +4,6 @@ import axios from 'axios'
 
 // Error imports
 import Error from '../common/Error'
-import Spinner from '../common/Spinner'
 
 // Bootstrap imports
 import Container from 'react-bootstrap/Container'
@@ -14,49 +13,59 @@ import Col from 'react-bootstrap/Col'
 import { authenticated } from '../helpers/auth'
 
 
+
 const Comments = () => {
 
+  //! Comment State
+
   const [comments, setComments] = useState([])
-  const [error, setError] = useState('')
   const [newComment, setNewComment] = useState({
     text: '' ,
   })
+  const [ submit,setSubmit ] = useState(true)
 
-  const { stageId } = useParams()
-  const location = useLocation()
-  console.log(location)
+  // ! Error State
+
+  const [postError, setPostError] = useState('')
+  const [commentError, setCommentError] = useState('')
+
   
+  const { stageId } = useParams()
+  
+
+  // ! On Mount and onSubmit
+
+  useEffect(() => {
+    const getComments = async () => {
+      try {
+        const { data } = await axios.get(`/api/stages/${stageId}/comments`)
+        setComments(data)
+      } catch (error) {
+        setCommentError(error.response.data.message)
+      }
+    }
+    getComments()
+    
+  }, [submit])
+  
+
+  // ! Executions
+
   const handleChange = (e) => {
     setNewComment({ ...newComment, text: e.target.value })
+    setPostError('')
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       await authenticated.post(`/api/stages/${stageId}/comments`, newComment)
+      setSubmit(!submit)
     } catch (error) {
-      console.log(error)
+      console.log(error.response)
+      setPostError(' •–• text required •–• ')
     }
   }
-
-  useEffect(() => {
-    setNewComment(newComment)
-  }, [newComment])
-
-
-  console.log(newComment)
-
-
-  useEffect(() => {
-    const getComments = async () => {
-      const { data } = await axios.get(`/api/stages/${stageId}/comments`)
-      setComments(data)
-    }
-    getComments()
-
-  }, [])
-
-  console.log(comments)
 
   return (
     <>
@@ -67,6 +76,7 @@ const Comments = () => {
             <label>Post A Comment</label>
             <input type='text' name='comment' placeholder='Comment' onChange={handleChange} value= {newComment.text}/>
             <button>Post</button>
+            { postError && <Error error={postError} />}
           </Row>
         </Col>
       </Container>
@@ -83,8 +93,8 @@ const Comments = () => {
         })
         :
         <>
-          {error ?
-            <Error error={error} />
+          {commentError ?
+            <Error error={commentError} />
             :
             <p> No Comments Yet! </p>}
         </>
