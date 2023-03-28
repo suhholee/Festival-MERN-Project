@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams,useLocation } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import axios from 'axios'
 
 // Error imports
@@ -20,18 +20,18 @@ const Comments = () => {
 
   const [comments, setComments] = useState([])
   const [newComment, setNewComment] = useState({
-    text: '' ,
+    text: '',
   })
-  const [ submit,setSubmit ] = useState(true)
+  const [submit, setSubmit] = useState(true)
 
   // ! Error State
 
   const [postError, setPostError] = useState('')
   const [commentError, setCommentError] = useState('')
 
-  
+
   const { stageId } = useParams()
-  
+
 
   // ! On Mount and onSubmit
 
@@ -45,9 +45,9 @@ const Comments = () => {
       }
     }
     getComments()
-    
+
   }, [submit])
-  
+
 
   // ! Executions
 
@@ -74,21 +74,26 @@ const Comments = () => {
         <Col as='form' onSubmit={handleSubmit} >
           <Row>
             <label>Post A Comment</label>
-            <input type='text' name='comment' placeholder='Comment' onChange={handleChange} value= {newComment.text}/>
+            <input type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} />
             <button>Post</button>
-            { postError && <Error error={postError} />}
+            {postError && <Error error={postError} />}
           </Row>
         </Col>
       </Container>
       {comments.length > 0 ?
-        comments.map((comment,i) => {
+        comments.map((comment, i) => {
           const { text, likes, owner: { username } } = comment
           return (
-            <div key={i}>
-              <h4> {username} </h4>
-              <p> {text} </p>
-              <p> {likes.length} </p>
-            </div>
+            <>
+              <div key={i}>
+                <h4> {username} </h4>
+                <p> {text} </p>
+                <p> {likes.length} </p>
+              </div>
+              <button> Edit</button>
+              <button> Delete</button>
+              <button> Like</button>
+            </>
           )
         })
         :
