@@ -35,3 +35,11 @@ export const authenticated = axios.create({
     Authorization: `Bearer ${getToken()}`,
   },
 })
+
+export const userIsOwner = (comment) => {
+  const payload = getPayload()
+  if (!payload) return
+  if (comment){
+    return payload.sub === comment.owner._id
+  }
+}
