@@ -5,7 +5,6 @@ import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container'
 
 // Custom Components
-import Spinner from '../common/Spinner'
 import Error from '../common/Error'
 import { removeToken } from '../helpers/auth'
 
@@ -40,7 +39,7 @@ const PageNavbar = () => {
     removeToken()
   }
 
-  const showDropdown = (e)=>{
+  const showDropdown = (e) => {
     setShow(!show)
   }
   
@@ -77,7 +76,7 @@ const PageNavbar = () => {
                       {error ?
                         <Error error={error} />
                         :
-                        <Spinner />}
+                        <p>Loading...</p>}
                     </>
                   }
                 </NavDropdown>
