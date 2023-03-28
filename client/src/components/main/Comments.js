@@ -26,6 +26,12 @@ const Comments = () => {
   })
   const [submit, setSubmit] = useState(true)
 
+  // ! Edit state
+  const [edit, setEdit] = useState({
+    text: '',
+  })
+  const [editCheck, setEditCheck] = useState(false)
+
   // ! Error State
   const [postError, setPostError] = useState('')
   const [commentError, setCommentError] = useState('')
@@ -62,8 +68,10 @@ const Comments = () => {
     }
   }
 
-  const handleLike = async () => {
+  const handleLike = async (e) => {
     try {
+      // await authenticated.put(`/api/stages/${stageId}/comments/${e.target.value}/likes`)
+      // setSubmit(!submit)
       console.log('like')
     } catch (error) {
       console.log(error)
@@ -78,9 +86,14 @@ const Comments = () => {
     }
   }
 
-  const handleDelete = async () => {
+  const handleSubmitEdit = () => {
+    console.log('good')
+  }
+
+  const handleDelete = async (e) => {
     try {
-      console.log('delete')
+      await authenticated.delete(`/api/stages/${stageId}/comments/${e.target.value}`)
+      setSubmit(!submit)
     } catch (error) {
       console.log(error)
     }
@@ -92,7 +105,7 @@ const Comments = () => {
       <Container>
         <Col as='form' onSubmit={handleSubmit} >
           <Row>
-            <label>Post A Comment</label>
+            <label htmlFor='comment'>Post A Comment</label>
             <input type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} />
             <button>Post</button>
             {postError && <Error error={postError} />}
@@ -100,21 +113,20 @@ const Comments = () => {
         </Col>
       </Container>
       {comments.length > 0 ?
-        comments.map((comment, i) => {
-          const { text, likes, owner: { username } } = comment
-          console.log(comment)
+        comments.map((comment) => {
+          const { _id, text, likes, owner: { username } } = comment
           return (
             <>
-              <div key={i}>
+              <div key={_id}>
                 <h4> {username} </h4>
                 <p> {text} </p>
                 <p> {likes.length} </p>
               </div>
-              <button onClick={handleLike}> Like</button>
+              <button onClick={handleLike} value={comment._id}> Like</button>
               {userIsOwner(comment) &&
                 <>
                   <button onClick={handleEdit}> Edit</button>
-                  <button onClick={handleDelete}> Delete</button>
+                  <button onClick={handleDelete} value={comment._id}> Delete</button>
                 </>
               }
 
@@ -135,3 +147,4 @@ const Comments = () => {
 }
 
 export default Comments
+

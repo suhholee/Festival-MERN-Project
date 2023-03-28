@@ -85,7 +85,7 @@ const StageSingle = () => {
             artists.sort((a, b) => a.name > b.name ? 1 : -1).map(artist => {
               const { _id, name, url, stage, image } = artist
               // const embedUrl = url.split('=').splice(1, 1).join('')
-              const embedUrl = url.replace('watch?v=', 'embed/')
+              // const embedUrl = url.replace('watch?v=', 'embed/')
               if (stageId === stage) {
                 return (
                   <Col key={_id} lg="4" md="6" sm="12" className='artists'>
@@ -94,7 +94,7 @@ const StageSingle = () => {
                         <Card.Text>{name}</Card.Text>
                         {/* <ModalVideo channel='youtube' isOpen={isOpen} videoId={embedUrl} onClose={hideModal} />
                         <button className="btn-primary" onClick={showModal}>VIEW DEMO</button> */}
-                        <iframe width="560" height="315" src={embedUrl} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        {/* <iframe width="560" height="315" src={embedUrl} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */}
                       </Card.Body>
                     </Card>
                   </Col>
