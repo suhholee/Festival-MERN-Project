@@ -71,21 +71,22 @@ const StageSingle = () => {
               const { _id, name, url, stage, image } = artist
               if (stageId === stage) {
                 return (
+            
                   <Col key={_id} lg="4" md="6" sm="12" className='artists'>
                     <Card style={{ backgroundImage: `url('${image}')` }}>
                       <Card.Body>
                         <Card.Text>{name}</Card.Text>
-
-                        <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId={url.split('=').splice(1)} onClose={() => setOpen(false)} />
+                        {/* <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId={url.split('=').splice(1)} onClose={() => setOpen(false)} />
                         <button className="btn-primary" onClick={()=> setOpen(true)}>VIEW DEMO</button>
-
-                        {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/btocybienAY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */}
+                        console.log({url.split('=').splice(1)}) */}
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/btocybienAY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                       </Card.Body>
                     </Card>
                   </Col>
                 )
               }
             })
+            
             :
             <>
               {artistsError ?
