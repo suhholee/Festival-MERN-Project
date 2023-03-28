@@ -20,13 +20,10 @@ const Map = () => {
 
   // ! On Mount
   useEffect(() => {
-
     !isAuthenticated() && navigate('/')
-
     const getStages = async () => {
       try {
         const { data } = await axios.get('/api/stages')
-        console.log(data)
         setStages(data)
       } catch (err) {
         console.log(err)
@@ -41,7 +38,6 @@ const Map = () => {
     <>
       <div className='mapButton'>
         {stages.length > 0 ?
-
           stages.map(stage => {
             const { _id, name } = stage
             const buttonName = name.replace(' ', '-').toLowerCase()

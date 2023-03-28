@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Fragment } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
@@ -14,36 +14,20 @@ import Col from 'react-bootstrap/Col'
 import { authenticated, userIsOwner } from '../helpers/auth'
 
 
-const Comments = () => {
+const Comments = ({ stage, getStage }) => {
 
   // ! Variables
   const { stageId } = useParams()
 
   // ! Comment State
-  const [comments, setComments] = useState([])
   const [newComment, setNewComment] = useState({
     text: '',
   })
-  const [submit, setSubmit] = useState(true)
 
   // ! Error State
   const [postError, setPostError] = useState('')
-  const [commentError, setCommentError] = useState('')
-
-
 
   // ! On Mount and onSubmit
-  useEffect(() => {
-    const getComments = async () => {
-      try {
-        const { data } = await axios.get(`/api/stages/${stageId}/comments`)
-        setComments(data)
-      } catch (error) {
-        setCommentError(error.response.data.message)
-      }
-    }
-    getComments()
-  }, [submit])
 
   // ! Executions
   const handleChange = (e) => {
@@ -55,7 +39,7 @@ const Comments = () => {
     e.preventDefault()
     try {
       await authenticated.post(`/api/stages/${stageId}/comments`, newComment)
-      setSubmit(!submit)
+      getStage()
     } catch (error) {
       console.log(error.response)
       setPostError(' •–• text required •–• ')
@@ -99,35 +83,26 @@ const Comments = () => {
           </Row>
         </Col>
       </Container>
-      {comments.length > 0 ?
-        comments.map((comment, i) => {
-          const { text, likes, owner: { username } } = comment
-          console.log(comment)
+      {stage.comments.length > 0 &&
+        stage.comments.map(comment => {
+          const { text, likes, owner: { username }, _id } = comment
           return (
-            <>
-              <div key={i}>
-                <h4> {username} </h4>
-                <p> {text} </p>
-                <p> {likes.length} </p>
+            <Fragment key={_id}>
+              <div>
+                <h4>{username}</h4>
+                <p>{text}</p>
+                <p>{likes.length}</p>
               </div>
               <button onClick={handleLike}> Like</button>
               {userIsOwner(comment) &&
                 <>
-                  <button onClick={handleEdit}> Edit</button>
-                  <button onClick={handleDelete}> Delete</button>
+                  <button onClick={handleEdit}>Edit</button>
+                  <button onClick={handleDelete}>Delete</button>
                 </>
               }
-
-            </>
+            </Fragment>
           )
         })
-        :
-        <>
-          {commentError ?
-            <Error error={commentError} />
-            :
-            <p> No Comments Yet! </p>}
-        </>
       }
     </>
   )

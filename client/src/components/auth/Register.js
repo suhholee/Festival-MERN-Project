@@ -46,7 +46,7 @@ const Register = () => {
     <Container className='text-center form-page'>
       <Row>
         <Col as='form' onSubmit={handleSubmit} xs={{ span: 10, offset: 1 }} md={{ span: 6, offset: 3 }} lg={{ span: 4, offset: 4 }}>
-          <h1>Register</h1>
+          <h1>Register and Get Your Ticket!</h1>
           {/* Username */}
           <label htmlFor='username'>Username</label>
           <input type='text' name='username' placeholder='Username' onChange={handleChange} value={formFields.username}/>

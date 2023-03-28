@@ -5,7 +5,7 @@ import { NotFound, sendError } from '../config/errors.js'
 // Endpoints: /stages
 export const getStages = async (req, res) => {
   try {
-    const stages = await Stage.find()
+    const stages = await Stage.find().populate('comments.owner')
     return res.json(stages)
   } catch (err) {
     return sendError(err, res)
@@ -17,7 +17,7 @@ export const getStages = async (req, res) => {
 export const getSingleStage = async (req, res) => {
   try {
     const { id } = req.params
-    const stage = await Stage.findById(id)
+    const stage = await Stage.findById(id).populate('comments.owner')
     if (!stage) {
       throw new NotFound('Stage not found')
     }

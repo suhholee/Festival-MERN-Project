@@ -1,21 +1,6 @@
 import { NotFound, sendError, Unauthorized } from '../config/errors.js'
 import Stage from '../models/stages.js'
 
-// * Get All Comments
-// Endpoint: /stages/:stageId/comments
-export const getComments = async (req, res) => {
-  try {
-    const { id } = req.params
-    const stage = await Stage.findById(id).populate('comments.owner')
-    if (!stage) throw new NotFound('Stage Not Found')
-    const comments = stage.comments
-    if (!comments) throw new NotFound('Comment Not Found')
-    return res.json(comments)
-  } catch (err) {
-    return sendError(err, res)
-  }
-}
-
 // * Add Comment
 // Endpoint: /stages/:stageId/comments
 export const addComment = async (req, res) => {

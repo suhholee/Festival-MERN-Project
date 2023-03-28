@@ -6,7 +6,6 @@ const tokenName = 'Festival-MERN-Project'
 // ! Get token
 export const getPayload = () => {
   const token = localStorage.getItem(tokenName)
-  console.log('TOKEN->', token)
   if (!token) return 
   const splitToken = token.split('.')
   const payloadString = splitToken[1]
