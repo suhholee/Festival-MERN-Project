@@ -34,7 +34,7 @@ export default [
   {
     name: 'Central Cee',
     stage: 'Nebula-808',
-    url: 'https://youtu.be/ePay6DX-5c8',
+    url: 'https://www.youtube.com/watch?v=ePay6DX-5c8',
     image: 'https://res.cloudinary.com/dpulji3ct/image/upload/v1679666384/Artist/central-cee_zft2cn.jpg',
   },
   {
