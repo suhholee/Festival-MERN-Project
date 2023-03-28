@@ -1,7 +1,7 @@
 
 const Error = ({ error }) => {
   return (
-    <h2>{error}</h2>
+    <h6 className="text-danger">{error}</h6>
   )
 }
 

@@ -8,6 +8,7 @@ import { Col, Card } from 'react-bootstrap'
 import Error from '../common/Error'
 import Spinner from '../common/Spinner'
 import { isAuthenticated } from '../helpers/auth'
+import Comments from './Comments'
 
 
 const StageSingle = () => {
@@ -109,7 +110,7 @@ const StageSingle = () => {
             </>
           }
         </div>
-        {/* Add comments section here */}
+        <Comments />
       </main>
 
     </>
