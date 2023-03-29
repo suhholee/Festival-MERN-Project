@@ -34,6 +34,10 @@ const Comments = ({ stage, getStage }) => {
   const [postError, setPostError] = useState('')
 
   // ! On Mount and onSubmit
+  useEffect(() => {
+    getStage()
+    console.log(stage)
+  }, [])
 
   // ! Executions
   const handleChange = (e) => {
@@ -46,12 +50,12 @@ const Comments = ({ stage, getStage }) => {
     try {
       await authenticated.post(`/api/stages/${stageId}/comments`, newComment)
       getStage()
-      getStage()
     } catch (error) {
       console.log(error.response)
       setPostError(' •–• text required •–• ')
     }
   }
+  console.log(stage)
 
   const handleLike = async (e,id) => {
     try {
