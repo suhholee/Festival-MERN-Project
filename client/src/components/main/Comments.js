@@ -1,5 +1,6 @@
-import { useState, Fragment } from 'react'
+import { useEffect, useState, Fragment } from 'react'
 import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 // Error imports
 import Error from '../common/Error'
@@ -19,6 +20,7 @@ const Comments = ({ stage, getStage }) => {
   const { stageId } = useParams()
 
   // ! State
+  const [ click, setClick ] = useState(false)
   // Post comment
   const [ newComment, setNewComment ] = useState({
     text: '',
@@ -34,6 +36,12 @@ const Comments = ({ stage, getStage }) => {
   // Errors
   const [ postError, setPostError ] = useState('')
   const [ editError, setEditError ] = useState('')
+
+  // ! On Click
+  useEffect(() => {
+    getStage()
+    console.log('Clicked!')
+  }, [click])
 
   // ! Executions
   // Post comment
@@ -69,7 +77,6 @@ const Comments = ({ stage, getStage }) => {
 
   // Edit comment
   const handleEdit = (e, id) => {
-    e.preventDefault()
     setEditCheck(!editCheck)
     setEditedCommentId(id)
   }
@@ -93,12 +100,13 @@ const Comments = ({ stage, getStage }) => {
       console.log(err.response)
       setEditError(' •–• text required •–• ')
     }
-  } 
+  }
 
   // Delete comment
-  const handleDelete = async () => {
+  const handleDelete = async (e, id) => {
     try {
-      console.log('delete')
+      await authenticated.delete(`/api/stages/${stageId}/comments/${id}`)
+      getStage()
     } catch (error) {
       console.log(error)
     }
@@ -148,7 +156,7 @@ const Comments = ({ stage, getStage }) => {
                     <>
                       <div className='top-buttons'>
                         <button onClick={(e) => handleEdit(e, _id)}>Edit</button>
-                        <button onClick={handleDelete}>Delete</button>
+                        <button onClick={(e) => handleDelete(e, _id)}>Delete</button>
                       </div>
                     </>
                   }

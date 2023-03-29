@@ -8,7 +8,7 @@ export const addComment = async (req, res) => {
     const { id } = req.params
     const stage = await Stage.findById(id).populate('comments.owner')
     if (!stage) throw new NotFound('Stage Not Found')
-    const commentToAdd = { ...req.body, owner: req.loggedInUser._id }
+    const commentToAdd = { ...req.body, owner: req.loggedInUser }
     stage.comments.push(commentToAdd)
     await stage.save()
     return res.status(201).json(stage)
@@ -42,7 +42,7 @@ export const updateComment = async (req, res) => {
   try {
     const { stageId, commentId } = req.params
     const loggedInUserId = req.loggedInUser._id
-    const stage = await Stage.findById(stageId).populate('comments.owner')
+    const stage = await Stage.findById(stageId)
     if (!stage) throw new NotFound('Stage not found')
     const commentToUpdate = stage.comments.id(commentId)
     if (!commentToUpdate) throw new NotFound('Comment not found')
@@ -61,7 +61,7 @@ export const updateLikes = async (req, res) => {
   try {
     const { stageId, commentId } = req.params
     const loggedInUserId = req.loggedInUser._id
-    const stage = await Stage.findById(stageId).populate('comments.owner')
+    const stage = await Stage.findById(stageId)
     if (!stage) throw new NotFound('Stage not found')
     const commentToUpdate = stage.comments.id(commentId)
     if (!commentToUpdate) throw new NotFound('Comment not found')
