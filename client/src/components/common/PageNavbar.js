@@ -80,6 +80,7 @@ const PageNavbar = () => {
                   }
                 </NavDropdown>
                 <Nav.Link to="/" as={Link} className={location.pathname === '/' ? 'active' : ''} onClick={handleLogout}>Logout</Nav.Link>
+                {/* <Nav.Link to={`/users/${loggedInUser()}`} as={Link} className={location.pathname === '/' ? 'active' : ''} >Profile</Nav.Link> */}
               </Nav>
             </Navbar.Collapse>
           </Container>
