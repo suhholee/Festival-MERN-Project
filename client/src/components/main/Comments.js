@@ -46,7 +46,6 @@ const Comments = ({ stage, getStage }) => {
     try {
       await authenticated.post(`/api/stages/${stageId}/comments`, newComment)
       getStage()
-      getStage()
     } catch (error) {
       console.log(error.response)
       setPostError(' •–• text required •–• ')
@@ -65,7 +64,7 @@ const Comments = ({ stage, getStage }) => {
 
 
 
-  const handleEdit = async () => {
+  const handleEdit = async (e) => {
     try {
       console.log('edit')
       setEditCheck(!editCheck)

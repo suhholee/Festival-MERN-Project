@@ -1,29 +1,61 @@
-$defaultDuration: .3s;
 
-.btn-nebula-808, .btn-chaos-cosmos, .btn-jungle-constellation {
+  .btn-nebula-808, .btn-chaos-cosmos, .btn-jungle-constellation{
   @extend %bg-img;
+  border: none;
   border-radius: 50%;
   cursor: pointer;
-  width: 250px;
-  height: 250px;
+  width: 20vw;
+  height: 20vw;
   font-family: $main-font;
   font-style: normal;
-  font-size: 40px;
+  font-size: 3em;
   color: black;
-  border: none;
-  background-color: transparent;
-  display: inline-block;
-  transition-duration: $defaultDuration;
-  transition-property: transform;
-  &:hover, &:active {
-    background-color: transparent;
-    color: black;
-    transform: scale(1.05);
-    box-shadow: 0 0 60px 30px #fff;
+  position: relative;
+  border-radius: 50%;
+  box-shadow: inset 0 0 10px #f2f2f2,
+              inset 10px 0 26px #aaadaf,
+              inset -10px -50px 100px #323232,
+              inset 0 0 80px #ffffff,
+              0 0 50px #ffffffd6;
   }
-}
-.btn-nebula-808{ background-image: url('../../components/images/test-1.png'); }
-.btn-chaos-cosmos{ background-image: url('../../components/images/test-5.png'); }
-.btn-jungle-constellation{ background-image: url('../../components/images/test-7.png'); }
-
+    @keyframes float{
+    0%, 100%{
+      transform: translateY(0px);
+    }50%{
+      transform: translateY(-16px);
+    }
+  }
+  .map-bg{
+    position: relative;
+    .camping{
+      @extend %bg-img;
+      position: absolute;
+      background-color: transparent;
+      border: none;
+      width: 30vw;
+      height: 20vw;
+      background-image: url('../../components/images/camping3d.png');
+      animation: float 15s ease-in-out infinite;
+      top: 40vw;
+      left: 32vw;
+    }
+  }
+  .btn-nebula-808{
+    background-image: url('../../components/images/test-1.png');
+    top: 28vw;
+    left: 10vw;
+    animation: float 3.5s ease-in-out infinite;
+    }
+  .btn-chaos-cosmos{ 
+    background-image: url('../../components/images/test-6.png');
+    top: 8vw;
+    left: 17vw;
+    animation: float 3s ease-in-out infinite;
+    }
+  .btn-jungle-constellation{ 
+    background-image: url('../../components/images/test-7.png');
+    top: 20vw;
+    left: 26vw;
+    animation: float 2s ease-in-out infinite;
+    }
 
