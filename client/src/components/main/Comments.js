@@ -1,6 +1,5 @@
-import { useEffect, useState, Fragment } from 'react'
+import { useState, Fragment } from 'react'
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
 
 // Error imports
 import Error from '../common/Error'
@@ -12,6 +11,7 @@ import Col from 'react-bootstrap/Col'
 
 // Custom components
 import { authenticated, userIsOwner } from '../helpers/auth'
+// import EditComment from './EditComment'
 
 
 const Comments = ({ stage, getStage }) => {
@@ -19,17 +19,23 @@ const Comments = ({ stage, getStage }) => {
   // ! Variables
   const { stageId } = useParams()
 
-  // ! Comment State
+  // ! State
+  // Post comment
   const [newComment, setNewComment] = useState({
     text: '',
   })
-
-  // ! Error State
+  // Edit comment
+  const [editedComment, setEditedComment] = useState({
+    text: '',
+  })
+  const [editedCommentId, setEditedCommentId] = useState(null)
+  const [editCheck, setEditCheck] = useState(false)
+  // Errors
   const [postError, setPostError] = useState('')
-
-  // ! On Mount and onSubmit
+  const [editError, setEditError] = useState('')
 
   // ! Executions
+  // Post comment
   const handleChange = (e) => {
     setNewComment({ ...newComment, text: e.target.value })
     setPostError('')
@@ -39,6 +45,7 @@ const Comments = ({ stage, getStage }) => {
     e.preventDefault()
     try {
       await authenticated.post(`/api/stages/${stageId}/comments`, newComment)
+      setNewComment({ text: '' })
       getStage()
     } catch (error) {
       console.log(error.response)
@@ -46,6 +53,7 @@ const Comments = ({ stage, getStage }) => {
     }
   }
 
+  // Likes button
   const handleLike = async () => {
     try {
       console.log('like')
@@ -54,14 +62,31 @@ const Comments = ({ stage, getStage }) => {
     }
   }
 
-  const handleEdit = async () => {
-    try {
-      console.log('edit')
-    } catch (error) {
-      console.log('error')
-    }
+  // Edit comment
+  const handleEdit = (e, id) => {
+    e.preventDefault()
+    setEditCheck(!editCheck)
+    setEditedCommentId(id)
   }
 
+  const handleChangeEdit = (e) => {
+    setEditedComment({ ...editedComment, text: e.target.value })
+    setEditError('')
+  }
+
+  const handleSubmitEdit = async (e, id) => {
+    e.preventDefault()
+    try {
+      await authenticated.put(`/api/stages/${stageId}/comments/${id}`, editedComment)
+      setEditedComment({ text: '' })
+      getStage()
+    } catch (err) {
+      console.log(err.response)
+      setEditError(' •–• text required •–• ')
+    }
+  } 
+
+  // Delete comment
   const handleDelete = async () => {
     try {
       console.log('delete')
@@ -74,7 +99,7 @@ const Comments = ({ stage, getStage }) => {
     <>
       <h1>Comments</h1>
       <Container>
-        <Col as='form' onSubmit={handleSubmit} >
+        <Col as='form' onSubmit={handleSubmit}>
           <Row>
             <label>Post A Comment</label>
             <input type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} />
@@ -93,10 +118,24 @@ const Comments = ({ stage, getStage }) => {
                 <p>{text}</p>
                 <p>{likes.length}</p>
               </div>
-              <button onClick={handleLike}> Like</button>
+              <button onClick={handleLike}>Like</button>
+              {/* { userIsOwner(comment) && editCheck && 
+                <EditComment _id={_id} handleSubmitEdit={handleSubmitEdit} handleChangeEdit={handleChangeEdit} editedComment={editedComment} editError={editError} />
+              } */}
+              {userIsOwner(comment) && editCheck && editedCommentId !== null && editedCommentId === _id &&
+                <Container>
+                  <Col as='form' onSubmit={(e) => handleSubmitEdit(e, _id)}>
+                    <Row>
+                      <input type='text' name='edit-comment' placeholder='Edit Comment' onChange={handleChangeEdit} value={editedComment.text}/>
+                      <button>Save</button>
+                      {editError && <Error error={editError}/>}
+                    </Row>
+                  </Col>
+                </Container>
+              }
               {userIsOwner(comment) &&
                 <>
-                  <button onClick={handleEdit}>Edit</button>
+                  <button onClick={(e) => handleEdit(e, _id)}>Edit</button>
                   <button onClick={handleDelete}>Delete</button>
                 </>
               }
