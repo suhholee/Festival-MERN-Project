@@ -78,42 +78,60 @@ const Comments = ({ stage, getStage }) => {
   }
 
   return (
-    <>
-      <h1>Comments</h1>
-      <Container>
+    <main className='comments-main'>
+      <Container >
+        <h1 style={{ margin: 50 }}>Comments</h1>
         <Col as='form' onSubmit={handleSubmit} >
-          <Row>
-            <label>Post A Comment</label>
-            <input type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} />
-            <button>Post</button>
-            {postError && <Error error={postError} />}
+          <Row className='post-container'>
+
+            {/* New Comments section */}
+            <label >Post A Comment</label>
+            <div>
+              <div className='post-comments'>
+                <span style={{ padding: 10 }}> User Name </span>
+                <textarea type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} rows='3' />
+              </div>
+              <button>Post</button>
+            </div>
+            <div className='error'>
+              {postError && <Error error={postError} />}
+            </div>
+            
           </Row>
         </Col>
       </Container>
+
       {stage.comments.length > 0 &&
         stage.comments.map(comment => {
           const { text, likes, owner: { username }, _id } = comment
           return (
             <Fragment key={_id}>
-              <div>
-                <h4 className='cmtUserName'>{username}</h4>
-                <p className='cmtUserText'>{text}</p>
-                <p className='likeNum'>{likes.length}</p>
+
+              {/* Upload Comments section */}
+              <div className='comment-section'>
+                <h4 className='user-name'>{username}
+                  {userIsOwner(comment) &&
+                      <>
+                        <div className='top-buttons'>
+                          <button onClick={handleEdit}>Edit</button>
+                          <button onClick={handleDelete}>Delete</button>
+                        </div>
+                      </>
+                  }
+                </h4>
+
+                {/* Buttons section */}
+                <p className='posted-comments'>{text}</p>
+                <div className='like-button'>
+                  <p>{likes.length}</p>
+                  <button onClick={(e) => handleLike(e, _id)} style={{ marginLeft: 20 }}> {liked ? ' Like ' : 'ʚ♥ɞ' } </button>
+                </div>
               </div>
-
-              <button className='likeBtn' onClick={(e) => handleLike(e, _id)}> {liked ? ' Like ' : 'ʚ♥ɞ' } </button>
-
-              {userIsOwner(comment) &&
-                <>
-                  <button onClick={handleEdit}>Edit</button>
-                  <button onClick={handleDelete}>Delete</button>
-                </>
-              }
             </Fragment>
           )
         })
       }
-    </>
+    </main>
   )
 
 }

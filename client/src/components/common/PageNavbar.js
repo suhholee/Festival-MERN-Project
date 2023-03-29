@@ -49,7 +49,7 @@ const PageNavbar = () => {
   return (
     <>
       {!noNav.includes(location.pathname) &&
-        <Navbar expand="md">
+        <Navbar className='nav-bar' expand="md" sticky="top">
           <Container>
             <Navbar.Brand to="/map" as={Link} className='logo'>WOOZU SOUNDS</Navbar.Brand>
             <Navbar.Toggle aria-controls="woozu-nav" />

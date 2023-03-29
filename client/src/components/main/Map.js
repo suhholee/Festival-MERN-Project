@@ -35,7 +35,7 @@ const Map = () => {
 
 
   return (
-    <>
+    <main>
       <div className='mapButton'>
         {stages.length > 0 ?
           stages.map(stage => {
@@ -54,7 +54,7 @@ const Map = () => {
           </>
         }
       </div>
-    </>
+    </main>
   )
 }
 
