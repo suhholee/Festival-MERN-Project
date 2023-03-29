@@ -54,7 +54,7 @@ const StageSingle = () => {
       {stage &&
         <main>
           {stage.name ? 
-            <h1>{stage.name}</h1>
+            <h1 className='stage-name' >{stage.name}</h1>
             :
             <>
               {stageError ?

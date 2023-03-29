@@ -8,7 +8,7 @@ const Video = ({ embedUrl }) => {
   return (
     <>
       <ModalVideo channel='youtube' isOpen={isOpen} videoId={embedUrl} onClose={() => setOpen(false)} />
-      <button className="youtube-btn" onClick={()=> setOpen(true)}>VIEW DEMO</button>
+      <button className="youtube-btn" onClick={()=> setOpen(true)}>CHECK YOUTUBE</button>
     </>
   )
 }
