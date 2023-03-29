@@ -1,50 +1,47 @@
 .map-bg{
   position: relative;
   height: 100vh;
+
+  .map-btn{
+    position: relative;
+
+    .btn-nebula-808, .btn-chaos-cosmos, .btn-jungle-constellation{
+      position: absolute;
+      @extend %bg-img;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-family: $main-font;
+      font-style: normal;
+      font-size: 2em;
+      color: rgb(255, 255, 255);
+      border-radius: 50%;
+      text-shadow: 0 1px 10px #3c5aad;
+      }
+      @keyframes float{
+      0%, 100%{
+        transform: translateY(0px);
+      }50%{
+        transform: translateY(-16px);
+      }
+    }
+  }
+
   .camping{
     @extend %bg-img;
     position: absolute;
     background-color: transparent;
     border: none;
+    top: 40vw;
+    left: 39vw;
     width: 22vw;
     height: 18vw;
     background-image: url('../../components/images/camping3d.png');
     animation: float 10s ease-in-out infinite;
-    top: 28vw;
-    left: 39vw;
-  }
-}
-.map-btn{
-  .btn-nebula-808, .btn-chaos-cosmos, .btn-jungle-constellation{
-  @extend %bg-img;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  font-family: $main-font;
-  font-style: normal;
-  font-size: 2em;
-  color: rgb(255, 255, 255);
-  position: relative;
-  border-radius: 50%;
-  text-shadow: 0 1px 10px #3c5aad;
-  // box-shadow: inset 0 0 10px #f2f2f2,
-  //             inset 10px 0 26px #aaadaf,
-  //             inset -10px -50px 100px #323232,
-  //             inset 0 0 80px #ffffff,
-  //             0 0 50px #ffffffd6;
-  }
-    @keyframes float{
-    0%, 100%{
-      transform: translateY(0px);
-    }50%{
-      transform: translateY(-16px);
     }
-  }
-}
-
   .btn-nebula-808{
     background-image: url('../../components/images/test-1.png');
-    top: 24vw;
+    top: 36vh;
     left: 10vw;
     width: 21vw;
     height: 18vw;
@@ -52,18 +49,18 @@
     }
   .btn-chaos-cosmos{ 
     background-image: url('../../components/images/test-6.png');
-    top: 3vw;
-    left: 21vw;
-    width: 14.5vw;
-    height: 14vw;
+    top: 6vw;
+    left: 44vw;
+    width: 16vw;
+    height: 16vw;
     animation: float 3s ease-in-out infinite;
     }
   .btn-jungle-constellation{ 
     background-image: url('../../components/images/test-7.png');
     top: 16vw;
-    left: 32vw;
-    width: 18vw;
-    height: 19vw;
+    left: 68vw;
+    width: 19vw;
+    height: 20vw;
     animation: float 2s ease-in-out infinite;
     }
-
+}  

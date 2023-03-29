@@ -73,7 +73,7 @@ const StageSingle = () => {
                     <Col key={_id} lg="4" md="6" sm="12" className='artists'>
                       <Card style={{ backgroundImage: `url('${image}')` }}>
                         <Card.Body>
-                          <Card.Text>{name}</Card.Text>
+                          <Card.Text style={{ fontSize: 50 }}>{name}</Card.Text>
                           <Video embedUrl={embedUrl} />
                         </Card.Body>
                       </Card>
