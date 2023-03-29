@@ -1,7 +1,8 @@
 import { useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-// custom imports
+
+// Custom imports
 import { authenticated } from '../helpers/auth'
 
 const Profile = () => {
@@ -23,9 +24,11 @@ const Profile = () => {
     }
     const getComments = async() => {
       try {
-        const { data } = await axios.get(`/api/users/${userId}/comments`)
-        console.log(data)
-        setComments([ ...data ])
+        const { stages } = await axios.get('/api/stages')
+        const comments = stages.map( stage => stage.comments)
+        const userComments = comments.map( comments => comments.filter(comment => comment.owner.includes(userId) ) )
+        // console.log(data)
+        // setComments([ ...data ])
       } catch (error) {
         console.log(error)
       }
