@@ -2,7 +2,7 @@ import { NotFound, sendError, Unauthorized } from '../config/errors.js'
 import Stage from '../models/stages.js'
 
 // * Add Comment
-// Endpoint: /stages/:stageId/comments
+// Endpoint: /stages/:id/comments
 export const addComment = async (req, res) => {
   try {
     const { id } = req.params
