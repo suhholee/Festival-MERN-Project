@@ -53,14 +53,14 @@ const Profile = () => {
         {/* <p> {userComments[0][0].text}</p> */}
         {userComments.map((stage, i) => {
           if (stage.length > 0) {
-            stage.map((comment,i) => {
+            return stage.map((comment,i) => {
               console.log(comment.text)
-              return <p key={i}>hi</p>
+              return <p key={i}>{comment.text}</p>
             } )
-            console.log(stage)
+            // console.log(stage)
           } else {
             return (
-              <p key={i}> no Comment</p>
+              <p key={i}> No Comment</p>
             )
           }
         })}
