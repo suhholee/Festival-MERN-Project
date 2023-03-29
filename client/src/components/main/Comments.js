@@ -11,7 +11,6 @@ import Col from 'react-bootstrap/Col'
 
 // Custom components
 import { authenticated, userIsOwner } from '../helpers/auth'
-// import EditComment from './EditComment'
 
 
 const Comments = ({ stage, getStage }) => {
@@ -21,18 +20,20 @@ const Comments = ({ stage, getStage }) => {
 
   // ! State
   // Post comment
-  const [newComment, setNewComment] = useState({
+  const [ newComment, setNewComment ] = useState({
     text: '',
   })
+  // Like comment
+  const [ liked, setLiked ] = useState(false)
   // Edit comment
-  const [editedComment, setEditedComment] = useState({
+  const [ editedComment, setEditedComment ] = useState({
     text: '',
   })
-  const [editedCommentId, setEditedCommentId] = useState(null)
-  const [editCheck, setEditCheck] = useState(false)
+  const [ editedCommentId, setEditedCommentId ] = useState(null)
+  const [ editCheck, setEditCheck]  = useState(false)
   // Errors
-  const [postError, setPostError] = useState('')
-  const [editError, setEditError] = useState('')
+  const [ postError, setPostError ] = useState('')
+  const [ editError, setEditError ] = useState('')
 
   // ! Executions
   // Post comment
@@ -44,7 +45,8 @@ const Comments = ({ stage, getStage }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await authenticated.post(`/api/stages/${stageId}/comments`, newComment)
+      const { data } = await authenticated.post(`/api/stages/${stageId}/comments`, newComment)
+      console.log(data)
       setNewComment({ text: '' })
       getStage()
     } catch (error) {
@@ -53,10 +55,13 @@ const Comments = ({ stage, getStage }) => {
     }
   }
 
-  // Likes button
-  const handleLike = async () => {
+  // Like comment
+  const handleLike = async (e, id) => {
+    e.preventDefault()
     try {
-      console.log('like')
+      await authenticated.put(`/api/stages/${stageId}/comments/${id}/likes`)
+      getStage()
+      setLiked(!liked)
     } catch (error) {
       console.log(error)
     }
@@ -67,6 +72,10 @@ const Comments = ({ stage, getStage }) => {
     e.preventDefault()
     setEditCheck(!editCheck)
     setEditedCommentId(id)
+  }
+
+  const handleClose = (e) => {
+    setEditedCommentId(null)
   }
 
   const handleChangeEdit = (e) => {
@@ -96,15 +105,23 @@ const Comments = ({ stage, getStage }) => {
   }
 
   return (
-    <>
-      <h1>Comments</h1>
-      <Container>
-        <Col as='form' onSubmit={handleSubmit}>
-          <Row>
-            <label>Post A Comment</label>
-            <input type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} />
-            <button>Post</button>
-            {postError && <Error error={postError} />}
+    <main className='comments-main'>
+      <Container >
+        <h1 style={{ margin: 50 }}>Comments</h1>
+        <Col as='form' onSubmit={handleSubmit} >
+          <Row className='post-container'>
+            {/* New Comments section */}
+            <label >Post A Comment</label>
+            <div>
+              <div className='post-comments'>
+                <span style={{ padding: 10 }}>User Name</span>
+                <textarea type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} rows='3' />
+              </div>
+              <button>Post</button>
+            </div>
+            <div className='error'>
+              {postError && <Error error={postError} />}
+            </div>
           </Row>
         </Col>
       </Container>
@@ -113,37 +130,41 @@ const Comments = ({ stage, getStage }) => {
           const { text, likes, owner: { username }, _id } = comment
           return (
             <Fragment key={_id}>
-              <div>
-                <h4>{username}</h4>
-                <p>{text}</p>
-                <p>{likes.length}</p>
+              {/* Uploaded Comments */}
+              <div className='comment-section'>
+                <h4 className='user-name'>{username}
+                  {userIsOwner(comment) && editCheck && editedCommentId !== null && editedCommentId === _id &&
+                  <Container>
+                    <Col as='form' onSubmit={(e) => handleSubmitEdit(e, _id)}>
+                      <Row>
+                        <input type='text' name='edit-comment' placeholder='Edit Comment' onChange={handleChangeEdit} value={editedComment.text}/>
+                        <button>Save</button>
+                        {editError && <Error error={editError}/>}
+                      </Row>
+                    </Col>
+                  </Container>
+                  }
+                  {userIsOwner(comment) &&
+                    <>
+                      <div className='top-buttons'>
+                        <button onClick={(e) => handleEdit(e, _id)}>Edit</button>
+                        <button onClick={handleDelete}>Delete</button>
+                      </div>
+                    </>
+                  }
+                </h4>
+                {/* Likes button */}
+                <p className='posted-comments'>{text}</p>
+                <div className='like-button'>
+                  <p>{likes.length}</p>
+                  <button onClick={(e) => handleLike(e, _id)} style={{ marginLeft: 20 }}> {liked ? ' Like ' : 'ʚ♥ɞ' } </button>
+                </div>
               </div>
-              <button onClick={handleLike}>Like</button>
-              {/* { userIsOwner(comment) && editCheck && 
-                <EditComment _id={_id} handleSubmitEdit={handleSubmitEdit} handleChangeEdit={handleChangeEdit} editedComment={editedComment} editError={editError} />
-              } */}
-              {userIsOwner(comment) && editCheck && editedCommentId !== null && editedCommentId === _id &&
-                <Container>
-                  <Col as='form' onSubmit={(e) => handleSubmitEdit(e, _id)}>
-                    <Row>
-                      <input type='text' name='edit-comment' placeholder='Edit Comment' onChange={handleChangeEdit} value={editedComment.text}/>
-                      <button>Save</button>
-                      {editError && <Error error={editError}/>}
-                    </Row>
-                  </Col>
-                </Container>
-              }
-              {userIsOwner(comment) &&
-                <>
-                  <button onClick={(e) => handleEdit(e, _id)}>Edit</button>
-                  <button onClick={handleDelete}>Delete</button>
-                </>
-              }
             </Fragment>
           )
         })
       }
-    </>
+    </main>
   )
 
 }

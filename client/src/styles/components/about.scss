@@ -2,18 +2,26 @@
 .about-hero {
   padding: 0px;
   margin: 0 auto;
+
   // Each wrap section
   .wrap {
+
     // Main image and title section
-    .header{
+    .header-1{
       display: flex;
       position: relative;
     }
-    .title {
+    .title-1 {
       position: absolute;
       text-align: center;
       top: 50%;
-      left: 46%;
+      left: 40%;
+      color: white;
+      font-size: 70px;
+    }
+
+    .title {
+      text-align: center;
     }
     .wrap-img {
       width: 100%;
@@ -21,7 +29,8 @@
     }
     p {
       text-align: center;
-      padding: 20px 20px 100px 20px;
+      padding: 25px 25px 100px 25px;
+      font-size: 30px;
     }
   }
   .wrap-button {

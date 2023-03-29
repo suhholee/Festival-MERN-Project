@@ -30,6 +30,7 @@ const Login = () => {
     try {
       const { data } = await axios.post('/api/login', formFields)
       localStorage.setItem('Festival-MERN-Project', data.token)
+      console.log(data)
       navigate('/map')
     } catch (err) {
       console.log('error', err.message)
