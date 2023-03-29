@@ -1,5 +1,8 @@
+$defaultDuration: .3s;
+
 .btn-nebula-808, .btn-chaos-cosmos, .btn-jungle-constellation {
   @extend %bg-img;
+  border-radius: 50%;
   cursor: pointer;
   width: 250px;
   height: 250px;
@@ -9,13 +12,18 @@
   color: black;
   border: none;
   background-color: transparent;
+  display: inline-block;
+  transition-duration: $defaultDuration;
+  transition-property: transform;
   &:hover, &:active {
     background-color: transparent;
     color: black;
+    transform: scale(1.05);
+    box-shadow: 0 0 60px 30px #fff;
   }
 }
 .btn-nebula-808{ background-image: url('../../components/images/test-1.png'); }
-.btn-chaos-cosmos{ background-image: url('../../components/images/test-5.png');}
+.btn-chaos-cosmos{ background-image: url('../../components/images/test-5.png'); }
 .btn-jungle-constellation{ background-image: url('../../components/images/test-7.png'); }
 
 
