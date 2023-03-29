@@ -1,0 +1,104 @@
+//comment section
+.comments-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  //New Comments section
+  .post-container {
+    margin-bottom: 50px;
+    div {
+      display: flex;
+      .post-comments {
+        width: 90%;
+        height: 100%;
+        padding: 20px;
+        margin-right: 20px;
+        background: white;
+        border-radius: 20px;
+        justify-content: space-around;
+        box-shadow: 3px 3px 3px rgb(0 0 0 / 50%);
+        border: 6px solid black;
+        span {
+          background-color: rgb(172, 205, 189);
+          border-radius: 15px;
+          text-align: center;
+          margin-right: 10px;
+          border: 6px solid black;
+        }
+        textarea{
+          padding: 10px;
+          border-radius: 20px;
+          width: 100%;
+          margin-right: 20px;
+          border: 6px solid black;
+        }
+      }
+    }
+    label {
+      margin-bottom: 15px;
+    }
+    button {
+      width: 10%;
+      border-radius: 20px;
+      background: rgb(172, 205, 189);
+      border: 6px solid black;
+    }
+    .error{
+      flex-direction: column;
+      margin-top: 10px;
+    }
+}
+//Uploaded Comments section
+.posted-comments {
+  display: flex;
+  align-items: flex-end;
+  border: 1px solid black;
+  border-radius: 15px;
+  margin: 30px 0 30px 0;
+  font-size: 20px;
+  padding: 20px;
+}
+  .comment-section{
+    background: white;
+    width: 90%;
+    margin: 10px;
+    padding: 30px 70px 20px 70px;
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px rgb(0 0 0 / 50%);
+    h4 {
+      margin-bottom: 20px;
+      font-size: 30px;
+    }
+    .user-name{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      .top-buttons{
+        align-items: center;
+        button {
+          border-radius: 15px;
+          width: 80px;
+          margin-left: 5px;
+          font-size: 17px;
+          height: 35px;
+        }
+      }
+    }
+
+    //Buttons section
+    .like-button{
+      display: flex;
+      justify-content: flex-end;
+      margin-left: 10px;
+      button{
+        width: 60px;
+        height: 40px;
+        border-radius: 25px;
+        margin-left: 5px;
+        border: 3px solid black;
+        background: rgb(172, 205, 189);
+      }
+    }
+  }
+}

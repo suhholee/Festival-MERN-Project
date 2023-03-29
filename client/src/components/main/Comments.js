@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react'
+import { useEffect, useState, Fragment } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
@@ -46,6 +46,7 @@ const Comments = ({ stage, getStage }) => {
     try {
       await authenticated.post(`/api/stages/${stageId}/comments`, newComment)
       getStage()
+      getStage()
     } catch (error) {
       console.log(error.response)
       setPostError(' •–• text required •–• ')
@@ -62,12 +63,14 @@ const Comments = ({ stage, getStage }) => {
     }
   }
 
+
+
   const handleEdit = async () => {
     try {
       console.log('edit')
       setEditCheck(!editCheck)
     } catch (error) {
-      console.log('error')
+      console.log(error)
     }
   }
 
@@ -92,15 +95,25 @@ const Comments = ({ stage, getStage }) => {
   }
 
   return (
-    <>
-      <h1>Comments</h1>
-      <Container>
-        <Col as='form' onSubmit={handleSubmit}  >
-          <Row>
-            <label htmlFor='comment'>Post A Comment</label>
-            <input type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} />
-            <button>Post</button>
-            {postError && <Error error={postError} />}
+    <main className='comments-main'>
+      <Container >
+        <h1 style={{ margin: 50 }}>Comments</h1>
+        <Col as='form' onSubmit={handleSubmit} >
+          <Row className='post-container'>
+
+            {/* New Comments section */}
+            <label >Post A Comment</label>
+            <div>
+              <div className='post-comments'>
+                <span style={{ padding: 10 }}> User Name </span>
+                <textarea type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} rows='3' />
+              </div>
+              <button>Post</button>
+            </div>
+            <div className='error'>
+              {postError && <Error error={postError} />}
+            </div>
+            
           </Row>
         </Col>
       </Container>
@@ -137,10 +150,9 @@ const Comments = ({ stage, getStage }) => {
           )
         })
       }
-    </>
+    </main>
   )
 
 }
 
 export default Comments
-

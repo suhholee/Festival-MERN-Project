@@ -1,15 +1,19 @@
 * {
   box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
 }
 
 .site-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: linear-gradient(rgb(0, 0, 0) 0%, rgba(255,255,255,1) 100%);
 }
 
 main {
   flex-grow: 1;
+
 }
 
 img {
@@ -33,5 +37,5 @@ p {
   font-family: $sub-font;
   font-size: 30px;
 }
-  // background-color: ;
+
 
