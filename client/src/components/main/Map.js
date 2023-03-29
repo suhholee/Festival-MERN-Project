@@ -43,7 +43,7 @@ const Map = () => {
               const { _id, name } = stage
               const buttonName = name.replace(' ', '-').toLowerCase()
               return (
-                <Button key={_id} as={Link} to={`/stages/${_id}`} className={`btn-${buttonName}`}>{name}</Button>
+                <Button key={_id} as={Link} to={`/stages/${_id}`} className={`btn-${buttonName}`} style={{ paddingTop: 70 }}>{name}</Button>
               )
             })
             :
