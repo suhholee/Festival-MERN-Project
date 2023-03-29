@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container'
 // Custom Components
 import Error from '../common/Error'
 import { removeToken } from '../helpers/auth'
+import { loggedInUser } from '../helpers/auth'
 
 const PageNavbar = () => {
 
@@ -80,6 +81,7 @@ const PageNavbar = () => {
                   }
                 </NavDropdown>
                 <Nav.Link to="/" as={Link} className={location.pathname === '/' ? 'active' : ''} onClick={handleLogout}>Logout</Nav.Link>
+                <Nav.Link to={`/users/${loggedInUser()}`} as={Link} className={location.pathname === '/' ? 'active' : ''} >Profile</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>

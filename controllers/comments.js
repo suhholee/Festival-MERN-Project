@@ -7,7 +7,6 @@ export const addComment = async (req, res) => {
   try {
     const { id } = req.params
     const stage = await Stage.findById(id).populate('comments.owner')
-    console.log(stage)
     if (!stage) throw new NotFound('Stage Not Found')
     const commentToAdd = { ...req.body, owner: req.loggedInUser }
     stage.comments.push(commentToAdd)

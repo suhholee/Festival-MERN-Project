@@ -48,4 +48,12 @@ userSchema.methods.validatePassword = function(plainTextPassword){
   return bcrypt.compare(plainTextPassword, this.password)
 }
 
+// Hide password when user is requested
+
+userSchema.set('toJSON', {
+  transform(doc,ret){
+    delete ret.password
+  },
+})
+
 export default mongoose.model('User', userSchema)
