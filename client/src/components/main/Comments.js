@@ -23,7 +23,12 @@ const Comments = ({ stage, getStage }) => {
   const [newComment, setNewComment] = useState({
     text: '',
   })
-  const [ liked, setLiked ] = useState()
+
+  // ! Edit state
+  const [edit, setEdit] = useState({
+    text: '',
+  })
+  const [editCheck, setEditCheck] = useState(false)
 
   // ! Error State
   const [postError, setPostError] = useState('')
@@ -41,19 +46,18 @@ const Comments = ({ stage, getStage }) => {
     try {
       await authenticated.post(`/api/stages/${stageId}/comments`, newComment)
       getStage()
+      getStage()
     } catch (error) {
       console.log(error.response)
       setPostError(' •–• text required •–• ')
     }
   }
 
-
-  const handleLike = async (e, id) => {
+  const handleLike = async (e,id) => {
     try {
-      console.log(id)
       await authenticated.put(`/api/stages/${stageId}/comments/${id}/likes`)
       getStage()
-      setLiked(!liked)
+      console.log('like')
     } catch (error) {
       console.log(error)
     }
@@ -64,14 +68,27 @@ const Comments = ({ stage, getStage }) => {
   const handleEdit = async () => {
     try {
       console.log('edit')
+      setEditCheck(!editCheck)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const handleDelete = async () => {
+  const handleEditInput = (e) => {
+    setEdit({ ...edit, text: e.target.value })
+  }
+
+  const handleSubmitEdit = async(e, id) => {
+    e.preventDefault()
+    console.log(id)
+    await authenticated.put(`/api/stages/${stageId}/comments/${id}`, edit)
+    getStage()
+  }
+
+  const handleDelete = async (e,id) => {
     try {
-      console.log('delete')
+      await authenticated.delete(`/api/stages/${stageId}/comments/${id}`)
+      getStage()
     } catch (error) {
       console.log(error)
     }
@@ -100,33 +117,35 @@ const Comments = ({ stage, getStage }) => {
           </Row>
         </Col>
       </Container>
-
       {stage.comments.length > 0 &&
         stage.comments.map(comment => {
           const { text, likes, owner: { username }, _id } = comment
           return (
             <Fragment key={_id}>
-
-              {/* Upload Comments section */}
-              <div className='comment-section'>
-                <h4 className='user-name'>{username}
-                  {userIsOwner(comment) &&
-                      <>
-                        <div className='top-buttons'>
-                          <button onClick={handleEdit}>Edit</button>
-                          <button onClick={handleDelete}>Delete</button>
-                        </div>
-                      </>
-                  }
-                </h4>
-
-                {/* Buttons section */}
-                <p className='posted-comments'>{text}</p>
-                <div className='like-button'>
-                  <p>{likes.length}</p>
-                  <button onClick={(e) => handleLike(e, _id)} style={{ marginLeft: 20 }}> {liked ? ' Like ' : 'ʚ♥ɞ' } </button>
-                </div>
+              <div>
+                <h4>{username}</h4>
+                <p>{text}</p>
+                <p>{likes.length}</p>
+                { (userIsOwner(comment) && editCheck) &&
+                  <Container>
+                    <Col as='form' onSubmit={(e) => handleSubmitEdit(e, _id)}  >
+                      <Row >
+                        <label htmlFor='edit comment'>Edit</label>
+                        <input type='text' name={_id} placeholder='Comment' onChange={handleEditInput} value={edit.text} />
+                        <button >Edit</button>
+                        {/* {postError && <Error error={postError} />} */}
+                      </Row>
+                    </Col>
+                  </Container>
+                }
               </div>
+              <button onClick={(e) => handleLike(e,_id)}> Like</button>
+              {userIsOwner(comment) &&
+                <>
+                  <button onClick={handleEdit} > Edit</button>
+                  <button onClick={(e) => handleDelete(e,_id)} > Delete</button>
+                </>
+              }
             </Fragment>
           )
         })

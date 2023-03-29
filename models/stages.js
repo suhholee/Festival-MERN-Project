@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 // ! Comment Schema (Embedded)
 const commentSchema = new mongoose.Schema({
-  text: { type: String, required: true, maxlength: 300 },
+  text: { type: String, required: true,  maxlength: 300 },
   likes: { type: Array },
   owner: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
 }, {
