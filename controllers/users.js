@@ -15,16 +15,16 @@ export const userSingle = async(req,res) => {
   }
 }
 
-// export const userComments = async (req,res) => {
-//   console.log('runnang')
-//   try {
-//     const { userId } = req.params
-//     const stages = await Stage.find()
-//     const comments = stages.map( stage => stage.comments)
-//     const userComments = comments.map( comments => comments.filter(comment => comment.owner.includes(userId) ) )
-//     return res.json(userComments)
-//   } catch (error) {
-//     sendError(res,error)
-//   }
-// }
+export const userComments = async (req,res) => {
+  console.log('runnang')
+  try {
+    const { userId } = req.params
+    const stages = await Stage.find().populate('comments.owner')
+    // const comments = stages.map( stage => stage.comments)
+    // const userComments = comments.map( comments => comments.filter(comment => comment.owner.includes(userId) ) )
+    return res.json(stages)
+  } catch (error) {
+    sendError(res,error)
+  }
+}
 

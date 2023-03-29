@@ -43,3 +43,9 @@ export const userIsOwner = (comment) => {
     return payload.sub === comment.owner._id
   }
 }
+
+export const loggedInUser = () => {
+  const payload = getPayload()
+  if (!payload) return
+  return payload.sub
+}
