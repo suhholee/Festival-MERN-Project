@@ -24,6 +24,7 @@ const Map = () => {
     const getStages = async () => {
       try {
         const { data } = await axios.get('/api/stages')
+        console.log(data)
         setStages(data)
       } catch (err) {
         console.log(err)

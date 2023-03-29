@@ -16,7 +16,7 @@ const Profile = () => {
     const getUser = async() => {
       try {
         const { data } = await axios.get(`/api/users/${userId}`)
-        console.log(data)
+        // console.log(data)
         setUser({ ...data })
       } catch (error) {
         console.log(error)
@@ -24,10 +24,12 @@ const Profile = () => {
     }
     const getComments = async() => {
       try {
-        const { stages } = await axios.get('/api/stages')
-        const comments = stages.map( stage => stage.comments)
+        const { data } = await axios.get('/api/stages')
+        console.log('stages->',data)
+        const comments = data.map( stage => stage.comments)
+        // console.log(comments)
         const userComments = comments.map( comments => comments.filter(comment => comment.owner.includes(userId) ) )
-        // console.log(data)
+        console.log('user comments', userComments)
         // setComments([ ...data ])
       } catch (error) {
         console.log(error)
