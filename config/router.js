@@ -4,6 +4,7 @@ import { loginUser, registerUser } from '../controllers/auth.js'
 import { getSingleStage, getStages } from '../controllers/stages.js'
 import { addComment, deleteComment, updateComment, updateLikes } from '../controllers/comments.js'
 import { secureRoute } from './secureRoute.js'
+import { userSingle } from '../controllers/users.js'
 
 const router = express.Router()
 
@@ -28,6 +29,9 @@ router.route('/artists')
 
 router.route('/register')
   .post(registerUser)
+
+router.route('/users/:userId')
+  .get(userSingle)
 
 router.route('/login')
   .post(loginUser)
