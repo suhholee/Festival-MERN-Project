@@ -1,21 +1,66 @@
-.btn-nebula-808, .btn-chaos-cosmos, .btn-jungle-constellation {
-  @extend %bg-img;
-  cursor: pointer;
-  width: 250px;
-  height: 250px;
-  font-family: $main-font;
-  font-style: normal;
-  font-size: 40px;
-  color: black;
-  border: none;
-  background-color: transparent;
-  &:hover, &:active {
-    background-color: transparent;
-    color: black;
+.map-bg{
+  position: relative;
+  height: 100vh;
+
+  .map-btn{
+    position: relative;
+
+    .btn-nebula-808, .btn-chaos-cosmos, .btn-jungle-constellation{
+      position: absolute;
+      @extend %bg-img;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-family: $main-font;
+      font-style: normal;
+      font-size: 2em;
+      color: rgb(255, 255, 255);
+      border-radius: 50%;
+      text-shadow: 0 1px 10px #3c5aad;
+      }
+      @keyframes float{
+      0%, 100%{
+        transform: translateY(0px);
+      }50%{
+        transform: translateY(-16px);
+      }
+    }
   }
-}
-.btn-nebula-808{ background-image: url('../../components/images/test-1.png'); }
-.btn-chaos-cosmos{ background-image: url('../../components/images/test-5.png');}
-.btn-jungle-constellation{ background-image: url('../../components/images/test-7.png'); }
 
-
+  .camping{
+    @extend %bg-img;
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    top: 40vw;
+    left: 39vw;
+    width: 22vw;
+    height: 18vw;
+    background-image: url('../../components/images/camping3d.png');
+    animation: float 10s ease-in-out infinite;
+    }
+  .btn-nebula-808{
+    background-image: url('../../components/images/test-1.png');
+    top: 36vh;
+    left: 10vw;
+    width: 21vw;
+    height: 18vw;
+    animation: float 3.5s ease-in-out infinite;
+    }
+  .btn-chaos-cosmos{ 
+    background-image: url('../../components/images/test-6.png');
+    top: 6vw;
+    left: 44vw;
+    width: 16vw;
+    height: 16vw;
+    animation: float 3s ease-in-out infinite;
+    }
+  .btn-jungle-constellation{ 
+    background-image: url('../../components/images/test-7.png');
+    top: 16vw;
+    left: 68vw;
+    width: 19vw;
+    height: 20vw;
+    animation: float 2s ease-in-out infinite;
+    }
+}  

@@ -28,11 +28,12 @@ export const getToken = () => {
   return localStorage.getItem(tokenName)
 }
 
-export const authenticated = axios.create({
-  // baseURL: 'http://localhost:4000',
-  headers: {
-    Authorization: `Bearer ${getToken()}`,
-  },
+export const authenticated = axios.create()
+authenticated.interceptors.request.use(config => {
+  // Updating config object to include an Authorization header
+  config.headers['Authorization'] = `Bearer ${getToken()}`
+  // Return updated config object
+  return config
 })
 
 export const userIsOwner = (comment) => {

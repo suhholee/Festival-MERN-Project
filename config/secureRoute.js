@@ -12,13 +12,14 @@ export const secureRoute = async (req,res,next) => {
     if (!authorization) throw new Unauthorized()
 
     // Clean header to get just token
-    const token = authorization.replace('Bearer ','')
+    const token = authorization.replace('Bearer ', '')
 
     // Verify token
     const payload = jwt.verify(token, process.env.SECRET)
 
     // Find logged in user
     const loggedInUser = await User.findById(payload.sub)
+    console.log(loggedInUser)
     if (!loggedInUser) throw new NotFound()
 
     // Set object of logged in user to req for later use

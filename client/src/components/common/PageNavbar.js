@@ -65,7 +65,7 @@ const PageNavbar = () => {
                   onMouseLeave={hideDropdown}
                 >
                   {stages.length > 0 ?
-                    stages.map(stage => {
+                    stages.sort((a, b) => a.name > b.name ? 1 : -1).map(stage => {
                       const { _id, name } = stage
                       return (
                         <NavDropdown.Item key={_id} as={Link} to={`/stages/${_id}`}>{name}</NavDropdown.Item>
