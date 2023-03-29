@@ -74,29 +74,6 @@ const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
       }
       <Likes likes={likes} getStage={getStage} stageId={stageId} _id={_id} />
     </div>
-    // <>
-    //   <h4 className='user-name'>{username}
-    //     <div className='top-buttons'>
-    //       <button onClick={(e) => handleEdit(e)}>Edit</button>
-    //       <button onClick={(e) => handleDelete(e, _id)}>Delete</button>
-    //     </div>
-    //   </h4>
-    //   {editCheck ?
-    //     <Container>
-    //       <Col as='form' onSubmit={(e) => handleSubmitEdit(e, _id)}>
-    //         <Col>
-    //           <input type='text' name='edit-comment' onChange={handleChangeEdit} value={editedComment.text} />
-    //           <button>Save</button>
-    //           {editError && <Error error={editError} />}
-    //         </Col>
-    //       </Col>
-    //     </Container>
-    //     :
-    //     <>
-    //       <p className='posted-comments'>{text}</p>
-    //     </>
-    //   }
-    // </>
   )
 }
 

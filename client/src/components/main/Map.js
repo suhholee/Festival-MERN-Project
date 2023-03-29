@@ -36,23 +36,26 @@ const Map = () => {
 
   return (
     <main>
-      <div className='mapButton'>
-        {stages.length > 0 ?
-          stages.sort((a, b) => a.name > b.name ? 1 : -1).map(stage => {
-            const { _id, name } = stage
-            const buttonName = name.replace(' ', '-').toLowerCase()
-            return (
-              <Button key={_id} as={Link} to={`/stages/${_id}`} className={`btn-${buttonName}`}>{name}</Button>
-            )
-          })
-          :
-          <>
-            {error ?
-              <Error error={error} />
-              :
-              <Spinner />}
-          </>
-        }
+      <div className='map-bg'>
+        <div className='map-btn'>
+          {stages.length > 0 ?
+            stages.sort((a, b) => a.name > b.name ? 1 : -1).map(stage => {
+              const { _id, name } = stage
+              const buttonName = name.replace(' ', '-').toLowerCase()
+              return (
+                <Button key={_id} as={Link} to={`/stages/${_id}`} className={`btn-${buttonName}`} style={{ paddingTop: 70 }}>{name}</Button>
+              )
+            })
+            :
+            <>
+              {error ?
+                <Error error={error} />
+                :
+                <Spinner />}
+            </>
+          }
+          <Button as={Link} to={'/about'} className='camping'>About</Button>
+        </div>
       </div>
     </main>
   )
