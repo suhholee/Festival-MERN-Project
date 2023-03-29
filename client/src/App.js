@@ -11,6 +11,7 @@ import Login from './components/auth/Login'
 import About from './components/main/About'
 import Map from './components/main/Map'
 import StageSingle from './components/main/StageSingle'
+import Profile from './components/main/Profile'
 
 const App = () => {
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/map" element={<Map />} />
           <Route path="/stages/:stageId" element={<StageSingle />} />
+          <Route path='/users/:userId' element={<Profile />} />
           {/* Below route is rendered when nothing matches */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
