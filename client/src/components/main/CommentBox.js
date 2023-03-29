@@ -7,6 +7,7 @@ import Error from '../common/Error'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 
+// Custom components
 import { authenticated } from '../helpers/auth'
 import Likes from './Likes'
 
