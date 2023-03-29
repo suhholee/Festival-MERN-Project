@@ -54,7 +54,7 @@ const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
 
   return (
     <div className='comment-section'>
-      <h4 className='user-name'>{username}
+      <h4 className='user-name'>@{username}
         <div className='top-buttons'>
           <button onClick={(e) => handleEdit(e)}>Edit</button>
           <button onClick={(e) => handleDelete(e, _id)}>Delete</button>

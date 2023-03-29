@@ -11,7 +11,6 @@ import Col from 'react-bootstrap/Col'
 
 // Custom components
 import { authenticated, userIsOwner } from '../helpers/auth'
-
 import CommentBox from './CommentBox'
 import Likes from './Likes'
 
