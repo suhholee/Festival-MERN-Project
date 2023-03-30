@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  image: { type: String },
 })
 
 userSchema.set('toJSON', {
@@ -54,5 +55,7 @@ userSchema.pre('save', function(next){
 userSchema.methods.validatePassword = function(plainTextPassword){
   return bcrypt.compare(plainTextPassword, this.password)
 }
+
+
 
 export default mongoose.model('User', userSchema)

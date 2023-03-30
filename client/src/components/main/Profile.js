@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import { useParams,useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 // Custom imports
-import { authenticated,includesUserId,isAuthenticated } from '../helpers/auth'
+import { authenticated, includesUserId, isAuthenticated } from '../helpers/auth'
+import ProfileImage from './ProfileImage'
 import { Error } from '../common/Error'
 
 const Profile = () => {
@@ -16,17 +17,18 @@ const Profile = () => {
   const [ error, setError ] = useState(null)
 
   // ! On Mount
+  const getUser = useCallback(async () => {
+    try {
+      const { data } = await authenticated.get(`/api/users/${userId}`)
+      setUser({ ...data })
+    } catch (error) {
+      console.log(error)
+      setError(error.response)
+    }
+  }, [userId])
+
   useEffect(() => {
     !isAuthenticated() && navigate('/')
-    const getUser = async () => {
-      try {
-        const { data } = await authenticated.get(`/api/users/${userId}`)
-        setUser({ ...data })
-      } catch (err) {
-        console.log(err)
-        setError(err.response)
-      }
-    }
     const getComments = async () => {
       try {
         const { data } = await axios.get('/api/stages')
@@ -67,6 +69,7 @@ const Profile = () => {
             })
           }
         </h2>
+        <ProfileImage userId={userId} getUser={getUser} user={user} />
       </div>
       <div>
         {userComments &&
