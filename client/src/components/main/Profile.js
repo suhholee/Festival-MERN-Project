@@ -3,7 +3,7 @@ import { useParams,useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 // Custom imports
-import { authenticated,isAuthenticated } from '../helpers/auth'
+import { authenticated,includesUserId,isAuthenticated } from '../helpers/auth'
 import { Error } from '../common/Error'
 
 const Profile = () => {
@@ -12,8 +12,8 @@ const Profile = () => {
 
   const [ user, setUser ] = useState({})
   const [ userComments, setUserComments ] = useState([])
-  const [ stages,setStages ] = useState([])
-  const [ error,setError ] = useState(null)
+  const [ stages, setStages ] = useState([])
+  const [ error, setError ] = useState(null)
 
   // ! On Mount
   useEffect(() => {
@@ -22,9 +22,9 @@ const Profile = () => {
       try {
         const { data } = await authenticated.get(`/api/users/${userId}`)
         setUser({ ...data })
-      } catch (error) {
-        console.log(error)
-        setError(error.response)
+      } catch (err) {
+        console.log(err)
+        setError(err.response)
       }
     }
     const getComments = async () => {
@@ -34,9 +34,9 @@ const Profile = () => {
         const comments = data.map(stage => stage.comments)
         const userComments = comments.map(comments => comments.filter(comment => comment.owner._id === userId))
         setUserComments(userComments)
-      } catch (error) {
-        console.log(error)
-        setError(error.response)
+      } catch (err) {
+        console.log(err)
+        setError(err.response)
       }
     }
     getComments()
@@ -47,31 +47,52 @@ const Profile = () => {
       <h1>Profile</h1>
       <div>
         <h2>username: {user.username}</h2>
-        <h3>email: {user.email} </h3>
+        <h2>email: {user.email}</h2>
+        <h2>You are attending:
+          {stages &&
+            stages.map(stage => {
+              const { attendance, _id } = stage
+              if (includesUserId(attendance)) {
+                return (
+                  <div key={_id}>
+                    <h2>{stage.name}!</h2>
+                  </div>
+                )
+              } else {
+                return (
+                  <div key={_id}>
+                  </div>
+                )
+              }
+            })
+          }
+        </h2>
       </div>
       <div>
-        {userComments.map((stage, i) => {
-          if (stage.length > 0) {
-            return (
-              <div key={i}>
-                <h2> {stages[i].name}</h2>
-                <div>
-                  <p>Your comments: </p>
-                  {stage.map((comment,i) => {
-                    return <p key={i}>{comment.text}</p>
-                  } )}
+        {userComments &&
+          userComments.map((stage, i) => {
+            if (stage.length > 0) {
+              return (
+                <div key={i}>
+                  <h2> {stages[i].name}</h2>
+                  <div>
+                    <p>Your comments: </p>
+                    {stage.map((comment,i) => {
+                      return <p key={i}>{comment.text}</p>
+                    } )}
+                  </div>
                 </div>
-              </div>
-            )
-          } else {
-            return (
-              <div key={i}>
-                <h2>{stages[i].name}</h2>
-                <p key={i}>No Comment</p>
-              </div>  
-            )
-          }
-        })}
+              )
+            } else {
+              return (
+                <div key={i}>
+                  <h2>{stages[i].name}</h2>
+                  <p key={i}>No Comment</p>
+                </div>  
+              )
+            }
+          })
+        }
       </div>
     </>
   )

@@ -18,9 +18,7 @@ export const getSingleStage = async (req, res) => {
   try {
     const { id } = req.params
     const stage = await Stage.findById(id).populate('comments.owner')
-    if (!stage) {
-      throw new NotFound('Stage not found')
-    }
+    if (!stage) throw new NotFound('Stage not found')
     return res.json(stage)
   } catch (err) {
     return sendError(err, res)

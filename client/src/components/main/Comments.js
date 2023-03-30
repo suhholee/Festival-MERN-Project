@@ -38,8 +38,8 @@ const Comments = ({ stage, getStage }) => {
       await authenticated.post(`/api/stages/${stageId}/comments`, newComment)
       setNewComment({ text: '' })
       getStage()
-    } catch (error) {
-      console.log(error.response)
+    } catch (err) {
+      console.log(err.response)
       setPostError(' •–• text required •–• ')
     }
   }
@@ -47,14 +47,14 @@ const Comments = ({ stage, getStage }) => {
   return (
     <main className='comments-main'>
       <Container >
-        <h1 style={{ margin: 50 }}>Comments</h1>
+        <h2 className='comments-title' style={{ margin: 50 }}>Comments</h2>
         <Col as='form' onSubmit={handleSubmit} >
           <Row className='post-container'>
             {/* New Comments section */}
-            <label>Post A Comment</label>
+            {/* <label className='post-comment-label'>Post A Comment</label> */}
             <div>
               <div className='post-comments'>
-                <span style={{ padding: 10 }}>User Name</span>
+                {/* <span style={{ padding: 10 }}>User Name</span> */}
                 <textarea type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} rows='3' />
               </div>
               <button>Post</button>

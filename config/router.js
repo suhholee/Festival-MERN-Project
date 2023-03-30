@@ -34,7 +34,7 @@ router.route('/register')
   .post(registerUser)
 
 router.route('/users/:userId')
-  .get(secureRoute,userSingle)
+  .get(secureRoute, userSingle)
 
 router.route('/login')
   .post(loginUser)

@@ -14,7 +14,8 @@ const PageNavbar = () => {
   // ! State
   const [stages, setStages] = useState([])
   const [error, setError] = useState('')
-  const [show, setShow] = useState(false)
+  const [showStages, setShowStages] = useState(false)
+  const [showProfile, setShowProfile] = useState(false)
 
   // ! Location variables
   const location = useLocation()
@@ -39,18 +40,26 @@ const PageNavbar = () => {
     removeToken()
   }
 
-  const showDropdown = (e) => {
-    setShow(!show)
+  const showStagesDropdown = (e) => {
+    setShowStages(!showStages)
   }
   
-  const hideDropdown = (e) => {
-    setShow(false)
+  const hideStagesDropdown = (e) => {
+    setShowStages(false)
+  }
+
+  const showProfileDropdown = (e) => {
+    setShowProfile(!showProfile)
+  }
+  
+  const hideProfileDropdown = (e) => {
+    setShowProfile(false)
   }
 
   return (
     <>
       {!noNav.includes(location.pathname) &&
-        <Navbar className='nav-bar' expand="md" sticky="top">
+        <Navbar className='nav-bar' expand="md">
           <Container>
             <Navbar.Brand to="/map" as={Link} className='logo'>WOOZU SOUNDS</Navbar.Brand>
             <Navbar.Toggle aria-controls="woozu-nav" />
@@ -60,9 +69,9 @@ const PageNavbar = () => {
                 <NavDropdown
                   title="Stages" 
                   id="basic-nav-dropdown" 
-                  show={show}
-                  onMouseEnter={showDropdown} 
-                  onMouseLeave={hideDropdown}
+                  show={showStages}
+                  onMouseEnter={showStagesDropdown} 
+                  onMouseLeave={hideStagesDropdown}
                 >
                   {stages.length > 0 ?
                     stages.sort((a, b) => a.name > b.name ? 1 : -1).map(stage => {
@@ -80,8 +89,16 @@ const PageNavbar = () => {
                     </>
                   }
                 </NavDropdown>
-                <Nav.Link to="/" as={Link} className={location.pathname === '/' ? 'active' : ''} onClick={handleLogout}>Logout</Nav.Link>
-                <Nav.Link to={`/users/${loggedInUser()}`} as={Link} className={location.pathname === '/' ? 'active' : ''} >Profile</Nav.Link>
+                <NavDropdown
+                  title="Profile" 
+                  id="basic-nav-dropdown" 
+                  show={showProfile}
+                  onMouseEnter={showProfileDropdown} 
+                  onMouseLeave={hideProfileDropdown}
+                >
+                  <NavDropdown.Item to={`/users/${loggedInUser()}`} as={Link}>Profile</NavDropdown.Item>
+                  <NavDropdown.Item to="/" as={Link} onClick={handleLogout}>Logout</NavDropdown.Item>
+                </NavDropdown>
               </Nav>
             </Navbar.Collapse>
           </Container>

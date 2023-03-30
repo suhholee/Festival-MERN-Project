@@ -24,7 +24,6 @@ const Register = () => {
 
   // ! Executions
   const handleChange = (e) => {
-    // console.log(e.target.name, e.target.value)
     setFormFields({ ...formFields, [e.target.name]: e.target.value })
     setError('')
   }
@@ -37,7 +36,6 @@ const Register = () => {
       navigate('/login')
     } catch (error) {
       console.log('console', error)
-      // if (error)
       setError(error.response.data.message)
     }
   }

@@ -10,8 +10,8 @@ const Likes = ({ likes, getStage, stageId, _id }) => {
     try {
       await authenticated.put(`/api/stages/${stageId}/comments/${id}/likes`)
       getStage()
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      console.log(err)
     }
   }
 

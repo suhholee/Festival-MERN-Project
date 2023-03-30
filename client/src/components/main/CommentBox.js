@@ -17,7 +17,7 @@ const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
   const [ editedComment, setEditedComment ] = useState({
     text: '',
   })
-  const [ editCheck, setEditCheck]  = useState(false)
+  const [ editCheck, setEditCheck ]  = useState(false)
   const [ editError, setEditError ] = useState('')
 
   // ! Executions
@@ -47,8 +47,8 @@ const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
     try {
       await authenticated.delete(`/api/stages/${stageId}/comments/${id}`)
       getStage()
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      console.log(err)
     }
   }
 

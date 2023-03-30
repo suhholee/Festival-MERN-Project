@@ -15,15 +15,15 @@ const Attendance = ({ attendance, getStage, stageId }) => {
       await authenticated.put(`/api/stages/${stageId}/attendance`)
       getStage()
       setAttending(!attending)
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      console.log(err)
     }
   }
 
   return (
-    <div>
-      <button onClick={(e) => handleAttendance(e)}>{includesUserId(attendance) ? 'Attending!' : 'Are you attending?' }</button>
-      <p>{attendance.length}</p>
+    <div className='attendance'>
+      <button className='attendance-button' onClick={(e) => handleAttendance(e)}>{includesUserId(attendance) ? 'Attending!' : 'Are you attending?' }</button>
+      <p>Total Attendance: {attendance.length}</p>
     </div>
   )
 }

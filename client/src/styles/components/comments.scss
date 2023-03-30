@@ -3,10 +3,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  .comments-title {
+    color: white;
+  }
   //New Comments section
   .post-container {
     margin-bottom: 50px;
+    // .post-comment-label {
+    //   font-size: 20px;
+    //   color: white;
+    //   margin-left: 10px;
+    // }
     div {
       display: flex;
       .post-comments {
