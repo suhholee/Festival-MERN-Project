@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 // Custom imports
-import { authenticated } from '../helpers/auth'
+import { authenticated,isAuthenticated } from '../helpers/auth'
 
 const Profile = () => {
-  console.log('running')
   const { userId } = useParams()
+  const navigate = useNavigate()
 
   const [user, setUser] = useState({})
   const [userComments, setUserComments] = useState([])
 
   // ! On Mount
   useEffect(() => {
+    !isAuthenticated() && navigate('/')
     const getUser = async () => {
       try {
-        const { data } = await axios.get(`/api/users/${userId}`)
-        // console.log(data)
+        const { data } = await authenticated.get(`/api/users/${userId}`)
         setUser({ ...data })
       } catch (error) {
         console.log(error)
@@ -40,8 +40,6 @@ const Profile = () => {
     getUser()
   }, [])
 
-  //   console.log(comments)
-  //   console.log(user)
   return (
     <>
       <h1> Profile </h1>
@@ -50,7 +48,6 @@ const Profile = () => {
         <h3> email: {user.email} </h3>
       </div>
       <div>
-        {/* <p> {userComments[0][0].text}</p> */}
         {userComments.map((stage, i) => {
           if (stage.length > 0) {
             return stage.map((comment,i) => {
