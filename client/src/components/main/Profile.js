@@ -4,8 +4,12 @@ import axios from 'axios'
 
 // Custom imports
 import { authenticated,isAuthenticated } from '../helpers/auth'
+import ImageUploadField from '../main/ProfileImage'
 
 const Profile = () => {
+  const [ formdata, setFormdata ] = useState({
+    profileImage: '',
+  })
   const { userId } = useParams()
   const navigate = useNavigate()
 
@@ -46,6 +50,7 @@ const Profile = () => {
       <div>
         <h2> username: {user.username}</h2>
         <h3> email: {user.email} </h3>
+        <ImageUploadField setFormdata={setFormdata} formdata={formdata} />
       </div>
       <div>
         {userComments.map((stage, i) => {
