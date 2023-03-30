@@ -28,7 +28,7 @@ const ImageUploadField = ({ formdata, setFormdata }) => {
 
   return (
     <div className="field">
-      <h2>Profile Image</h2>
+      <h3>profile Image:</h3>
       { formdata.profileImage ? 
         <img src={formdata.profileImage} /> 
         : 

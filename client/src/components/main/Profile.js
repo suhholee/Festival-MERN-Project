@@ -7,7 +7,7 @@ import { authenticated,isAuthenticated } from '../helpers/auth'
 import ImageUploadField from '../main/ProfileImage'
 
 const Profile = () => {
-  const [ formdata, setFormdata ] = useState({
+  const [ imagedata, setImagedata ] = useState({
     profileImage: '',
   })
   const { userId } = useParams()
@@ -50,7 +50,7 @@ const Profile = () => {
       <div>
         <h2> username: {user.username}</h2>
         <h3> email: {user.email} </h3>
-        <ImageUploadField setFormdata={setFormdata} formdata={formdata} />
+        <ImageUploadField setFormdata={setImagedata} formdata={imagedata} />
       </div>
       <div>
         {userComments.map((stage, i) => {
