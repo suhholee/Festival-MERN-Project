@@ -1,16 +1,13 @@
-import { useState, useEffect } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import { useParams,useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 // Custom imports
 import { authenticated,isAuthenticated } from '../helpers/auth'
-import ImageUploadField from '../main/ProfileImage'
+import ProfileImage from '../main/ProfileImage'
 import { Error } from '../common/Error'
 
 const Profile = () => {
-  const [ imagedata, setImagedata ] = useState({
-    profileImage: '',
-  })
   const { userId } = useParams()
   const navigate = useNavigate()
 
@@ -20,17 +17,19 @@ const Profile = () => {
   const [ error,setError ] = useState(null)
 
   // ! On Mount
+  const getUser = useCallback(async () => {
+    try {
+      const { data } = await authenticated.get(`/api/users/${userId}`)
+      setUser({ ...data })
+    } catch (error) {
+      console.log(error)
+      setError(error.response)
+    }
+  }, [userId])
+
   useEffect(() => {
     !isAuthenticated() && navigate('/')
-    const getUser = async () => {
-      try {
-        const { data } = await authenticated.get(`/api/users/${userId}`)
-        setUser({ ...data })
-      } catch (error) {
-        console.log(error)
-        setError(error.response)
-      }
-    }
+    
     const getComments = async () => {
       try {
         const { data } = await axios.get('/api/stages')
@@ -52,7 +51,8 @@ const Profile = () => {
       <div>
         <h2> username: {user.username}</h2>
         <h3> email: {user.email} </h3>
-        <ImageUploadField setFormdata={setImagedata} formdata={imagedata} />
+        <ProfileImage userId={userId} getUser={getUser} user={user} />
+
       </div>
       <div>
         {userComments.map((stage, i) => {

@@ -5,6 +5,7 @@ import { getSingleStage, getStages, updateAttendance } from '../controllers/stag
 import { addComment, deleteComment, updateComment, updateLikes } from '../controllers/comments.js'
 import { secureRoute } from './secureRoute.js'
 import { userSingle } from '../controllers/users.js'
+import addProfile from '../controllers/profile.js'
 
 const router = express.Router()
 
@@ -38,6 +39,9 @@ router.route('/users/:userId')
 
 router.route('/login')
   .post(loginUser)
+
+router.route('/users/:userId/profile')
+  .put(secureRoute, addProfile)
 
 
   
