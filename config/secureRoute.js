@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import User from '../models/users.js'
 import 'dotenv/config'
 
-export const secureRoute = async (req,res,next) => {
+export const secureRoute = async (req, res, next) => {
   try {
     // Locate token
     const authorization = req.headers.authorization

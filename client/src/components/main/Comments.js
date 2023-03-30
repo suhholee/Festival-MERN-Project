@@ -74,7 +74,7 @@ const Comments = ({ stage, getStage }) => {
                 <CommentBox username={username} _id={_id} text={text} getStage={getStage} stageId={stageId} likes={likes} />
                 :
                 <div className='comment-section'>
-                  <h4 className='user-name'>{username}</h4>
+                  <h4 className='user-name'>@{username}</h4>
                   <p className='posted-comments'>{text}</p>
                   <Likes likes={likes} getStage={getStage} stageId={stageId} _id={_id} />
                 </div>

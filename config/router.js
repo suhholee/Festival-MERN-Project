@@ -1,7 +1,7 @@
 import express from 'express'
 import { getArtists } from '../controllers/artists.js'
 import { loginUser, registerUser } from '../controllers/auth.js'
-import { getSingleStage, getStages } from '../controllers/stages.js'
+import { getSingleStage, getStages, updateAttendance } from '../controllers/stages.js'
 import { addComment, deleteComment, updateComment, updateLikes } from '../controllers/comments.js'
 import { secureRoute } from './secureRoute.js'
 
@@ -12,6 +12,9 @@ router.route('/stages')
 
 router.route('/stages/:id')
   .get(getSingleStage)
+
+router.route('/stages/:id/attendance')
+  .put(secureRoute, updateAttendance)
 
 router.route('/stages/:id/comments')
   .post(secureRoute, addComment)
