@@ -9,6 +9,7 @@ import Spinner from '../common/Spinner'
 import { isAuthenticated } from '../helpers/auth'
 import Comments from './Comments'
 import Video from './Video'
+import Attendance from './Attendance'
 
 
 const StageSingle = () => {
@@ -54,7 +55,7 @@ const StageSingle = () => {
       {stage &&
         <main>
           {stage.name ? 
-            <h1 className='stage-name' >{stage.name}</h1>
+            <h1 className='stage-name'>{stage.name}</h1>
             :
             <>
               {stageError ?
@@ -63,6 +64,7 @@ const StageSingle = () => {
                 <h1>...</h1>}
             </>
           }
+          <Attendance attendance={stage.attendance} getStage={getStage} stageId={stageId} />
           <div className='artists-container'>
             {artists.length > 0 ?
               artists.sort((a, b) => a.name > b.name ? 1 : -1).map(artist => {

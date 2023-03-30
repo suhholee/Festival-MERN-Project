@@ -16,7 +16,7 @@ export const userSingle = async(req,res) => {
 }
 
 export const userComments = async (req,res) => {
-  console.log('runnang')
+  console.log('running')
   try {
     const { userId } = req.params
     const stages = await Stage.find().populate('comments.owner')

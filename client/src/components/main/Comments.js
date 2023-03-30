@@ -1,4 +1,4 @@
-import { useEffect, useState, Fragment } from 'react'
+import { useState, Fragment } from 'react'
 import { useParams } from 'react-router-dom'
 
 // Error imports
@@ -11,7 +11,6 @@ import Col from 'react-bootstrap/Col'
 
 // Custom components
 import { authenticated, userIsOwner } from '../helpers/auth'
-
 import CommentBox from './CommentBox'
 import Likes from './Likes'
 
@@ -75,7 +74,7 @@ const Comments = ({ stage, getStage }) => {
                 <CommentBox username={username} _id={_id} text={text} getStage={getStage} stageId={stageId} likes={likes} />
                 :
                 <div className='comment-section'>
-                  <h4 className='user-name'>{username}</h4>
+                  <h4 className='user-name'>@{username}</h4>
                   <p className='posted-comments'>{text}</p>
                   <Likes likes={likes} getStage={getStage} stageId={stageId} _id={_id} />
                 </div>

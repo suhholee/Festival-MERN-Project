@@ -26,3 +26,24 @@ export const getSingleStage = async (req, res) => {
     return sendError(err, res)
   }
 }
+
+// * Update ID to attendance key
+// Endpoint: /stages/:id/attendance
+export const updateAttendance = async (req, res) => {
+  try {
+    const { id } = req.params
+    const loggedInUserId = req.loggedInUser._id
+    const stage = await Stage.findById(id)
+    if (!stage) throw new NotFound('Stage not found')
+    const attendanceToUpdate = stage.attendance
+    if (!attendanceToUpdate.includes(loggedInUserId)) {
+      attendanceToUpdate.push(loggedInUserId)
+    } else {
+      attendanceToUpdate.splice(attendanceToUpdate.indexOf(loggedInUserId), 1)
+    }
+    await stage.save()
+    return res.json(attendanceToUpdate)
+  } catch (err) {
+    return sendError(err, res)
+  }
+}

@@ -49,3 +49,11 @@ export const loggedInUser = () => {
   if (!payload) return
   return payload.sub
 }
+
+export const includesUserId = (array) => {
+  const payload = getPayload()
+  if (!payload) return
+  if (array) {
+    return array.includes(payload.sub)
+  }
+}

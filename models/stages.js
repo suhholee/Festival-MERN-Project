@@ -13,6 +13,7 @@ const commentSchema = new mongoose.Schema({
 const stageSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   text: { type: String, required: true },
+  attendance: { type: Array },
   comments: [commentSchema],
 })
 
