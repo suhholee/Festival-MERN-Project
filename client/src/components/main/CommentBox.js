@@ -73,7 +73,7 @@ const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
           </Col>
         </Container>
         :
-        <textarea>{text}</textarea>
+        <p className='posted-comments'>{text}</p>
       }
       <Likes likes={likes} getStage={getStage} stageId={stageId} _id={_id} />
     </div>
