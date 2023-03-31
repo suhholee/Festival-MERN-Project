@@ -35,7 +35,7 @@ const ProfileImage = ({ userId, getUser, user }) => {
       <h2>Profile Image:</h2>
       {user.image ? 
         <>
-          <img src={user.image} /> 
+          <img src={user.image}/> 
           <input type="file" onChange={handleUpload}/>
         </>
         : 

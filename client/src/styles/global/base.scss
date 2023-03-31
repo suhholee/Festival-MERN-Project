@@ -9,11 +9,13 @@
   flex-direction: column;
   background-color: black;
   min-height: 100vh;
+  background-image: url('../../components/images/background-image.png');
+  @extend %bg-img;
 }
 
 main {
   flex-grow: 1;
-  min-height: 100vh;;
+  max-height: 100vh;
 }
 
 video { width: 100%; }
