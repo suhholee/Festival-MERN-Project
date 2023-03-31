@@ -1,0 +1,53 @@
+.stage-text{
+  max-width: 60vw;
+  margin: 0 auto;
+  font-size: 25px;
+  color: white;
+  text-align: center;
+  font-weight: 200;
+}
+
+.jungle-constellation{
+  h1 {
+    color: $jungle-constellation-color;
+  }
+  .user-name{
+    color: $jungle-constellation-color !important;
+  }
+  .post-container{
+    button{
+      background-color: $jungle-constellation-color;
+    }
+  }
+  .like-button{
+    button{
+      background: $jungle-constellation-color !important;
+    }
+  }
+  .attendance-button{
+    background-color: rgb(47, 98, 47);
+    border: solid 2px rgb(47, 98, 47);
+  }
+}
+.nebula-808{
+  h1 {
+    color: $nebula-808-color;
+  }
+  .user-name{
+    color: $nebula-808-color !important;
+  }
+  .post-container{
+    button{
+      background-color: $nebula-808-color;
+    }
+  }
+  .like-button{
+    button{
+      background: $nebula-808-color !important;
+    }
+  }
+  .attendance-button{
+    background-color: rgb(121, 37, 144);
+    border: solid 2px rgb(121, 37, 144);
+  }
+}

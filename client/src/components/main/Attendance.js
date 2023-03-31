@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 // Custom components
-import { authenticated, includesUserId } from '../helpers/auth'
+import { authenticated, includesUserId } from '../../helpers/auth'
 
 const Attendance = ({ attendance, getStage, stageId }) => {
 
@@ -22,7 +22,7 @@ const Attendance = ({ attendance, getStage, stageId }) => {
 
   return (
     <div className='attendance'>
-      <button className='attendance-button' onClick={(e) => handleAttendance(e)}>{includesUserId(attendance) ? 'Attending!' : 'Are you attending?' }</button>
+      <button className='attendance-button' onClick={(e) => handleAttendance(e)}>{includesUserId(attendance) ? 'Attended!' : 'Are you attending?' }</button>
       <p>Total Attendance: {attendance.length}</p>
     </div>
   )

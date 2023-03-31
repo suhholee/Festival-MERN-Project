@@ -1,6 +1,6 @@
 
 // Custom components
-import { authenticated, includesUserId } from '../helpers/auth'
+import { authenticated, includesUserId } from '../../helpers/auth'
 
 const Likes = ({ likes, getStage, stageId, _id }) => {
 

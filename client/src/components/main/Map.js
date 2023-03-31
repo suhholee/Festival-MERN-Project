@@ -7,7 +7,12 @@ import Button from 'react-bootstrap/Button'
 // Custom Components
 import Spinner from '../common/Spinner'
 import Error from '../common/Error'
-import { isAuthenticated } from '../helpers/auth'
+import { isAuthenticated } from '../../helpers/auth'
+
+// Images
+import Nebula from '../../images/nebula.png'
+import Jungle from '../../images/jungle.png'
+import Chaos from '../../images/chaos.png'
 
 
 const Map = () => {
@@ -36,15 +41,16 @@ const Map = () => {
 
 
   return (
-    <main>
-      <div className='map-bg'>
-        <div className='map-btn'>
+    <section>
+      <div className='map-container'>
+        <div className='stage-btn'>
           {stages.length > 0 ?
             stages.sort((a, b) => a.name > b.name ? 1 : -1).map(stage => {
               const { _id, name } = stage
               const buttonName = name.replace(' ', '-').toLowerCase()
               return (
-                <Button key={_id} as={Link} to={`/stages/${_id}`} className={`btn-${buttonName}`} style={{ paddingTop: 70 }}>{name}</Button>
+                <Button key={_id} as={Link} to={`/stages/${_id}`} 
+                  className={`btn-${buttonName}`}>{name}</Button>
               )
             })
             :
@@ -55,10 +61,14 @@ const Map = () => {
                 <Spinner />}
             </>
           }
-          <Button as={Link} to={'/about'} className='camping'>About</Button>
+        </div>
+        <div className='stage-image'>
+          <img className='Nebula' src={Nebula} alt="" />
+          <img className='Chaos' src={Chaos} alt="" />
+          <img className='Jungle' src={Jungle} alt="" />
         </div>
       </div>
-    </main>
+    </section>
   )
 }
 

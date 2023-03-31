@@ -10,12 +10,16 @@ const Home = () => {
         </video>
         <div className='home-container'>
           <h1 className='display-3'>WOOZU SOUNDS</h1>
-          <p className='lead'>Would you like to come to WOOZU?
+          <p className='lead'>08.06 - 11.06.2023 
+            <br />
+            <br />Would you like to come to WOOZU?
             <br />Get your free ticket right now!
-            <br />08.06 - 11.06.2023</p>
+            <br />
+            <br />Already a ticket? Enter the festival below
+          </p>
           <div className='homeButton'>
             <Button to="/register" as={Link} className='btn'>GET TICKETS</Button>
-            <Button to="/login" as={Link} className='btn'>LOG IN</Button>
+            <Button to="/login" as={Link} className='btn'>ENTER THE FESTIVAL</Button>
           </div>
         </div>
       </div>

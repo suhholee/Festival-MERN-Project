@@ -1,14 +1,15 @@
 import axios from 'axios'
-import { authenticated } from '../helpers/auth'
+import { authenticated } from '../../helpers/auth'
 
 const ProfileImage = ({ userId, getUser, user, setUserError }) => {
-  const handleUpload = async (e) => {
 
-    // ! Cloudinary variables
+  // ! Executions
+  const handleUpload = async (e) => {
+    // Cloudinary variables
     const cloudName = 'dpulji3ct'
     const uploadPreset = 'h93sq9d7'
 
-    // ! Data
+    // Data
     const image = e.target.files[0]
     const formData = new FormData()
     formData.append('file', image)
@@ -26,8 +27,6 @@ const ProfileImage = ({ userId, getUser, user, setUserError }) => {
       console.log(err)
       setUserError(err.message)
     }
-    
-
   }
 
   return (

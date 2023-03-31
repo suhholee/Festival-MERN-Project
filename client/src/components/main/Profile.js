@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 // Custom imports
-import { includesUserId, isAuthenticated } from '../helpers/auth'
+import { includesUserId, isAuthenticated } from '../../helpers/auth'
 import ProfileImage from './ProfileImage'
 import Spinner from '../common/Spinner'
 import Error from '../common/Error'
@@ -71,15 +71,15 @@ const Profile = ({ getUser, user, userError, setUserError }) => {
                   const { attendance, _id, name } = stage
                   if (includesUserId(attendance)) {
                     return (
-                      <div className='attendance-comments' key={_id}>
-                        <h2 className={`attendance-comments-title ${name}`}>{name}</h2>
-                        <p className='attendance-comments-text attending'>Attending!</p>
+                      <div className='attendance-comments attendance' key={_id}>
+                        <h2 className='attendance-comments-title'>{name}</h2>
+                        <p className='attendance-comments-text attending'>Attended!</p>
                       </div>
                     )
                   } else {
                     return (
-                      <div className='attendance-comments' key={_id}>
-                        <h2 className={`attendance-comments-title ${name}`}>{name}</h2>
+                      <div className='attendance-comments attendance' key={_id}>
+                        <h2 className='attendance-comments-title'>{name}</h2>
                         <p className='attendance-comments-text not-attending'>Not Attending</p>
                       </div>
                     )
@@ -93,8 +93,8 @@ const Profile = ({ getUser, user, userError, setUserError }) => {
                 userComments.map((stage, i) => {
                   if (stage.length > 0) {
                     return (
-                      <div className='attendance-comments' key={i}>
-                        <h2 className={`attendance-comments-title ${stages[i].name}`}>{stages[i].name}</h2>
+                      <div className='attendance-comments comments' key={i}>
+                        <h2 className='attendance-comments-title'>{stages[i].name}</h2>
                         <ul>
                           {stage.map((comment, i) => {
                             return <li key={i} className='attendance-comments-text'>{comment.text}</li>
@@ -104,9 +104,9 @@ const Profile = ({ getUser, user, userError, setUserError }) => {
                     )
                   } else {
                     return (
-                      <div className='attendance-comments' key={i}>
-                        <h2 className={`attendance-comments-title ${stages[i].name}`}>{stages[i].name}</h2>
-                        <p key={i} className='attendance-comments-text'>No Comment</p>
+                      <div className='attendance-comments comments' key={i}>
+                        <h2 className='attendance-comments-title'>{stages[i].name}</h2>
+                        <p key={i} className='attendance-comments-text no-comment'>No Comment</p>
                       </div>
                     )
                   }

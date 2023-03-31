@@ -6,13 +6,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './components/Home'
 import PageNavbar from './components/common/PageNavbar'
 import PageNotFound from './components/common/PageNotFound'
+import Footer from './components/common/Footer'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import About from './components/main/About'
 import Map from './components/main/Map'
 import StageSingle from './components/main/StageSingle'
 import Profile from './components/main/Profile'
-import { loggedInUser, authenticated } from './components/helpers/auth'
+import { loggedInUser, authenticated } from './helpers/auth'
 
 const App = () => {
 
@@ -48,6 +49,7 @@ const App = () => {
           {/* Below route is rendered when nothing matches */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   )

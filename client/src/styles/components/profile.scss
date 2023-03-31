@@ -6,8 +6,8 @@
 
 .profile-title {
   color: white;
-  text-decoration: underline;
   margin-bottom: 40px;
+  font-size: 80px;
 }
 
 .info {
@@ -45,7 +45,6 @@
   }
 }
 
-
 .profile-bottom {
   display: flex;
   color: white;
@@ -61,7 +60,6 @@
     border: 2px solid gray;
     border-radius: 25px;
     display: flex;
-    max-width: 800px;
     flex-direction: column;
     text-align: center;
     margin-bottom: 20px;
@@ -70,6 +68,7 @@
     }
     .attendance-comments-title {
       margin-bottom: 20px;
+      font-size: 35px;
     }
     .attendance-comments-text {
       font-size: 36px;
@@ -84,11 +83,23 @@
     .attending {
       background-color: green;
       color: white;
+      width: 25vw;
     }
     .not-attending {
       background-color: red;
       color: white;
+      width: 25vw;
+    }
+    .no-comment {
+      color: rgb(96, 96, 96)
     }
   }
-}
 
+  .attendance {
+    width: 30vw;
+  }
+  
+  .comments {
+    width: 60vw;
+  }
+}

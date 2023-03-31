@@ -6,7 +6,7 @@ import { Col, Card } from 'react-bootstrap'
 // Custom Components
 import Error from '../common/Error'
 import Spinner from '../common/Spinner'
-import { isAuthenticated } from '../helpers/auth'
+import { isAuthenticated } from '../../helpers/auth'
 import Comments from './Comments'
 import Video from './Video'
 import Attendance from './Attendance'
@@ -53,7 +53,7 @@ const StageSingle = () => {
   return (
     <>
       {stage ?
-        <main>
+        <main className={stage.name.replace(' ','-').toLowerCase()}>
           {stage.name ? 
             <h1 className='stage-name'>{stage.name}</h1>
             :
@@ -65,6 +65,7 @@ const StageSingle = () => {
             </>
           }
           <Attendance attendance={stage.attendance} getStage={getStage} stageId={stageId} />
+          <p className='stage-text'>{stage.text}</p>
           <div className='artists-container'>
             {artists.length > 0 ?
               artists.sort((a, b) => a.name > b.name ? 1 : -1).map(artist => {

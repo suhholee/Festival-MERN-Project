@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 // Custom components
-import { authenticated, userIsOwner } from '../helpers/auth'
+import { authenticated, userIsOwner } from '../../helpers/auth'
 import CommentBox from './CommentBox'
 import Likes from './Likes'
 import Spinner from '../common/Spinner'
@@ -39,21 +39,21 @@ const Comments = ({ stage, getStage, stageError }) => {
       getStage()
     } catch (err) {
       console.log(err.message)
-      setPostError(' •–• text required •–• ')
+      setPostError(' •–• Text Required •–• ')
     }
   }
 
   return (
     <main className='comments-main'>
       <Container >
-        <h2 className='comments-title' style={{ margin: 50 }}>Comments</h2>
+        <h2 className='comments-title'>Comments</h2>
         <Col as='form' onSubmit={handleSubmit} >
           <Row className='post-container'>
             <div>
               <div className='post-comments'>
                 <textarea type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} rows='3' />
+                <button className='post-button'>Post</button>
               </div>
-              <button>Post</button>
             </div>
             <div className='error'>
               {postError && <Error error={postError} />}
@@ -61,7 +61,7 @@ const Comments = ({ stage, getStage, stageError }) => {
           </Row>
         </Col>
       </Container>
-      {stage.comments.length > 0 ?
+      {stage.comments ?
         stage.comments.map(comment => {
           const { text, likes, owner: { username }, _id } = comment
           return (

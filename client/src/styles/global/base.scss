@@ -4,22 +4,20 @@
   padding: 0px;
 }
 
+
 .site-wrapper {
   display: flex;
   flex-direction: column;
-  background-color: black;
   min-height: 100vh;
-  background-image: url('../../components/images/space.jpeg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: grey;
-  background-blend-mode: multiply;
+  @extend %main-bg-img;
+  @extend %bg-img-center;
 }
 
 main {
   flex-grow: 1;
-  min-height: 100vh;;
+  max-height: 500vh;
+  @extend %main-bg-img;
+  @extend %bg-img-center;
 }
 
 video { width: 100%; }
@@ -56,4 +54,6 @@ p, li {
   margin-bottom: 0;
 }
 
-
+.footer {
+  @extend %copyright;
+}

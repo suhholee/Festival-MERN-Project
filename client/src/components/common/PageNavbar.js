@@ -6,8 +6,8 @@ import Container from 'react-bootstrap/Container'
 
 // Custom Components
 import Error from '../common/Error'
-import { removeToken } from '../helpers/auth'
-import { loggedInUser } from '../helpers/auth'
+import { removeToken } from '../../helpers/auth'
+import { loggedInUser } from '../../helpers/auth'
 
 const PageNavbar = ({ user, userError }) => {
 

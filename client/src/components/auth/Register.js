@@ -2,7 +2,6 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-
 // Bootstrap imports
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -32,10 +31,9 @@ const Register = () => {
     e.preventDefault()
     try {
       const { data } = await axios.post('/api/register', formFields)
-      console.log(data)
       navigate('/login')
     } catch (error) {
-      console.log('console', error)
+      console.log(error)
       setRegisterError(error.message)
     }
   }
@@ -45,7 +43,7 @@ const Register = () => {
       <Container>
         <Row>
           <Col as='form' xs={{ span: 10, offset: 1 }} md={{ span: 6, offset: 3 }} lg={{ span: 4, offset: 4 }} onSubmit={handleSubmit} >
-            <h1>Register and Get Your Ticket!</h1>
+            <h1>Ticket Queue</h1>
             {/* Username */}
             <label htmlFor='username'>Username</label>
             <input type='text' name='username' placeholder='Username' onChange={handleChange} value={formFields.username}/>
@@ -58,7 +56,7 @@ const Register = () => {
             {/* Password Confirmation */}
             <label htmlFor='passwordConfirmation'>Password Confirmation</label>
             <input type='password' name='passwordConfirmation' placeholder='Password Confirmation' onChange={handleChange} value={formFields.passwordConfirmation}/>
-            <button className='btn btn-primary'>Register</button>
+            <button className='btn btn-primary'>To Ticket Check<span className='rocket'>🚀</span></button>
             {registerError && <p className='text-danger text-center register-login-error'>{registerError}</p>}
           </Col>
         </Row>

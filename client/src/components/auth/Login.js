@@ -44,13 +44,14 @@ const Login = ({ getUser }) => {
       <Container>
         <Row>
           <Col as="form" xs={{ span: 10, offset: 1 }} sm={{ span: 6, offset: 3 }} md={{ span: 4, offset: 4 }} onSubmit={handleSubmit}>
-            <h1 className='display-6 text-center'>Please Login to Enter</h1>
+            <h1 className='text-center'>Ticket Check</h1>
+            <p>Have you got your ticket ready?</p>
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" placeholder='Email' onChange={handleChange} value={formFields.email}/>
+            <input type="email" name="email" placeholder='Email' onChange={handleChange} value={formFields.email} />
             <label htmlFor="password">Password</label>
             <input type="password" name="password" placeholder='Password' onChange={handleChange} value={formFields.password} />
-            <button className='btn btn-primary w-100'>Login</button>
-            {loginError && <p className='text-danger text-center'>{loginError}</p>}
+            <button className='btn btn-primary w-100'>Enter the Festival<span className='rocket'>🚀</span></button>
+            {loginError && <p className='text-danger text-center register-login-error'>{loginError}</p>}
           </Col>
         </Row>
       </Container>

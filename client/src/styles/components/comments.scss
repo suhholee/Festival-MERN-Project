@@ -1,111 +1,140 @@
-//comment section
-.comments-main {
-  display: flex;
+.comments-main{
+  font-family: $main-font;
+  @extend %flex-center;
   flex-direction: column;
-  align-items: center;
-  .comments-title {
-    color: white;
+}
+.comments-title{
+  color: rgb(255, 255, 255);
+  margin: 80px 0 50px 0;
+}
+
+.post-comments{
+  padding-bottom: 21px;
+  @extend %flex-center;
+  margin-bottom: 50px;
+  textarea{
+    @extend %textarea;
   }
-  //New Comments section
-  .post-container {
-    margin-bottom: 50px;
-    // .post-comment-label {
-    //   font-size: 20px;
-    //   color: white;
-    //   margin-left: 10px;
-    // }
-    div {
-      display: flex;
-      .post-comments {
-        width: 90%;
-        height: 100%;
-        padding: 20px;
-        margin-right: 20px;
-        background: white;
-        border-radius: 20px;
-        justify-content: space-around;
-        box-shadow: 3px 3px 3px rgb(0 0 0 / 50%);
-        border: 6px solid black;
-        span {
-          background-color: rgb(172, 205, 189);
-          border-radius: 15px;
-          text-align: center;
-          margin-right: 10px;
-          border: 6px solid black;
-        }
-        textarea{
-          padding: 10px;
-          border-radius: 20px;
-          width: 100%;
-          margin-right: 20px;
-          border: 6px solid black;
-        }
+}
+
+.post-button {
+  @extend %button-before;
+  width: 30%;
+  height: 80px;
+  background-color: red;
+  font-size: 30px;
+  border-radius: 10px;
+  border: 1px solid black;
+  &:hover {
+    box-shadow: 0 0 5px #ffffff,
+                0 0 25px #ffffffd6,
+                0 0 50px hsla(0, 0%, 100%, 0.647),
+                0 0 200px #ffffff6f;
+  }
+}
+
+.comment-section{
+  border: 1px solid white;
+  width: 90%;
+  height: 70%;
+  margin: 30px;
+  padding: 30px 30px 20px 30px;
+  h4 {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+  .user-name{
+    color: red;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: $sub-font;
+    font-size: 40px;
+    font-weight: bold;
+    .top-buttons{
+      align-items: center;
+      button {
+        color: white;
+        border-radius: 15px;
+        width: 80px;
+        margin-left: 5px;
+        font-size: 17px;
+        height: 25px;
+        
       }
     }
-    label {
-      margin-bottom: 15px;
-    }
-    button {
-      width: 10%;
-      border-radius: 20px;
-      background: rgb(172, 205, 189);
-      border: 6px solid black;
-    }
-    .error{
-      flex-direction: column;
-      margin-top: 10px;
-    }
+  }
+  textarea{
+    @extend %textarea;
+  }
+  .edit{
+    background-color: #ff8000;
+    font-family: $sub-font;
+  }
+  .delete{
+    background-color: red;
+    font-family: $sub-font;
+  }
 }
-//Uploaded Comments section
+
+.edit-box {
+  display: flex;
+  align-items: center;
+  font-family: $sub-font;
+  font-size: 30px;
+}
+
+.edit-input {
+  height: 60px;
+  width: 65vw;
+  margin-right: 10px;
+}
+
+.save-button {
+  height: 60px;
+  width: 80px;
+  font-size: 20px;
+  background-color: rgb(33, 235, 33);
+  &:hover {
+    box-shadow: 0 0 5px #ffffff,
+                0 0 25px #ffffffd6,
+                0 0 50px hsla(0, 0%, 100%, 0.647),
+                0 0 200px #ffffff6f;
+  }
+}
+
 .posted-comments {
   display: flex;
   align-items: flex-end;
   border: 1px solid black;
-  border-radius: 15px;
   margin: 30px 0 30px 0;
-  font-size: 20px;
+  font-size: 40px;
   padding: 20px;
+  background-color: white;
 }
-  .comment-section{
-    background: white;
-    width: 90%;
-    margin: 10px;
-    padding: 30px 70px 20px 70px;
-    border-radius: 25px;
-    box-shadow: 3px 3px 3px rgb(0 0 0 / 50%);
-    h4 {
-      margin-bottom: 20px;
-      font-size: 30px;
-    }
-    .user-name{
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      .top-buttons{
-        align-items: center;
-        button {
-          border-radius: 15px;
-          width: 80px;
-          margin-left: 5px;
-          font-size: 17px;
-          height: 35px;
-        }
-      }
-    }
 
-    //Buttons section
-    .like-button{
-      display: flex;
-      justify-content: flex-end;
-      margin-left: 10px;
-      button{
-        width: 60px;
-        height: 40px;
-        border-radius: 25px;
-        margin-left: 5px;
-        border: 3px solid black;
-        background: rgb(172, 205, 189);
-      }
-    }
+
+//Buttons section
+.like-button{
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 10px;
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 5px;
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+  }
+  button{
+    width: 60px;
+    height: 40px;
+    border-radius: 25px;
+    margin-left: 5px;
+    border: 3px solid black;
+    background: rgb(233, 108, 108);
   }
 }

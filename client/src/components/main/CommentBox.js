@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 
 // Custom components
-import { authenticated } from '../helpers/auth'
+import { authenticated } from '../../helpers/auth'
 import Likes from './Likes'
 
 const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
@@ -23,6 +23,7 @@ const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
   // ! Executions
   const handleEdit = () => {
     setEditCheck(!editCheck)
+    setEditError('')
   }
 
   const handleChangeEdit = (e) => {
@@ -46,6 +47,7 @@ const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
   const handleDelete = async (e, id) => {
     try {
       await authenticated.delete(`/api/stages/${stageId}/comments/${id}`)
+      alert('Do you want to delete your comment?')
       getStage()
     } catch (err) {
       console.log(err)
@@ -56,16 +58,16 @@ const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
     <div className='comment-section'>
       <h4 className='user-name'>@{username}
         <div className='top-buttons'>
-          <button onClick={(e) => handleEdit(e)}>Edit</button>
-          <button onClick={(e) => handleDelete(e, _id)}>Delete</button>
+          <button className='edit' onClick={(e) => handleEdit(e)}>Edit</button>
+          <button className='delete' onClick={(e) => handleDelete(e, _id)}>Delete</button>
         </div>
       </h4>
       {editCheck ?
         <Container>
           <Col as='form' onSubmit={(e) => handleSubmitEdit(e, _id)}>
-            <Col>
-              <input type='text' name='edit-comment' onChange={handleChangeEdit} value={editedComment.text}/>
-              <button>Save</button>
+            <Col className='edit-box'>
+              <input type='text' name='edit-comment' className='edit-input' onChange={handleChangeEdit} value={editedComment.text}/>
+              <button className='save-button'>Save</button>
               {editError && <Error error={editError}/>}
             </Col>
           </Col>

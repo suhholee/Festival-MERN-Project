@@ -1,23 +1,33 @@
-// Whole page
+// section
 .about-hero {
   padding: 0px;
   margin: 0 auto;
+  color: white;
+  background: black;
+  hr {
+    margin: 100px;
+  }
+  p{
+    font-weight: 100;
+  }
 
   // Each wrap section
   .wrap {
-
     // Main image and title section
     .header-1{
       display: flex;
-      position: relative;
+      background-image: url('../../images/about-header.png');
+      @extend %bg-img-center;
+      @extend %flex-center;
+      height: 80vh;
     }
     .title-1 {
-      position: absolute;
       text-align: center;
-      top: 50%;
-      left: 40%;
       color: white;
       font-size: 70px;
+      background-color: rgba(0, 0, 0, 0.700);
+      border-radius: 20px;
+      padding: 70px;
     }
 
     .title {
@@ -29,14 +39,34 @@
     }
     p {
       text-align: center;
-      padding: 25px 25px 100px 25px;
+      padding: 50px 50px 80px 50px;
       font-size: 30px;
     }
   }
+
+  .about-btn{
+    @extend %flex-center;
+    flex-direction: column;
+    padding-bottom: 100px;
+    p{
+      // margin-bottom: 30px;
+      font-weight: 100;
+      animation-duration: 4s;
+      animation-name: beatingText;
+      animation-iteration-count: infinite;
+    }  
+    @keyframes beatingText
+    {
+        0% { transform: scale( 1.1 ); }
+        33% { transform: scale( 1 ); }
+        66% { transform: scale( 1.1 ); }
+        100% { transform: scale( 1 ); }
+    }
+  }
   .wrap-button {
-    margin: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @extend %button-before;
+    &:hover {
+      @extend %button-hover-about;
+    }
   }
 }
