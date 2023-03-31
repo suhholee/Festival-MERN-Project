@@ -86,3 +86,14 @@ $defaultDuration: .3s;
               0 0 50px #00c59a,
               0 0 200px #05b888;
 }
+
+%textarea{
+  font-family: $sub-font;
+  font-size: 23px;
+  background-color: white;
+  width: 80%;
+  height: 80px;
+  padding: 10px;
+  margin-right: 20px;
+  border: 1px solid black;
+}

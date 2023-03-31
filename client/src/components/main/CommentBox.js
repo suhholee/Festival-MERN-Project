@@ -46,6 +46,7 @@ const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
   const handleDelete = async (e, id) => {
     try {
       await authenticated.delete(`/api/stages/${stageId}/comments/${id}`)
+      alert('Do you want to delete your comment?')
       getStage()
     } catch (err) {
       console.log(err)
@@ -71,7 +72,7 @@ const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
           </Col>
         </Container>
         :
-        <p className='posted-comments'>{text}</p>
+        <textarea>{text}</textarea>
       }
       <Likes likes={likes} getStage={getStage} stageId={stageId} _id={_id} />
     </div>

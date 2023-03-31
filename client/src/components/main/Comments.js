@@ -47,22 +47,16 @@ const Comments = ({ stage, getStage }) => {
   return (
     <main className='comments-main'>
       <Container >
-        <h2 className='comments-title' style={{ margin: 50 }}>Comments</h2>
+        <h2 className='comments-title' >Comments</h2>
         <Col as='form' onSubmit={handleSubmit} >
-          <Row className='post-container'>
-            {/* New Comments section */}
-            {/* <label className='post-comment-label'>Post A Comment</label> */}
-            <div>
-              <div className='post-comments'>
-                {/* <span style={{ padding: 10 }}>User Name</span> */}
-                <textarea type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} rows='3' />
-              </div>
-              <button>Post</button>
-            </div>
-            <div className='error'>
-              {postError && <Error error={postError} />}
-            </div>
-          </Row>
+          <div className='post-comments'>
+            <textarea type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} rows='3' />
+            <button>Post</button>
+          </div>
+
+          <div className='error'>
+            {postError && <Error error={postError} />}
+          </div>
         </Col>
       </Container>
       {stage.comments.length > 0 &&
@@ -75,7 +69,7 @@ const Comments = ({ stage, getStage }) => {
                 :
                 <div className='comment-section'>
                   <h4 className='user-name'>@{username}</h4>
-                  <p className='posted-comments'>{text}</p>
+                  <textarea>{text}</textarea>
                   <Likes likes={likes} getStage={getStage} stageId={stageId} _id={_id} />
                 </div>
               }
