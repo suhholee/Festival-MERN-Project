@@ -97,6 +97,7 @@ const Profile = () => {
           })
         }
       </div>
+      <div className='footer'>Copyright 2023 &copy; All pictures cannot be copied without permission.</div>
     </>
   )
 }

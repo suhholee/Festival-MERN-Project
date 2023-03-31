@@ -62,7 +62,7 @@ const About = () => {
           <Button className='wrap-button' as={Link} to='/map'> CHECK THE LINE UP </Button>
         </div>
       </div>
-      
+      <div className='footer'>Copyright 2023 &copy; All pictures cannot be copied without permission.</div>
     </main>
   )
 }

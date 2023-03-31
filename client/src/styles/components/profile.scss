@@ -4,3 +4,6 @@
   align-items: center;
   width: 300px;
 }
+.footer{
+  @extend %copyright;
+}

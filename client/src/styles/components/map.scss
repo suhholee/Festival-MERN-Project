@@ -62,3 +62,7 @@
   .btn-jungle-constellation{
     @extend %button-hover-jungle;
   }
+
+  .footer{
+    @extend %copyright;
+  }

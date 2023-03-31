@@ -19,6 +19,12 @@ $defaultDuration: .3s;
   background-image: url('../../components/images/main-background.png');
 }
 
+%copyright{
+  font-family: $sub-font;
+  background-color: rgb(93, 93, 93);
+  text-align: center;
+}
+
 %button-before {
   background: rgba(99, 99, 99, 0.539);
   box-shadow: 0 15px 35px rgba(0,0,0,0.2);
@@ -29,7 +35,7 @@ $defaultDuration: .3s;
   color: white;
   border-radius: 50px;
   z-index: 1;
-  padding: 20px;
+  padding: 10px;
   letter-spacing: 1px;
   overflow: hidden;
   transition: 0.5s;

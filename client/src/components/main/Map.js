@@ -70,8 +70,8 @@ const Map = () => {
           <img className='Chaos' src={Chaos} alt="" />
           <img className='Jungle' src={Jungle} alt="" />
         </div>
-
       </div>
+      <div className='footer'>Copyright 2023 &copy; All pictures cannot be copied without permission.</div>
     </section>
   )
 }
