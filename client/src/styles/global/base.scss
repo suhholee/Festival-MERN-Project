@@ -4,16 +4,21 @@
   padding: 0px;
 }
 
+
 .site-wrapper {
   display: flex;
   flex-direction: column;
   background-color: black;
   min-height: 100vh;
+  @extend %main-bg-img;
+  @extend %bg-img-center;
 }
 
 main {
   flex-grow: 1;
-  min-height: 100vh;;
+  max-height: 500vh;
+  @extend %main-bg-img;
+  @extend %bg-img-center;
 }
 
 video { width: 100%; }

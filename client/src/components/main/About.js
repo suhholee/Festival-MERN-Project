@@ -1,5 +1,5 @@
-import MainImg from '../images/mainpage.jpeg'
-import Wellness from '../images/wellness.jpeg'
+import Header from '../images/about-header.png'
+import Wellness from '../images/wellness.png'
 import Community from '../images/community.jpg'
 import RaveSafe from '../images/ravesafe.jpeg'
 import { Link } from 'react-router-dom'
@@ -12,8 +12,8 @@ const About = () => {
         
         <div className='wrap'>
           <div className='header-1'>
-            <h1 className='title-1' >ABOUT</h1>
-            <img src={ MainImg } className='wrap-img' />
+            <h1 className='title-1' >ABOUT <br /> WOOZU SOUNDS</h1>
+            <img src={ Header } className='wrap-img' />
           </div>
         
           <p className='text'>“Woozu has always been a DIY project, a house
@@ -57,8 +57,10 @@ const About = () => {
 
         <hr />
         
-
-        <Button className='wrap-button' as={Link} to='/map'> CHECK THE LINE UP </Button>
+        <div className='about-btn'>
+          <p>You can check various of lineup</p>
+          <Button className='wrap-button' as={Link} to='/map'> CHECK THE LINE UP </Button>
+        </div>
       </div>
       
     </main>

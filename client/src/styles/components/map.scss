@@ -1,67 +1,64 @@
-.map-bg{
-  position: relative;
-  height: 100vh;
-  z-index: 0;
 
-  .map-btn{
-    position: relative;
+  .map-container{
+    display: flex;
+    flex-direction: column;
+    padding-top: 12vh;
+    @extend %flex-center;
+    text-align: center;
+    width: 100%; 
+    height: 100vh; 
+    margin: 0px auto; 
+  }
 
-    .btn-nebula-808, .btn-chaos-cosmos, .btn-jungle-constellation{
-      position: absolute;
-      @extend %bg-img;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      font-family: $main-font;
-      font-style: normal;
-      font-size: 2em;
-      color: rgb(255, 255, 255);
-      border-radius: 50%;
-      text-shadow: 0 1px 10px #3c5aad;
-      }
+  
+  .stage-image{
+    position:relative;
+    display: flex;
+    justify-content: space-evenly;
+    width: inherit;
+    top: -100px;
+    img{
+      width: 23vw;
+      margin-right: 30px;
       @keyframes float{
-      0%, 100% {
+        0%, 100% {
         transform: translateY(0px);
-      } 50%{
-        transform: translateY(-16px);
+        } 50%{
+          transform: translateY(-16px);
+        }
       }
+    } 
+    .Nebula{
+      animation: float 4s ease-in-out infinite;
+    }
+    .Chaos{
+      animation: float 4.8s ease-in-out infinite;
+    }
+    .Jungle{
+      animation: float 5.6s ease-in-out infinite;
     }
   }
 
-  .camping{
-    @extend %bg-img;
+  .stage-btn{
     position: absolute;
-    background-color: transparent;
-    border: none;
-    top: 40vw;
-    left: 39vw;
-    width: 22vw;
-    height: 18vw;
-    background-image: url('../../components/images/camping3d.png');
-    animation: float 10s ease-in-out infinite;
-    }
+    display: flex;
+    width: inherit;
+    justify-content:space-evenly;
+    margin-bottom: 60px;
+    margin-top: -100px;
+  }
+
+
+  .btn-nebula-808,  .btn-chaos-cosmos,  .btn-jungle-constellation{
+    @extend %button-before;
+  } 
+
   .btn-nebula-808{
-    background-image: url('../../components/images/test-1.png');
-    top: 36vh;
-    left: 10vw;
-    width: 21vw;
-    height: 18vw;
-    animation: float 3.5s ease-in-out infinite;
-    }
-  .btn-chaos-cosmos{ 
-    background-image: url('../../components/images/test-6.png');
-    top: 6vw;
-    left: 44vw;
-    width: 16vw;
-    height: 16vw;
-    animation: float 3s ease-in-out infinite;
-    }
-  .btn-jungle-constellation{ 
-    background-image: url('../../components/images/test-7.png');
-    top: 16vw;
-    left: 68vw;
-    width: 19vw;
-    height: 20vw;
-    animation: float 2s ease-in-out infinite;
-    }
-}  
+    @extend %button-hover-nebula;
+  }
+  .btn-chaos-cosmos{
+    @extend %button-hover-chaos;
+  }
+  .btn-jungle-constellation{
+    @extend %button-hover-jungle;
+  }
