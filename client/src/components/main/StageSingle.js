@@ -65,6 +65,7 @@ const StageSingle = () => {
             </>
           }
           <Attendance attendance={stage.attendance} getStage={getStage} stageId={stageId} />
+          <p className='stage-text'> {stage.text} </p>
           <div className={'artists-container'}>
             {artists.length > 0 ?
               artists.sort((a, b) => a.name > b.name ? 1 : -1).map(artist => {
