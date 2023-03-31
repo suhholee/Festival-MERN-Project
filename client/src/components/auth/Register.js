@@ -14,13 +14,13 @@ const Register = () => {
   const navigate = useNavigate()
 
   // ! State
-  const [ formFields, setFormFields ] = useState({
+  const [formFields, setFormFields] = useState({
     username: '',
     email: '',
     password: '',
     passwordConfirmation: '',
   })
-  const [ error, setError ] = useState('')
+  const [error, setError] = useState('')
 
   // ! Executions
   const handleChange = (e) => {
@@ -41,27 +41,29 @@ const Register = () => {
   }
 
   return (
-    <Container className='text-center form-page'>
-      <Row>
-        <Col as='form' onSubmit={handleSubmit} xs={{ span: 10, offset: 1 }} md={{ span: 6, offset: 3 }} lg={{ span: 4, offset: 4 }}>
-          <h1>Register and Get Your Ticket!</h1>
-          {/* Username */}
-          <label htmlFor='username'>Username</label>
-          <input type='text' name='username' placeholder='Username' onChange={handleChange} value={formFields.username}/>
-          {/* Email */}
-          <label htmlFor='email'>Email</label>
-          <input type='text' name='email' placeholder='Email' onChange={handleChange} value={formFields.email}/>
-          {/* Password */}
-          <label htmlFor='password'>Password</label>
-          <input type='password' name='password' placeholder='Password' onChange={handleChange} value={formFields.password}/>
-          {/* Password Confirmation */}
-          <label htmlFor='passwordConfirmation'>Password Confirmation</label>
-          <input type='password' name='passwordConfirmation' placeholder='Password Confirmation' onChange={handleChange} value={formFields.passwordConfirmation}/>
-          <button className='btn btn-primary mb-2'>Register</button>
-          {error && <p className='text-danger text-center'> {error}</p>}
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <Container className='text-center form-page'>
+        <Row>
+          <Col as='form' onSubmit={handleSubmit} xs={{ span: 10, offset: 1 }} md={{ span: 6, offset: 3 }} lg={{ span: 4, offset: 4 }}>
+            <h1>Ticket Queue</h1>
+            {/* Username */}
+            <label htmlFor='username'>Username</label>
+            <input type='text' name='username' placeholder='Username' onChange={handleChange} value={formFields.username} />
+            {/* Email */}
+            <label htmlFor='email'>Email</label>
+            <input type='text' name='email' placeholder='Email' onChange={handleChange} value={formFields.email} />
+            {/* Password */}
+            <label htmlFor='password'>Password</label>
+            <input type='password' name='password' placeholder='Password' onChange={handleChange} value={formFields.password} />
+            {/* Password Confirmation */}
+            <label htmlFor='passwordConfirmation'>Password Confirmation</label>
+            <input type='password' name='passwordConfirmation' placeholder='Password Confirmation' onChange={handleChange} value={formFields.passwordConfirmation} />
+            <button className='btn btn-primary mb-2'>To Ticket Check &#10140;</button>
+            {error && <p className='text-danger text-center'> {error}</p>}
+          </Col>
+        </Row>
+      </Container>
+    </>
   )
 }
 

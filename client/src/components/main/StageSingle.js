@@ -53,7 +53,7 @@ const StageSingle = () => {
   return (
     <>
       {stage &&
-        <main>
+        <main className={stage.name.replace(' ','-').toLowerCase()}>
           {stage.name ? 
             <h1 className='stage-name'>{stage.name}</h1>
             :
@@ -65,7 +65,7 @@ const StageSingle = () => {
             </>
           }
           <Attendance attendance={stage.attendance} getStage={getStage} stageId={stageId} />
-          <div className='artists-container'>
+          <div className={'artists-container'}>
             {artists.length > 0 ?
               artists.sort((a, b) => a.name > b.name ? 1 : -1).map(artist => {
                 const { _id, name, url, stage, image } = artist

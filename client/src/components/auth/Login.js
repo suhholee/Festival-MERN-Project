@@ -43,12 +43,12 @@ const Login = () => {
       <Container>
         <Row>
           <Col as="form" xs={{ span: 10, offset: 1 }} sm={{ span: 8, offset: 2 }} md={{ span: 6, offset: 3 }} onSubmit={handleSubmit}>
-            <h1 className='display-6 text-center'>Please Login to Enter</h1>
+            <h1 className='display-6 text-center'> Ticket Check</h1>
             <label htmlFor="email">Email</label>
             <input type="email" name="email" placeholder='Email' onChange={handleChange} value={formFields.email}/>
             <label htmlFor="password">Password</label>
             <input type="password" name="password" placeholder='Password' onChange={handleChange} value={formFields.password} />
-            <button className='btn btn-warning w-100 mb-4'>Login</button>
+            <button className='btn btn-warning w-100 mb-4'>Enter the Festival &#10140;</button>
             {error && <p className='text-danger text-center'>{error}</p>}
           </Col>
         </Row>
