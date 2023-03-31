@@ -30,6 +30,15 @@
       50% {
         transform: translateY(-16px);
       }
+    } 
+    .Nebula{
+      animation: float 4s ease-in-out infinite;
+    }
+    .Chaos{
+      animation: float 4.8s ease-in-out infinite;
+    }
+    .Jungle{
+      animation: float 5.6s ease-in-out infinite;
     }
   }
 

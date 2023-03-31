@@ -14,7 +14,6 @@ import Nebula from '../../images/nebula.png'
 import Jungle from '../../images/jungle.png'
 import Chaos from '../../images/chaos.png'
 
-
 const Map = () => {
 
   // ! Variables

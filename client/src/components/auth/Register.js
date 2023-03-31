@@ -13,7 +13,7 @@ const Register = () => {
   const navigate = useNavigate()
 
   // ! State
-  const [ formFields, setFormFields ] = useState({
+  const [formFields, setFormFields] = useState({
     username: '',
     email: '',
     password: '',

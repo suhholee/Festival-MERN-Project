@@ -71,7 +71,7 @@ const Comments = ({ stage, getStage, stageError }) => {
                 :
                 <div className='comment-section'>
                   <h4 className='user-name'>@{username}</h4>
-                  <p className='posted-comments'>{text}</p>
+                  <textarea>{text}</textarea>
                   <Likes likes={likes} getStage={getStage} stageId={stageId} _id={_id} />
                 </div>
               }
