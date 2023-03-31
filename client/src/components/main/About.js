@@ -1,4 +1,4 @@
-import MainImg from '../images/aboutpage.png'
+import Header from '../images/about-header.png'
 import Wellness from '../images/wellness.png'
 import Community from '../images/community.jpg'
 import RaveSafe from '../images/ravesafe.jpeg'
@@ -13,7 +13,7 @@ const About = () => {
         <div className='wrap'>
           <div className='header-1'>
             <h1 className='title-1' >ABOUT <br /> WOOZU SOUNDS</h1>
-            <img src={ MainImg } className='wrap-img' />
+            <img src={ Header } className='wrap-img' />
           </div>
         
           <p className='text'>“Woozu has always been a DIY project, a house

@@ -9,8 +9,74 @@ $defaultDuration: .3s;
   align-items: center;
 }
 
-%bg-img {
+%bg-img-center {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+%main-bg-img{
+  background-image: url('../../components/images/main-background.png');
+}
+
+%button-before {
+  background: rgba(99, 99, 99, 0.539);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: none;
+  color: white;
+  border-radius: 50px;
+  z-index: 1;
+  padding: 20px;
+  letter-spacing: 1px;
+  overflow: hidden;
+  transition: 0.5s;
+  font-family: $main-font;
+  font-size: 30px;
+  &:hover{
+    border: 3px solid white;
+    letter-spacing: 3px;
+    font-size: 35px;
+    color: #050801;
+  }
+}
+
+%button-hover-nebula{
+  &:hover {
+    background: #00eaff;
+    box-shadow: 0 0 5px #00dcec,
+                0 0 25px #03e7db,
+                0 0 50px hsl(184, 100%, 41%),
+                0 0 200px #0fe0e4;
+  }
+}
+
+%button-hover-chaos{
+  &:hover {
+    background: #ff6acb;
+    box-shadow: 0 0 5px #ff16ae,
+                0 0 25px #ff07a8,
+                0 0 50px #ef19a4,
+                0 0 200px #e11c9c;
+  }
+}
+
+%button-hover-jungle{
+  &:hover {
+  background: #d4ff00;
+  box-shadow: 0 0 5px #d4ff00,
+              0 0 25px #bbe100,
+              0 0 50px #91ad00,
+              0 0 200px #779100;
+  }
+}
+
+%button-hover-about{
+  background: #00ffb7;
+  box-shadow: 0 0 5px #01f4a3,
+              0 0 25px #00ebb5d4,
+              0 0 50px #00c59a,
+              0 0 200px #05b888;
 }

@@ -22,7 +22,7 @@
   margin: 0 20px;
   position: relative;
   .card {
-    @extend %bg-img;
+    @extend %bg-img-center;
     margin: 20px;
     height: 40vh;
     overflow: hidden;

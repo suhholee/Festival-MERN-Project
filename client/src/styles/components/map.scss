@@ -50,58 +50,15 @@
 
 
   .btn-nebula-808,  .btn-chaos-cosmos,  .btn-jungle-constellation{
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
-    color: white;
-    z-index: 1;
-    padding: 20px;
-    letter-spacing: 1px;
-    overflow: hidden;
-    transition: 0.5s;
-    font-family: $main-font;
-    font-size: 30px;
+    @extend %button-before;
   } 
 
   .btn-nebula-808{
-    background: rgba(99, 99, 99, 0.539);
-    &:hover {
-      border: 3px solid white;
-      letter-spacing: 3px;
-      color: #050801;
-      background: #00eaff;
-      box-shadow: 0 0 5px #00dcec,
-                  0 0 25px #03e7db,
-                  0 0 50px hsl(184, 100%, 41%),
-                  0 0 200px #0fe0e4;
-    }
+    @extend %button-hover-nebula;
   }
   .btn-chaos-cosmos{
-    background: rgba(99, 99, 99, 0.539);
-    &:hover {
-      border: 3px solid white;
-      letter-spacing: 3px;
-      color: #050801;
-      background: #ff6acb;
-      box-shadow: 0 0 5px #ff16ae,
-                  0 0 25px #ff07a8,
-                  0 0 50px #ef19a4,
-                  0 0 200px #e11c9c;
-    }
+    @extend %button-hover-chaos;
   }
   .btn-jungle-constellation{
-    background: rgba(99, 99, 99, 0.539);
-    &:hover {
-      border: 3px solid white;
-      letter-spacing: 3px;
-      color: #050801;
-      background: #d4ff00;
-      box-shadow: 0 0 5px #d4ff00,
-                  0 0 25px #bbe100,
-                  0 0 50px #91ad00,
-                  0 0 200px #779100;
-    }
+    @extend %button-hover-jungle;
   }
