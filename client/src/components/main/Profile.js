@@ -1,18 +1,23 @@
-import { useCallback, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 // Custom imports
-import { authenticated, includesUserId, isAuthenticated } from '../helpers/auth'
+import { includesUserId, isAuthenticated } from '../helpers/auth'
 import ProfileImage from './ProfileImage'
-import { Error } from '../common/Error'
+import Spinner from '../common/Spinner'
+import Error from '../common/Error'
 
-const Profile = ({ getUser, user }) => {
+const Profile = ({ getUser, user, userError, setUserError }) => {
+
+  // ! Variables
   const { userId } = useParams()
   const navigate = useNavigate()
-  const [userComments, setUserComments] = useState([])
-  const [stages, setStages] = useState([])
-  const [error, setError] = useState('')
+
+  // ! State
+  const [ stages, setStages ] = useState([])
+  const [ userComments, setUserComments ] = useState([])
+  const [ stagesError, setStagesError ] = useState('')
 
   // ! On Mount
   useEffect(() => {
@@ -26,7 +31,7 @@ const Profile = ({ getUser, user }) => {
         setUserComments(userComments)
       } catch (err) {
         console.log(err)
-        setError(err.response)
+        setStagesError(err.message)
       }
     }
     getComments()
@@ -37,63 +42,87 @@ const Profile = ({ getUser, user }) => {
       <div className='profile-top'>
         <h1 className='profile-title'>Profile</h1>
         <div className='info'>
-          <ProfileImage userId={userId} getUser={getUser} user={user} />
-          <div className='info-username-email'>
-            <h3>username: @{user.username}</h3>
-            <h3>email: {user.email}</h3>
-          </div>
+          {user ?
+            <>
+              <ProfileImage userId={userId} getUser={getUser} user={user} setUserError={setUserError} />
+              <div className='info-username-email'>
+                <h3>Username: @{user.username}</h3>
+                <h3>Email: {user.email}</h3>
+              </div>
+            </>
+            :
+            <>
+              {userError ?
+                <Error error={userError} />
+                :
+                <Spinner />}
+            </>
+          }
         </div>
       </div>
       <div className='profile-bottom'>
-        <div>
-          <h2 className='profile-bottom-title'>Attendance</h2>
-          {stages &&
-            stages.sort((a, b) => a.name > b.name ? 1 : -1).map(stage => {
-              const { attendance, _id } = stage
-              if (includesUserId(attendance)) {
-                return (
-                  <div className='attendance-comments' key={_id}>
-                    <h2 className='attendance-comments-title'>{stage.name}</h2>
-                    <p className='attendance-comments-text attending'>Attending!</p>
-                  </div>
-                )
-              } else {
-                return (
-                  <div className='attendance-comments' key={_id}>
-                    <h2 className='attendance-comments-title'>{stage.name}</h2>
-                    <p className='attendance-comments-text not-attending'>Not Attending</p>
-                  </div>
-                )
+        {stages.length > 0 ?
+          <>
+            <div>
+              <h2 className='profile-bottom-title'>Attendance</h2>
+              {stages &&
+                stages.sort((a, b) => a.name > b.name ? 1 : -1).map(stage => {
+                  console.log(stages)
+                  const { attendance, _id, name } = stage
+                  if (includesUserId(attendance)) {
+                    return (
+                      <div className='attendance-comments' key={_id}>
+                        <h2 className={`attendance-comments-title ${name}`}>{name}</h2>
+                        <p className='attendance-comments-text attending'>Attending!</p>
+                      </div>
+                    )
+                  } else {
+                    return (
+                      <div className='attendance-comments' key={_id}>
+                        <h2 className={`attendance-comments-title ${name}`}>{name}</h2>
+                        <p className='attendance-comments-text not-attending'>Not Attending</p>
+                      </div>
+                    )
+                  }
+                })
               }
-            })
-          }
-        </div>
-        <div>
-          <h2 className='profile-bottom-title'>Comments</h2>
-          {userComments &&
-            userComments.map((stage, i) => {
-              if (stage.length > 0) {
-                return (
-                  <div className='attendance-comments' key={i}>
-                    <h2 className='attendance-comments-title'>{stages[i].name}</h2>
-                    <ul>
-                      {stage.map((comment, i) => {
-                        return <li key={i} className='attendance-comments-text'>{comment.text}</li>
-                      })}
-                    </ul>
-                  </div>
-                )
-              } else {
-                return (
-                  <div className='attendance-comments' key={i}>
-                    <h2 className='attendance-comments-title'>{stages[i].name}</h2>
-                    <p key={i} className='attendance-comments-text'>No Comment</p>
-                  </div>
-                )
+            </div>
+            <div>
+              <h2 className='profile-bottom-title'>Comments</h2>
+              {userComments &&
+                userComments.map((stage, i) => {
+                  if (stage.length > 0) {
+                    return (
+                      <div className='attendance-comments' key={i}>
+                        <h2 className={`attendance-comments-title ${stages[i].name}`}>{stages[i].name}</h2>
+                        <ul>
+                          {stage.map((comment, i) => {
+                            return <li key={i} className='attendance-comments-text'>{comment.text}</li>
+                          })}
+                        </ul>
+                      </div>
+                    )
+                  } else {
+                    return (
+                      <div className='attendance-comments' key={i}>
+                        <h2 className={`attendance-comments-title ${stages[i].name}`}>{stages[i].name}</h2>
+                        <p key={i} className='attendance-comments-text'>No Comment</p>
+                      </div>
+                    )
+                  }
+                })
+
               }
-            })
-          }
-        </div>
+            </div>
+          </>
+          :
+          <>
+            {stagesError ?
+              <Error error={stagesError} />
+              :
+              <Spinner />}
+          </>
+        }
       </div>
     </div>
   )

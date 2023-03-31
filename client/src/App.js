@@ -25,7 +25,7 @@ const App = () => {
       setUser({ ...data })
     } catch (error) {
       console.log(error)
-      setUserError(error.response)
+      setUserError(error.message)
     }
   }, [])
 
@@ -44,7 +44,7 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/map" element={<Map />} />
           <Route path="/stages/:stageId" element={<StageSingle />} />
-          <Route path='/users/:userId' element={<Profile getUser={getUser} user={user} />} />
+          <Route path='/users/:userId' element={<Profile getUser={getUser} user={user} userError={userError} setUserError={setUserError} />} />
           {/* Below route is rendered when nothing matches */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>

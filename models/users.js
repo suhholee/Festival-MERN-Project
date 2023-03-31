@@ -28,14 +28,11 @@ userSchema
     this._passwordConfirmation = userPasswordConfirmation
   })
 
-// * Virtual for comments
-
-
-// Check password and password confirmation matches
+// * Check password and password confirmation matches
 userSchema
   .pre('validate', function(next){
-    // if password is modified, and password and password confirmation don't match,
-    // invalidate password confirmation field
+    // If password is modified, and password and password confirmation don't match,
+    // Invalidate password confirmation field
     if (this.isModified('password') && this.password !== this._passwordConfirmation) {
       this.invalidate('passwordConfirmation', 'Passwords do not match')
     }
@@ -55,7 +52,5 @@ userSchema.pre('save', function(next){
 userSchema.methods.validatePassword = function(plainTextPassword){
   return bcrypt.compare(plainTextPassword, this.password)
 }
-
-
 
 export default mongoose.model('User', userSchema)

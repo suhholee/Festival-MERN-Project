@@ -19,10 +19,10 @@ const StageSingle = () => {
   const navigate = useNavigate()
   
   // ! State
-  const [stage, setStage] = useState(null)
-  const [artists, setArtists] = useState([])
-  const [stageError, setStageError] = useState('')
-  const [artistsError, setArtistsError] = useState('')
+  const [ stage, setStage ] = useState(null)
+  const [ artists, setArtists ] = useState([])
+  const [ stageError, setStageError ] = useState('')
+  const [ artistsError, setArtistsError ] = useState('')
 
   // ! On Mount
   const getStage = useCallback(async () => {
@@ -52,7 +52,7 @@ const StageSingle = () => {
 
   return (
     <>
-      {stage &&
+      {stage ?
         <main>
           {stage.name ? 
             <h1 className='stage-name'>{stage.name}</h1>
@@ -92,9 +92,16 @@ const StageSingle = () => {
               </>
             }
           </div>
-          <Comments stage={stage} getStage={getStage} />
+          <Comments stage={stage} getStage={getStage} stageError={stageError} />
         </main>
-
+        :
+        <>
+          {stageError ?
+            <Error error={stageError} />
+            :
+            <Spinner />
+          }
+        </>
       }
     </>
   )

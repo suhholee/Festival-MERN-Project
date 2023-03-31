@@ -1,9 +1,6 @@
 import { useState, Fragment } from 'react'
 import { useParams } from 'react-router-dom'
 
-// Error imports
-import Error from '../common/Error'
-
 // Bootstrap imports
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -13,9 +10,11 @@ import Col from 'react-bootstrap/Col'
 import { authenticated, userIsOwner } from '../helpers/auth'
 import CommentBox from './CommentBox'
 import Likes from './Likes'
+import Spinner from '../common/Spinner'
+import Error from '../common/Error'
 
 
-const Comments = ({ stage, getStage }) => {
+const Comments = ({ stage, getStage, stageError }) => {
 
   // ! Variables
   const { stageId } = useParams()
@@ -39,7 +38,7 @@ const Comments = ({ stage, getStage }) => {
       setNewComment({ text: '' })
       getStage()
     } catch (err) {
-      console.log(err.response)
+      console.log(err.message)
       setPostError(' •–• text required •–• ')
     }
   }
@@ -50,11 +49,8 @@ const Comments = ({ stage, getStage }) => {
         <h2 className='comments-title' style={{ margin: 50 }}>Comments</h2>
         <Col as='form' onSubmit={handleSubmit} >
           <Row className='post-container'>
-            {/* New Comments section */}
-            {/* <label className='post-comment-label'>Post A Comment</label> */}
             <div>
               <div className='post-comments'>
-                {/* <span style={{ padding: 10 }}>User Name</span> */}
                 <textarea type='text' name='comment' placeholder='Comment' onChange={handleChange} value={newComment.text} rows='3' />
               </div>
               <button>Post</button>
@@ -65,7 +61,7 @@ const Comments = ({ stage, getStage }) => {
           </Row>
         </Col>
       </Container>
-      {stage.comments.length > 0 &&
+      {stage.comments.length > 0 ?
         stage.comments.map(comment => {
           const { text, likes, owner: { username }, _id } = comment
           return (
@@ -82,6 +78,14 @@ const Comments = ({ stage, getStage }) => {
             </Fragment>
           )
         })
+        :
+        <>
+          {stageError ?
+            <Error error={stageError} />
+            :
+            <Spinner />
+          }
+        </>
       }
     </main>
   )

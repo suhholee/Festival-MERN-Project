@@ -17,12 +17,12 @@ const Login = ({ getUser }) => {
     email: '',
     password: '',
   })
-  const [ error, setError ] = useState('')
+  const [ loginError, setLoginError ] = useState('')
 
   // ! Executions
   const handleChange = (e) => {
     setFormFields({ ...formFields, [e.target.name]: e.target.value })
-    setError('')
+    setLoginError('')
   }
 
   const handleSubmit = async (e) => {
@@ -34,8 +34,8 @@ const Login = ({ getUser }) => {
       navigate('/map')
       getUser()
     } catch (err) {
-      console.log('error', err.message)
-      setError('Invalid Email or Password. Try again.')
+      console.log(err.message)
+      setLoginError('Invalid Email or Password. Try again.')
     }
   }
 
@@ -50,7 +50,7 @@ const Login = ({ getUser }) => {
             <label htmlFor="password">Password</label>
             <input type="password" name="password" placeholder='Password' onChange={handleChange} value={formFields.password} />
             <button className='btn btn-primary w-100'>Login</button>
-            {error && <p className='text-danger text-center'>{error}</p>}
+            {loginError && <p className='text-danger text-center'>{loginError}</p>}
           </Col>
         </Row>
       </Container>

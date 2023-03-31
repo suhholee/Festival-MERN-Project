@@ -12,11 +12,12 @@ import { isAuthenticated } from '../helpers/auth'
 
 const Map = () => {
 
-  // ! State
-  const [stages, setStages] = useState([])
-  const [error, setError] = useState('')
+  // ! Variables
   const navigate = useNavigate()
 
+  // ! State
+  const [ stages, setStages ] = useState([])
+  const [ error, setError ] = useState('')
 
   // ! On Mount
   useEffect(() => {

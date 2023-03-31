@@ -6,16 +6,14 @@ import Container from 'react-bootstrap/Container'
 
 // Custom Components
 import Error from '../common/Error'
-import { authenticated, removeToken } from '../helpers/auth'
+import { removeToken } from '../helpers/auth'
 import { loggedInUser } from '../helpers/auth'
 
 const PageNavbar = ({ user, userError }) => {
 
   // ! State
   const [ stages, setStages ] = useState([])
-  // const [ user, setUser ] = useState([])
   const [ stagesError, setStagesError ] = useState('')
-  // const [ userError, setUserError ] = useState('')
   const [ showStages, setShowStages ] = useState(false)
   const [ showProfile, setShowProfile ] = useState(false)
 
@@ -24,21 +22,6 @@ const PageNavbar = ({ user, userError }) => {
   const noNav = ['/', '/login', '/register']
 
   // ! On Mount
-  // useEffect(() => {
-  //   const getUserNavbar = async () => {
-  //     try {
-  //       const { data } = await authenticated.get(`/api/users/${loggedInUser()}`)
-  //       setUser({ ...data })
-  //     } catch (error) {
-  //       console.log(error)
-  //       setUserError(error.response)
-  //     }
-  //   }
-  //   getUserNavbar()
-  // }, [user])
-
-  // getUserNavbar()
-
   useEffect(() => {
     const getStages = async () => {
       try {

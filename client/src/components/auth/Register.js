@@ -20,12 +20,12 @@ const Register = () => {
     password: '',
     passwordConfirmation: '',
   })
-  const [ error, setError ] = useState('')
+  const [ registerError, setRegisterError ] = useState('')
 
   // ! Executions
   const handleChange = (e) => {
     setFormFields({ ...formFields, [e.target.name]: e.target.value })
-    setError('')
+    setRegisterError('')
   }
 
   const handleSubmit = async (e) => {
@@ -36,7 +36,7 @@ const Register = () => {
       navigate('/login')
     } catch (error) {
       console.log('console', error)
-      setError(error.response.data.message)
+      setRegisterError(error.message)
     }
   }
 
@@ -59,7 +59,7 @@ const Register = () => {
             <label htmlFor='passwordConfirmation'>Password Confirmation</label>
             <input type='password' name='passwordConfirmation' placeholder='Password Confirmation' onChange={handleChange} value={formFields.passwordConfirmation}/>
             <button className='btn btn-primary'>Register</button>
-            {error && <p className='text-danger text-center register-login-error'>{error}</p>}
+            {registerError && <p className='text-danger text-center register-login-error'>{registerError}</p>}
           </Col>
         </Row>
       </Container>

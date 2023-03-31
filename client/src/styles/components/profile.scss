@@ -17,7 +17,7 @@
   justify-content: center;
   padding: 20px;
   max-width: 1200px;
-  border: 2px solid white;
+  border: 2px solid lightgray;
   border-radius: 25px;
   padding: 30px;
   font-family: $sub-font;
@@ -32,7 +32,7 @@
     .profile-image {
       max-width: 100px;
       max-height: 100px;
-      border: 2px solid white;
+      border: 2px solid lightgray;
       border-radius: 25px;
       background-color: white;
       margin: 0 0 10px 40px;
@@ -55,10 +55,10 @@
     margin-bottom: 20px;
   }
   .attendance-comments {
-    background-color: lightgray;
+    background-color: black;
     padding: 30px;
-    color: black;
-    border: 2px solid black;
+    color: lightgray;
+    border: 2px solid gray;
     border-radius: 25px;
     display: flex;
     max-width: 800px;
@@ -73,7 +73,7 @@
     }
     .attendance-comments-text {
       font-size: 36px;
-      background-color: white;
+      background-color: lightgray;
       color: black;
       border-radius: 10px;
       margin-bottom: 15px;
@@ -82,10 +82,12 @@
       padding: 10px 30px;
     }
     .attending {
-      color: green;
+      background-color: green;
+      color: white;
     }
     .not-attending {
-      color: red
+      background-color: red;
+      color: white;
     }
   }
 }

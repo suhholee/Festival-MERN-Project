@@ -6,9 +6,7 @@ const addProfile = async (req, res) => {
   try {
     const { userId } = req.params
     const user = await User.findById(userId)
-    if (!userId){
-      throw new NotFound('User Not Found')
-    }
+    if (!userId) throw new NotFound('User Not Found')
     user.image = req.body.image
     await user.save()
     return res.json(user.image)

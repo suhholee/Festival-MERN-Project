@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 const Video = ({ embedUrl }) => {
 
-  const [isOpen, setOpen] = useState(false)
+  const [ isOpen, setOpen ] = useState(false)
 
   return (
     <>
