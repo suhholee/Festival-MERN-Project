@@ -3,7 +3,6 @@ import { NotFound, sendError } from '../config/errors.js'
 
 
 const addProfile = async (req, res) => {
-
   try {
     const { userId } = req.params
     const user = await User.findById(userId)

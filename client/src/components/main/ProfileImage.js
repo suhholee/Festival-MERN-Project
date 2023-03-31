@@ -31,15 +31,17 @@ const ProfileImage = ({ userId, getUser, user }) => {
   }
 
   return (
-    <div className="field profile-image">
-      <h2>Profile Image:</h2>
+    <div className="field profile-image-container">
       {user.image ? 
         <>
-          <img src={user.image} /> 
+          <img className='profile-image' src={user.image} /> 
           <input type="file" onChange={handleUpload}/>
         </>
-        : 
-        <input type="file" onChange={handleUpload}/>
+        :
+        <>
+          <p className='upload'>Please upload a profile image.</p> 
+          <input type="file" onChange={handleUpload}/>
+        </>
       }
     </div>
   )

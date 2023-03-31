@@ -2,6 +2,7 @@
   background-color: white;
   position: relative;
   z-index: 1;
+  height: 80px;
 }
 
 .container {
@@ -9,7 +10,7 @@
 }
 
 .logo {
-  font-size: 30px;
+  font-size: 36px;
 }
 
 .navbar-nav {
@@ -22,12 +23,13 @@
 
 .navbar-text {
   color: black;
+  font-family: $main-font;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .navbar-link, .nav-item {
   margin: 0 20px;
-  font-size: 25px;
-  font-weight: bold;
 }
 
 .active>#basic-nav-dropdown {
@@ -42,6 +44,7 @@
   border: 2px solid black;
   border-radius: 25px;
   height: 50px;
+  width: 50px;
   background-color: white;
 }
 
@@ -49,5 +52,14 @@
   border: 2px solid black;
   border-radius: 25px;
   height: 50px;
+  width: 50px;
   background-color: #5643fd;
+}
+
+.navbar-username-active {
+  font-size: 30px;
+}
+
+.navbar-username {
+  font-size: 30px;
 }

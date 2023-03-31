@@ -9,12 +9,13 @@ import Error from '../common/Error'
 import { authenticated, removeToken } from '../helpers/auth'
 import { loggedInUser } from '../helpers/auth'
 
-const PageNavbar = () => {
+const PageNavbar = ({ user, userError }) => {
 
   // ! State
   const [ stages, setStages ] = useState([])
-  const [ user, setUser ] = useState([])
-  const [ error, setError ] = useState('')
+  // const [ user, setUser ] = useState([])
+  const [ stagesError, setStagesError ] = useState('')
+  // const [ userError, setUserError ] = useState('')
   const [ showStages, setShowStages ] = useState(false)
   const [ showProfile, setShowProfile ] = useState(false)
 
@@ -23,15 +24,20 @@ const PageNavbar = () => {
   const noNav = ['/', '/login', '/register']
 
   // ! On Mount
-  const getUser = useCallback(async () => {
-    try {
-      const { data } = await authenticated.get(`/api/users/${loggedInUser()}`)
-      setUser({ ...data })
-    } catch (error) {
-      console.log(error)
-      setError(error.response)
-    }
-  }, [loggedInUser()])
+  // useEffect(() => {
+  //   const getUserNavbar = async () => {
+  //     try {
+  //       const { data } = await authenticated.get(`/api/users/${loggedInUser()}`)
+  //       setUser({ ...data })
+  //     } catch (error) {
+  //       console.log(error)
+  //       setUserError(error.response)
+  //     }
+  //   }
+  //   getUserNavbar()
+  // }, [user])
+
+  // getUserNavbar()
 
   useEffect(() => {
     const getStages = async () => {
@@ -40,11 +46,10 @@ const PageNavbar = () => {
         setStages(data)
       } catch (err) {
         console.log(err)
-        setError(err.message)
+        setStagesError(err.message)
       }
     }
     getStages()
-    getUser()
   }, [])
 
   // ! Executions
@@ -95,8 +100,8 @@ const PageNavbar = () => {
                     })
                     :
                     <>
-                      {error ?
-                        <Error error={error} />
+                      {stagesError ?
+                        <Error error={stagesError} />
                         :
                         <p>Loading...</p>}
                     </>
@@ -110,7 +115,11 @@ const PageNavbar = () => {
                       </div>
                       :
                       <>
-                        <p>{user.username}</p>
+                        {userError ?
+                          <Error error={userError} />
+                          :
+                          <p className={location.pathname === `/users/${loggedInUser()}` ? 'navbar-username-active' : 'navbar-username'}>@{user.username}</p>
+                        }
                       </>
                   }
                   id="basic-nav-dropdown" 
@@ -120,7 +129,7 @@ const PageNavbar = () => {
                   className={location.pathname === `/users/${loggedInUser()}` ? 'active navbar-link border-bottom' : 'navbar-link'}
                 >
                   <NavDropdown.Item to={`/users/${loggedInUser()}`} as={Link}>Profile</NavDropdown.Item>
-                  <NavDropdown.Item to="/" as={Link} onClick={handleLogout}>Logout</NavDropdown.Item>
+                  <NavDropdown.Item to="/" as={Link} onClick={handleLogout && hideProfileDropdown}>Logout</NavDropdown.Item>
                 </NavDropdown>
               </Nav>
             </Navbar.Collapse>

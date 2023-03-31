@@ -9,6 +9,12 @@
   flex-direction: column;
   background-color: black;
   min-height: 100vh;
+  background-image: url('../../components/images/space.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: grey;
+  background-blend-mode: multiply;
 }
 
 main {
@@ -30,7 +36,7 @@ img {
 }
 
 
-h1, h2, p, .logo {
+h1, h2, .logo {
   font-family: $main-font;
   text-align: center;
 }
@@ -44,9 +50,10 @@ h2 {
   font-size: 50px;
 }
 
-p {
+p, li {
   font-family: $sub-font;
   font-size: 30px;
+  margin-bottom: 0;
 }
 
 

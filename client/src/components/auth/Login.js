@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-const Login = () => {
+const Login = ({ getUser }) => {
 
   // ! Location variables
   const navigate = useNavigate()
@@ -32,6 +32,7 @@ const Login = () => {
       localStorage.setItem('Festival-MERN-Project', data.token)
       console.log(data)
       navigate('/map')
+      getUser()
     } catch (err) {
       console.log('error', err.message)
       setError('Invalid Email or Password. Try again.')
@@ -39,16 +40,16 @@ const Login = () => {
   }
 
   return (
-    <main className="form-page">
+    <main className="form-page register-login text-center">
       <Container>
         <Row>
-          <Col as="form" xs={{ span: 10, offset: 1 }} sm={{ span: 8, offset: 2 }} md={{ span: 6, offset: 3 }} onSubmit={handleSubmit}>
+          <Col as="form" xs={{ span: 10, offset: 1 }} sm={{ span: 6, offset: 3 }} md={{ span: 4, offset: 4 }} onSubmit={handleSubmit}>
             <h1 className='display-6 text-center'>Please Login to Enter</h1>
             <label htmlFor="email">Email</label>
             <input type="email" name="email" placeholder='Email' onChange={handleChange} value={formFields.email}/>
             <label htmlFor="password">Password</label>
             <input type="password" name="password" placeholder='Password' onChange={handleChange} value={formFields.password} />
-            <button className='btn btn-warning w-100 mb-4'>Login</button>
+            <button className='btn btn-primary w-100'>Login</button>
             {error && <p className='text-danger text-center'>{error}</p>}
           </Col>
         </Row>
