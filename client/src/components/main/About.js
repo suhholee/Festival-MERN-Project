@@ -18,9 +18,9 @@ const About = () => {
         
           <p className='text'>“Woozu has always been a DIY project, a house
           that we continue to build brick by brick, from the
-          roots up. Our drive & vision is clear; to create a
+          roots up. Our vision is clear; to create a
           home that welcomes all walks of life, celebrates
-          committed artistic talent, provides sanctuary for
+          committed artistic talent, provides a sanctuary for
           those seeking it & never compromises on quality of
           sound & production.”</p>
         </div>
@@ -30,9 +30,7 @@ const About = () => {
         <div className='wrap'>
           <img src={ Wellness } className='wrap-img' />
           <h1 className='title'>WELLNESS</h1>
-          <p>Our passion is delivering life-changing musical experiences but we understand we have a 
-            responsibility in minimising the festival’s impact on the environment. We are continuously 
-            striving to explore and demonstrate new and innovative ways of living more sustainably.</p>
+          <p> Woozu is about doing what you love with the people you love! We can do this at the heart of a mosh pit, or in total silence, so having a wellness centre is a vital part of the balance of our festival. It&apos;s a place to escape, relace, and restore. Quietly tucked away on the banks of the lke; discover wood-fired hot-tubs and finnish saunas, yoga, workshops, massage, holistic sound therapies, tarot readings and more...</p>
         </div>
 
 
@@ -58,7 +56,6 @@ const About = () => {
         <hr />
         
         <div className='about-btn'>
-          <p>You can check various of lineup</p>
           <Button className='wrap-button' as={Link} to='/map'> CHECK THE LINE UP </Button>
         </div>
       </div>
