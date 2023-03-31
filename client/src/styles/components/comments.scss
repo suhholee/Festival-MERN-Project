@@ -4,12 +4,13 @@
   flex-direction: column;
 }
 .comments-title{
-  color: rgb(113, 46, 46);
-  margin: 150px 0 200px 0;
+  color: rgb(255, 255, 255);
+  margin: 80px 0 50px 0;
 }
 .post-comments{
+  padding-bottom: 21px;
   @extend %flex-center;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   textarea{
     @extend %textarea;
   }
