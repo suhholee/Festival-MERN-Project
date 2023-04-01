@@ -40,7 +40,7 @@ const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
       setEditCheck(false)
     } catch (err) {
       console.log(err.response)
-      setEditError(' •–• text required •–• ')
+      setEditError(' •–• Your text is too long or there is no text input. •–• ')
     }
   }
 
