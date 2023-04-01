@@ -15,7 +15,7 @@ const Home = () => {
             <br />Would you like to come to WOOZU?
             <br />Get your free ticket right now!
             <br />
-            <br />Already a ticket? Enter the festival below
+            <br />Already have a ticket? Enter the festival below.
           </p>
           <div className='homeButton'>
             <Button to="/register" as={Link} className='btn'>GET TICKETS</Button>
