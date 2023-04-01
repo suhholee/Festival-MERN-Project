@@ -24,9 +24,9 @@ const App = () => {
     try {
       const { data } = await authenticated.get(`/api/users/${loggedInUser()}`)
       setUser({ ...data })
-    } catch (error) {
-      console.log(error)
-      setUserError(error.message)
+    } catch (err) {
+      console.log(err)
+      setUserError(err.message)
     }
   }, [])
 

@@ -9,8 +9,8 @@ export const userSingle = async (req, res) => {
     const user = await User.findById(userId)
     if (!user) throw new NotFound('User not found')
     return res.json(user)
-  } catch (error) {
-    sendError(res,error)
+  } catch (err) {
+    sendError(res, err)
   }
 }
 

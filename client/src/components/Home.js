@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <main className="home">
       <div className="hero">
-        <video loop autoPlay muted>
+        <video loop autoPlay muted className='bg-video'>
           <source src="video/moveout.mp4" type="video/mp4" />
         </video>
         <div className='home-container'>

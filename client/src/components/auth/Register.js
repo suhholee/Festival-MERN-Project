@@ -32,9 +32,9 @@ const Register = () => {
     try {
       const { data } = await axios.post('/api/register', formFields)
       navigate('/login')
-    } catch (error) {
-      console.log(error)
-      setRegisterError(error.message)
+    } catch (err) {
+      console.log(err)
+      setRegisterError(err.message)
     }
   }
 
