@@ -8,7 +8,6 @@
 .site-wrapper {
   display: flex;
   flex-direction: column;
-  background-color: black;
   min-height: 100vh;
   @extend %main-bg-img;
   @extend %bg-img-center;
@@ -21,8 +20,6 @@ main {
   @extend %bg-img-center;
 }
 
-video { width: 100%; }
-
 img {
   width: 100%;
 }
@@ -34,8 +31,7 @@ img {
   }
 }
 
-
-h1, h2, p, .logo {
+h1, h2, .logo {
   font-family: $main-font;
   text-align: center;
 }
@@ -49,9 +45,12 @@ h2 {
   font-size: 50px;
 }
 
-p {
+p, li {
   font-family: $sub-font;
   font-size: 30px;
+  margin-bottom: 0;
 }
 
-
+.footer {
+  @extend %copyright;
+}

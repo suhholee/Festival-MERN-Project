@@ -1,7 +1,9 @@
 $main-font: 'Caesar Dressing', cursive;
 $sub-font: 'Alumni Sans', sans-serif;
 $defaultDuration: .3s;
-
+$jungle-constellation-color: rgb(74, 157, 74);
+$nebula-808-color: rgb(161, 52, 190);
+$chaos-cosmos-color: rgb(219, 8, 8);
 
 %flex-center {
   display: flex;
@@ -16,13 +18,20 @@ $defaultDuration: .3s;
 }
 
 %main-bg-img{
-  background-image: url('../../components/images/main-background.png');
+  background-image: url('../../images/main-background.png');
+  background-color: grey;
+  background-blend-mode: multiply;
 }
 
 %copyright{
   font-family: $sub-font;
-  background-color: rgb(93, 93, 93);
+  background-color: rgba(93, 93, 93, 0.1);
   text-align: center;
+  color: rgb(93, 93, 93);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 %button-before {

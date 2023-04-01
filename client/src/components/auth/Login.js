@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-const Login = () => {
+const Login = ({ getUser }) => {
 
   // ! Location variables
   const navigate = useNavigate()
@@ -17,12 +17,12 @@ const Login = () => {
     email: '',
     password: '',
   })
-  const [ error, setError ] = useState('')
+  const [ loginError, setLoginError ] = useState('')
 
   // ! Executions
   const handleChange = (e) => {
     setFormFields({ ...formFields, [e.target.name]: e.target.value })
-    setError('')
+    setLoginError('')
   }
 
   const handleSubmit = async (e) => {
@@ -32,24 +32,26 @@ const Login = () => {
       localStorage.setItem('Festival-MERN-Project', data.token)
       console.log(data)
       navigate('/map')
+      getUser()
     } catch (err) {
-      console.log('error', err.message)
-      setError('Invalid Email or Password. Try again.')
+      console.log(err.message)
+      setLoginError('Invalid Email or Password. Try again.')
     }
   }
 
   return (
-    <main className="form-page">
+    <main className="form-page register-login text-center">
       <Container>
         <Row>
-          <Col as="form" xs={{ span: 10, offset: 1 }} sm={{ span: 8, offset: 2 }} md={{ span: 6, offset: 3 }} onSubmit={handleSubmit}>
-            <h1 className='display-6 text-center'> Ticket Check</h1>
+          <Col as="form" xs={{ span: 10, offset: 1 }} sm={{ span: 6, offset: 3 }} md={{ span: 4, offset: 4 }} onSubmit={handleSubmit}>
+            <h1 className='text-center'>Ticket Check</h1>
+            <p>Have you got your ticket ready?</p>
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" placeholder='Email' onChange={handleChange} value={formFields.email}/>
+            <input type="email" name="email" placeholder='Email' onChange={handleChange} value={formFields.email} />
             <label htmlFor="password">Password</label>
             <input type="password" name="password" placeholder='Password' onChange={handleChange} value={formFields.password} />
-            <button className='btn btn-warning w-100 mb-4'>Enter the Festival &#10140;</button>
-            {error && <p className='text-danger text-center'>{error}</p>}
+            <button className='btn btn-primary w-100'>Enter the Festival<span className='rocket'>🚀</span></button>
+            {loginError && <p className='text-danger text-center register-login-error'>{loginError}</p>}
           </Col>
         </Row>
       </Container>

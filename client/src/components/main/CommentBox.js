@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 
 // Custom components
-import { authenticated } from '../helpers/auth'
+import { authenticated } from '../../helpers/auth'
 import Likes from './Likes'
 
 const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
@@ -23,6 +23,7 @@ const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
   // ! Executions
   const handleEdit = () => {
     setEditCheck(!editCheck)
+    setEditError('')
   }
 
   const handleChangeEdit = (e) => {
@@ -39,7 +40,7 @@ const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
       setEditCheck(false)
     } catch (err) {
       console.log(err.response)
-      setEditError(' •–• text required •–• ')
+      setEditError(' •–• Your text is too long or there is no text input. •–• ')
     }
   }
 
@@ -64,9 +65,9 @@ const CommentBox = ({ username, _id, text, likes, getStage, stageId }) => {
       {editCheck ?
         <Container>
           <Col as='form' onSubmit={(e) => handleSubmitEdit(e, _id)}>
-            <Col>
-              <input type='text' name='edit-comment' onChange={handleChangeEdit} value={editedComment.text}/>
-              <button>Save</button>
+            <Col className='edit-box'>
+              <input type='text' name='edit-comment' className='edit-input' onChange={handleChangeEdit} value={editedComment.text}/>
+              <button className='save-button'>Save</button>
               {editError && <Error error={editError}/>}
             </Col>
           </Col>

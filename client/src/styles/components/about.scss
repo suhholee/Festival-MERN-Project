@@ -13,19 +13,21 @@
 
   // Each wrap section
   .wrap {
-
     // Main image and title section
     .header-1{
       display: flex;
-      position: relative;
+      background-image: url('../../images/about-header.png');
+      @extend %bg-img-center;
+      @extend %flex-center;
+      height: 80vh;
     }
     .title-1 {
-      position: absolute;
       text-align: center;
-      top: 40%;
-      left: 36%;
       color: white;
       font-size: 70px;
+      background-color: rgba(0, 0, 0, 0.700);
+      border-radius: 20px;
+      padding: 70px;
     }
 
     .title {
@@ -37,7 +39,7 @@
     }
     p {
       text-align: center;
-      padding: 50px 50px 150px 50px;
+      padding: 50px 50px 80px 50px;
       font-size: 30px;
     }
   }
@@ -45,9 +47,9 @@
   .about-btn{
     @extend %flex-center;
     flex-direction: column;
-    padding-bottom: 200px;
+    padding-bottom: 100px;
     p{
-      margin-bottom: 30px;
+      // margin-bottom: 30px;
       font-weight: 100;
       animation-duration: 4s;
       animation-name: beatingText;
@@ -66,8 +68,5 @@
     &:hover {
       @extend %button-hover-about;
     }
-  }
-  .footer{
-    @extend %copyright;
   }
 }

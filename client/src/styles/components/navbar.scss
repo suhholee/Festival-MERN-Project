@@ -1,6 +1,65 @@
 .nav-bar {
-  background-color: rgb(117, 117, 117);
-  opacity: 70%;
+  background-color: white;
   position: relative;
   z-index: 1;
+  height: 80px;
+}
+
+.container {
+  max-width: 93vw;
+}
+
+.logo {
+  font-size: 36px;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  .nav-link.active, .navbar-nav .show>.nav-link {
+    color: #5643fd;
+  }
+}
+
+.navbar-text {
+  color: black;
+  font-family: $main-font;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.navbar-link, .nav-item {
+  margin: 0 20px;
+}
+
+.active>#basic-nav-dropdown {
+  color: #5643fd;
+}
+
+.dropdown-toggle::after {
+  display: none !important; 
+}
+
+.navbar-image {
+  border: 2px solid black;
+  border-radius: 25px;
+  height: 50px;
+  width: 50px;
+  background-color: white;
+}
+
+.navbar-image-active {
+  border: 2px solid black;
+  border-radius: 25px;
+  height: 50px;
+  width: 50px;
+  background-color: #5643fd;
+}
+
+.navbar-username-active {
+  font-size: 30px;
+}
+
+.navbar-username {
+  font-size: 30px;
 }

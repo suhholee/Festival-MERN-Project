@@ -7,21 +7,21 @@ import Button from 'react-bootstrap/Button'
 // Custom Components
 import Spinner from '../common/Spinner'
 import Error from '../common/Error'
-import { isAuthenticated } from '../helpers/auth'
+import { isAuthenticated } from '../../helpers/auth'
 
 // Images
-import Nebula from '../../components/images/nebula.png'
-import Jungle from '../../components/images/jungle.png'
-import Chaos from '../../components/images/chaos.png'
-
+import Nebula from '../../images/nebula.png'
+import Jungle from '../../images/jungle.png'
+import Chaos from '../../images/chaos.png'
 
 const Map = () => {
 
-  // ! State
-  const [stages, setStages] = useState([])
-  const [error, setError] = useState('')
+  // ! Variables
   const navigate = useNavigate()
 
+  // ! State
+  const [ stages, setStages ] = useState([])
+  const [ error, setError ] = useState('')
 
   // ! On Mount
   useEffect(() => {
@@ -42,7 +42,6 @@ const Map = () => {
   return (
     <section>
       <div className='map-container'>
-
         <div className='stage-btn'>
           {stages.length > 0 ?
             stages.sort((a, b) => a.name > b.name ? 1 : -1).map(stage => {
@@ -62,9 +61,6 @@ const Map = () => {
             </>
           }
         </div>
-
-
-        
         <div className='stage-image'>
           <img className='Nebula' src={Nebula} alt="" />
           <img className='Chaos' src={Chaos} alt="" />

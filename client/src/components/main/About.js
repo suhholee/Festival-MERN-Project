@@ -1,7 +1,6 @@
-import Header from '../images/about-header.png'
-import Wellness from '../images/wellness.png'
-import Community from '../images/community.jpg'
-import RaveSafe from '../images/ravesafe.jpeg'
+import Wellness from '../../images/wellness.png'
+import Community from '../../images/community.jpg'
+import RaveSafe from '../../images/ravesafe.jpeg'
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 
@@ -13,9 +12,7 @@ const About = () => {
         <div className='wrap'>
           <div className='header-1'>
             <h1 className='title-1' >ABOUT <br /> WOOZU SOUNDS</h1>
-            <img src={ Header } className='wrap-img' />
           </div>
-        
           <p className='text'>“Woozu has always been a DIY project, a house
           that we continue to build brick by brick, from the
           roots up. Our vision is clear; to create a
@@ -24,9 +21,6 @@ const About = () => {
           those seeking it & never compromises on quality of
           sound & production.”</p>
         </div>
-
-        <hr />
-
         <div className='wrap'>
           <img src={ Wellness } className='wrap-img' />
           <h1 className='title'>WELLNESS</h1>
