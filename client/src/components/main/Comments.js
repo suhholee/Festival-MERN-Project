@@ -39,7 +39,7 @@ const Comments = ({ stage, getStage, stageError }) => {
       getStage()
     } catch (err) {
       console.log(err.message)
-      setPostError(' •–• Text Required •–• ')
+      setPostError(' •–• Your text is too long or there is no text input. •–• ')
     }
   }
 
