@@ -9,7 +9,7 @@ import Error from '../common/Error'
 import { removeToken } from '../../helpers/auth'
 import { loggedInUser } from '../../helpers/auth'
 
-const PageNavbar = ({ user, userError }) => {
+const PageNavbar = ({ user, userError, getUser }) => {
 
   // ! State
   const [ stages, setStages ] = useState([])
@@ -33,6 +33,7 @@ const PageNavbar = ({ user, userError }) => {
       }
     }
     getStages()
+    getUser()
   }, [])
 
   // ! Executions

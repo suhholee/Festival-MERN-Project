@@ -37,7 +37,7 @@ const App = () => {
   return (
     <div className='site-wrapper'>
       <BrowserRouter>
-        <PageNavbar user={user} userError={userError} />
+        <PageNavbar user={user} userError={userError} getUser={getUser} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
