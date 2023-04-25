@@ -51,8 +51,6 @@ const App = () => {
         </Routes>
         <Footer />
       </BrowserRouter>
-      <div className='footer'>Copyright 2023 &copy; All pictures cannot be copied without permission.
-      Created by Suhho Lee, Tom Clegg, Eunyeong Jeong</div>
     </div>
   )
 }
