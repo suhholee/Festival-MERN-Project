@@ -16,6 +16,7 @@ This was my third project whilst enrolling on General Assembly’s Software Engi
 The timeframe given for this project was 10 days. I worked with [Tom Clegg](https://github.com/BesB0x) and [Eunyeong Jeong](https://github.com/spacejey) for this project.
 
 ## Technologies Used
+- JavaScript
 - HTML
 - React
 - SASS
